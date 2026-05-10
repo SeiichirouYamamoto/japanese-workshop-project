@@ -68,8 +68,10 @@ function handleBodyPointerStart(e) {
 	
 }
 
-document.body.addEventListener('mousedown', handleBodyPointerStart);
-document.body.addEventListener('touchstart', handleBodyPointerStart, { passive: false });
+document.body.addEventListener('pointerdown', handleBodyPointerStart, { passive: false });
+
+// document.body.addEventListener('mousedown', handleBodyPointerStart);
+// document.body.addEventListener('touchstart', handleBodyPointerStart, { passive: false });
 
 
 const DRAG_SCROLL_EDGE_SIZE = 40;
@@ -1505,8 +1507,10 @@ function handleCreateLayersClickableContainerStart(e) {
 	target.classList.toggle('selected');
 }
 
-document.addEventListener('mousedown', handleCreateLayersClickableContainerStart);
-document.addEventListener('touchstart', handleCreateLayersClickableContainerStart, { passive: false });
+document.addEventListener('pointerdown', handleCreateLayersClickableContainerStart, { passive: false });
+
+// document.addEventListener('mousedown', handleCreateLayersClickableContainerStart);
+// document.addEventListener('touchstart', handleCreateLayersClickableContainerStart, { passive: false });
 
 
 function handleMenuContainerPointerStart(e) {
