@@ -70,9 +70,6 @@ function handleBodyPointerStart(e) {
 
 document.body.addEventListener('pointerdown', handleBodyPointerStart, { passive: false });
 
-// document.body.addEventListener('mousedown', handleBodyPointerStart);
-// document.body.addEventListener('touchstart', handleBodyPointerStart, { passive: false });
-
 
 const DRAG_SCROLL_EDGE_SIZE = 40;
 const DRAG_SCROLL_HOVER_DELAY = 1000;
@@ -1508,10 +1505,6 @@ function handleCreateLayersClickableContainerStart(e) {
 }
 
 document.addEventListener('pointerdown', handleCreateLayersClickableContainerStart, { passive: false });
-
-// document.addEventListener('mousedown', handleCreateLayersClickableContainerStart);
-// document.addEventListener('touchstart', handleCreateLayersClickableContainerStart, { passive: false });
-
 
 function handleMenuContainerPointerStart(e) {
 
