@@ -290,7 +290,6 @@ function handleElementsEraser(x, y) {
 	return true;
 }
 
-
 function handleCreateTextBoxMode(x, y) {
 
     if (currentInteractionMode !== 'createTextBoxMode') {
@@ -305,19 +304,20 @@ function handleCreateTextBoxMode(x, y) {
     const lastCreatedMovableContainer = createTextAreaContainer('', x, y);
     resetToSelectMode();
 
-    setTimeout(function () {
-        const elm_textAreaContainerTextArea = lastCreatedMovableContainer.querySelector('.textAreaContainerTextArea');
-        if (elm_textAreaContainerTextArea !== null) {
-            elm_textAreaContainerTextArea.classList.add('emptyText');
-            elm_textAreaContainerTextArea.focus();
-        }
-    }, 10);
+    const textarea = lastCreatedMovableContainer.querySelector('.textAreaContainerTextArea');
 
-    selectMovableElement(lastCreatedMovableContainer);
+    if (textarea !== null) {
+        textarea.classList.add('emptyText');
+
+        setTimeout(function () {
+            enterTextareaEditMode(textarea, lastCreatedMovableContainer);
+        }, 10);
+    } else {
+        selectMovableElement(lastCreatedMovableContainer);
+    }
 
     return true;
 }
-
 
 function handleCloseContextMenuIfOpened(x, y) {
 
