@@ -13,6 +13,10 @@ let activePendingTextarea = null;
 
 function handleBodyPointerStart(e) {
 
+    if (e.target.closest('.menuContainer, .wiseExpandableToolbar, .wiseMenuBar')) {
+        return;
+    }
+
     if (e.target.tagName === 'IMG') {
         e.preventDefault();
     }
