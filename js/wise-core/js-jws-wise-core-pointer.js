@@ -1331,39 +1331,39 @@ async function handleMovableContainerPointerUp(e) {
         return;
     }
 
-    if (isMoving) {
-        await handleEndMoving(e, e.timeStamp - touchStartTimestamp);
-        resetMovablePointerState();
-        return;
-    }
-
-    if (movableMode === MOVABLE_MODE.PENDING) {
-
-        currentSelectedMovableContainers = [];
-        resetSelectedElements();
-        selectMovableElement(activeMovableContainer);
-
-        const now = e.timeStamp;
-        const isDoubleTap =
-            activePendingTextarea === lastTextareaTapTarget &&
-            now - lastTextareaTapTime <= TEXTAREA_EDIT_DOUBLE_TAP_MS;
-
-        if (isDoubleTap) {
-            enterTextareaEditMode(activePendingTextarea, activeMovableContainer);
-            lastTextareaTapTime = 0;
-            lastTextareaTapTarget = null;
-            resetMovablePointerState();
+    try {
+        if (isMoving) {
+            await handleEndMoving(e, e.timeStamp - touchStartTimestamp);
             return;
         }
 
-        lastTextareaTapTime = now;
-        lastTextareaTapTarget = activePendingTextarea;
+        if (movableMode === MOVABLE_MODE.PENDING) {
 
+            currentSelectedMovableContainers = [];
+            resetSelectedElements();
+            selectMovableElement(activeMovableContainer);
+
+            const now = e.timeStamp;
+            const isDoubleTap =
+                activePendingTextarea === lastTextareaTapTarget &&
+                now - lastTextareaTapTime <= TEXTAREA_EDIT_DOUBLE_TAP_MS;
+
+            if (isDoubleTap) {
+                enterTextareaEditMode(activePendingTextarea, activeMovableContainer);
+                lastTextareaTapTime = 0;
+                lastTextareaTapTarget = null;
+                return;
+            }
+
+            lastTextareaTapTime = now;
+            lastTextareaTapTarget = activePendingTextarea;
+
+            return;
+        }
+
+    } finally {
         resetMovablePointerState();
-        return;
     }
-
-    resetMovablePointerState();
 }
 
 function handleMovableContainerPointerCancel(e) {
