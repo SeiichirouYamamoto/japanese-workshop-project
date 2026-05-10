@@ -749,9 +749,7 @@ function executeWiseMenuAddElementStickyNoteButton(){
 	openWisePanelUi(whiteboardPanel, whiteboardUiCreateStickyNote);
 }
 
-let ignoreNextCreateTextBoxStart = false;
 function executeWiseMenuAddElementTextBoxButton() {
-    ignoreNextCreateTextBoxStart = true;
     currentWiseToolbarButton = 'wiseVerticalToolbarMenuListOpenerAddElement';
     currentInteractionMode = 'createTextBoxMode';
     changeWiseVerticalToolbarButton('');

@@ -297,11 +297,6 @@ function handleCreateTextBoxMode(x, y) {
         return false;
     }
 
-    if (ignoreNextCreateTextBoxStart) {
-        ignoreNextCreateTextBoxStart = false;
-        return true;
-    }
-
     const didCollide = checkCollision(wiseToolbarContainer, x, y);
     if (didCollide) {
         return true;
