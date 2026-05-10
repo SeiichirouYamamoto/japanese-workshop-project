@@ -1,0 +1,45 @@
+.bookmarkStar {
+    appearance: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    /* サイズ固定 */
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    min-height: 28px;
+
+    /* 中央配置 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+    line-height: 1;
+    padding: 0;
+
+    color: #ccc;          /* 未ブクマは白抜き */
+    transition: color 0.2s ease, transform 0.15s ease;
+}
+
+.bookmarkStar::before {
+    content: "☆";
+}
+
+.bookmarkStar.isActive::before {
+    content: "★";
+}
+
+.bookmarkStar.isActive {
+    color: #f4c430;   /* ブックマークらしい黄色 */
+}
+
+.bookmarkStar:hover {
+    transform: scale(1.15);
+    color: #f4c430;
+}
+
+.bookmarkStar.isActive:hover {
+    filter: brightness(1.1);
+}

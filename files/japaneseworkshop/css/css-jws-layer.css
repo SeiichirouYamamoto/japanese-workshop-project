@@ -1,0 +1,190 @@
+
+#sectionWiseCreateLayers{
+	display: flex;
+}
+
+
+.wiseContainersMainContentArea.horizontalLayout{
+	width: 100%;
+	height: 100%;
+	padding: 50px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	position: static;
+}
+.wiseContainersMainContentArea.horizontalLayout *{
+	position: static;
+	display: flex;
+	border: none;
+	align-self: flex-start;
+}
+
+#wiseBodyCreateLayers{
+	overflow: auto;
+	overscroll-behavior-x: contain;
+	overscroll-behavior-y: contain;
+	flex: 1;
+	height: var(--wise-vh, 100svh) !important;
+    height: -webkit-fill-available;
+	display: flex;
+	position: relative;
+}
+#sentenceLayerSideMenuCreateLayers{
+	width: 50%;
+	height: var(--wise-vh, 100svh) !important;
+    height: -webkit-fill-available;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	padding: 10px;
+	background-color: white;
+	z-index: var(--wise-front-z-index-plus1);
+}
+
+#sentenceLayerMenuCreateLayers{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+#sentenceLayerMenuCreateNewLayerButtonContainer,
+.sectionGrammarRelationButtonsContainer
+{
+	width: 100%;
+	display: flex;
+	position: relative;
+}
+
+
+.isEditingLayerClickableContainer,
+.sentenceLayerElementsVisuallyHidden{
+	opacity: 0.05;
+}
+.isEditingLayerClickableContainer.selected{
+	background-color:#FFF;
+	opacity: 1;
+}
+
+.sentenceLayerMenuLocked {
+    opacity: 0.3;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.sentenceLayerUpdateScreenSideMenuUsedGrammarIdSelectedGrammartLi{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0 0 30px 0;
+}
+
+.editButtonsContainer,
+.sentenceLayerNamesContainer,
+.sentenceLayerSortButtonsContainer,
+.wiseWhiteboardUiCallAlreadyregisteredSentenceListLi,
+.registeredSentenceNamesContainer,
+.registeredSentenceSortButtonsContainer,
+.sentenceLayerUpdateScreenLayerElementsDisplayAreaLi,
+.sentenceLayerElementNamesContainer
+{
+	display: flex;
+	align-items: center;
+}
+
+.editButtonsContainer
+{
+	display: flex;
+	flex-direction: column;
+}
+
+.sentenceLayerNamesContainer
+{
+	margin-left: 20px;
+}
+
+.sentenceLayerEditButton
+{
+	white-space: nowrap;
+	display: inline-block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+.sentenceLayerUpdateScreenLayerElementsDisplayAreaLi {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    gap: 8px;
+}
+
+.sentenceLayerElementNamesContainer {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.sentenceLayerElementEditContainer{
+	display: flex;
+}
+
+.sentenceLayerElementToggleButtonContainer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.sentenceLayerElementInputContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.sentenceLayerElementInputPair {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.sentenceLayerElementInputLabel {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.sentenceLayerElementFormIdSelect,
+.sentenceLayerElementVoiceIdSelect {
+    padding: 4px 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    min-width: 100px;
+}
+
+#sentenceLayerUpdateScreenLayerElements{
+	max-width: 70%;
+}
+
+#sentenceLayerUpdateScreenGrammarIdInput{
+	-webkit-text-security: disc;
+}
+
+.sentenceLayerUpdateOverrideScreenLiDataContainer{
+	width: 100%;
+}
+.sentenceLayerUpdateOverrideScreenLi{
+	display: flex;
+	border: 2px solid var(--main-color-1);
+	border-radius: 3px;
+}
+.sentenceLayerUpdateOverrideScreenLiRow{
+	display: flex;
+	flex-direction: column;
+}

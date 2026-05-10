@@ -1,0 +1,114 @@
+
+.grammarInsightsDisplayArea
+{
+	padding: 30px;
+}
+.grammarInsightsDisplayAreaUl{
+	text-align: left;
+}
+.grammarInsightsDisplayAreaLi
+{
+	display: flex;
+	margin-bottom: 30px;
+}
+.grammarInsightsDisplayAreaLi.flexDirectionColumn{
+	flex-direction: column;
+}
+.grammarInsightsDisplayAreaLiContainer{
+	display: flex;
+	font-size: var(--main-font-size-1);
+	align-items: center;
+}
+.grammarInsightsDisplayAreaLiDivButtonsContainer,
+.homeworkLiButtonsContainer
+{
+	margin: 0 20px 0 0;
+}
+.grammarInsightsDisplayAreaLiDivTextsContainer,
+.homeworkLiTextsContainer
+{
+	margin: 0 20px 0 20px;
+}
+
+#wisePanelGrammarInsightsViewButtonsSection{
+	display: flex;
+	justify-content: center;
+	margin-bottom: 15px;
+}
+
+
+#grammarInsightsHomeworkLinkDisplayArea{
+	height: 100%;
+}
+
+#grammarInsightsHomeworkLinkDisplayAreaDualPaneContainer {
+	display: flex;
+	width: 100%;
+	height: 95%;
+}
+
+#grammarInsightsHomeworkLinkDisplayAreaLeftContainer {
+	width: 30%;
+	height: 100%;
+	border-right: 1px solid #ccc;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+#grammarInsightsHomeworkLinkDisplayAreaRightContainer {
+	width: 70%;
+	height: 100%;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+#grammarInsightsHomeworkLinkDisplayAreaRightContainerButtonsContainer {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+.grammarInsightsHomeworkLinkDisplayAreaRightContainerDayStatusContainer {
+	display: flex;
+	gap: 5px;
+	flex-grow: 1;
+    overflow-y: hidden;
+}
+
+.grammarInsightsHomeworkLinkDisplayAreaRightContainerDayStatusContainerDynamic,
+.grammarInsightsHomeworkLinkDisplayAreaRightContainerDayStatusContainerStatic {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	flex: 1;
+	overflow-y: auto;
+}
+
+
+
+
+.grammarInsightsHomeworkLinkDisplayAreaRightContainerTaskTypeContainer {
+	width: 100%;
+	border: 1px solid #ccc;
+	padding: 5px;
+}
+
+#grammarInsightsHomeworkLinkDisplayAreaLeftContainerUl{
+	overflow-y: auto;
+}
+
+.grammarInsightsHomeworkLinkDisplayAreaRightContainerTaskTypeContainer.selected 
+.grammarInsightsHomeworkLinkDisplayAreaRightContainerUl,
+.grammarInsightsHomeworkLinkDisplayAreaRightContainerTaskTypeContainer.selected 
+.grammarInsightsHomeworkLinkDisplayAreaRightContainerUl li {
+	color: black;
+}
+
+
+.grammarInsightsDisplayAreaLiText
+{
+	font-size: 30px;
+	text-align: left;
+}

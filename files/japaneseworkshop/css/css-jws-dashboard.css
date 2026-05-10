@@ -1,0 +1,500 @@
+
+/* ==========================
+   Dashboard
+========================== */
+@keyframes historyBling {
+    0%   { box-shadow: 0 0 0 rgba(53,198,255,0); }
+    20%  { box-shadow: 0 0 18px rgba(53,198,255,.8),
+                        0 0 36px rgba(53,198,255,.6); }
+    40%  { box-shadow: 0 0 10px rgba(53,198,255,.5); }
+    60%  { box-shadow: 0 0 18px rgba(53,198,255,.8),
+                        0 0 36px rgba(53,198,255,.6); }
+    80%  { box-shadow: 0 0 8px rgba(53,198,255,.4); }
+    100% { box-shadow: 0 0 0 rgba(53,198,255,0); }
+}
+
+.history-blink {
+    animation: historyBling 3s cubic-bezier(.4,0,.2,1);
+}
+/* =========================
+   Workshop: Level Section
+========================= */
+
+.workshopLevelSection {
+    padding: 2.2rem 0 2.2rem;
+}
+
+.workshopLevelHeader {
+    margin-bottom: 1.2rem;
+}
+
+.workshopLevelTitle {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* =========================
+   Slider Container
+========================= */
+
+.workshopLessonSliderContainer {
+    position: relative;
+}
+
+/* 左右フェード（横に続く誘導） */
+.workshopLessonSliderContainer::before,
+.workshopLessonSliderContainer::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 3.2rem;
+    z-index: 2;
+}
+
+.workshopLessonSliderContainer::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0));
+}
+
+.workshopLessonSliderContainer::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0));
+}
+
+/* =========================
+   Slider (Horizontal Scroll)
+========================= */
+
+.workshopLessonSlider {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(26rem, 32rem);
+    gap: 1.2rem;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.4rem 3.2rem 1.0rem;
+
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 3.2rem;
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: thin;
+}
+
+.workshopLessonSlider::-webkit-scrollbar {
+    height: 10px;
+}
+
+.workshopLessonSlider::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: 999px;
+}
+
+.workshopLessonSlider::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.18);
+    border-radius: 999px;
+}
+
+/* =========================
+   Lesson Card
+========================= */
+
+.workshopLessonCard {
+    scroll-snap-align: start;
+
+    position: relative;
+
+    border-radius: 1.6rem;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+
+    padding: 1.4rem 1.4rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+
+    min-height: 18.5rem;
+
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.workshopLessonCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================
+   Card: Top Row (absolute)
+========================= */
+
+.workshopLessonCardTopRow {
+    position: absolute;
+    top: 1.0rem;
+    left: 1.0rem;
+    right: 1.0rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    z-index: 2;
+}
+
+.workshopLessonCardStatus {
+    display: inline-flex;
+    align-items: center;
+    height: 2.2rem;
+    padding: 0 0.9rem;
+    border-radius: 999px;
+
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    background: rgba(0, 0, 0, 0.04);
+}
+
+/* =========================
+   Learning Status Label
+========================= */
+
+/* 未習：デフォルト（色なし） */
+/* .workshopLessonCardStatus.notStarted {
+} */
+
+/* 学習中：ブルー */
+.workshopLessonCardStatus.learning {
+    background-color: var(--main-color-1);
+    border-color: var(--main-color-1);
+    color: #000000;
+}
+
+/* 既習：ライトパープル */
+.workshopLessonCardStatus.learned {
+    background-color: var(--main-color-6);
+    border-color: var(--main-color-6);
+    color: #000000;
+}
+
+
+.workshopLessonCardSettingButton {
+    pointer-events: auto;
+
+    width: 3.0rem;
+    height: 3.0rem;
+    border-radius: 999px;
+
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.workshopLessonCardSettingButton:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.workshopLessonCardSettingIcon {
+    font-size: 1.4rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+/* =========================
+   Card: Header (reserve space)
+========================= */
+
+.workshopLessonCardHeader {
+    margin-top: 2.4rem;
+    margin-bottom: 1.0rem;
+}
+
+.workshopLessonCardTitleMain {
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.workshopLessonCardTitleSub {
+    margin-top: 0.4rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    opacity: 0.85;
+    line-height: 1.3;
+    min-height: 1.3em;
+}
+
+/* =========================
+   Card: Body (Grammar list)
+========================= */
+
+.workshopLessonCardBody {
+    flex: 1 1 auto;
+    margin-top: 0.6rem;
+}
+
+.workshopLessonCardGrammarUl {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.workshopLessonCardGrammarLi {
+    font-size: 1.3rem;
+    line-height: 1.3;
+    opacity: 0.92;
+}
+
+.workshopLessonCardGrammarLi.etc {
+    opacity: 0.65;
+    font-weight: 700;
+}
+
+.workshopLessonCardGrammarLi.empty {
+    opacity: 0.55;
+}
+
+.workshopLessonCardObjective {
+    font-size: var(--main-font-size-2);
+}
+
+/* =========================
+   Footer
+========================= */
+
+.workshopLessonCardFooter {
+    margin-top: auto;
+    padding-top: 1.1rem;
+}
+
+.workshopLessonCardOpenButton {
+    width: 100%;
+}
+
+/* =========================
+   Empty Message
+========================= */
+
+.workshopLessonsEmpty {
+    padding: 1.4rem 0;
+    font-size: 1.4rem;
+    opacity: 0.8;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 768px) {
+    .workshopLessonSlider {
+        grid-auto-columns: minmax(22rem, 30rem);
+        padding: 0.4rem 2.4rem 1.0rem;
+        scroll-padding-left: 2.4rem;
+    }
+
+    .workshopLessonSliderContainer::before,
+    .workshopLessonSliderContainer::after {
+        width: 2.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .workshopLevelTitle {
+        font-size: 1.6rem;
+    }
+
+    .workshopLessonSlider {
+        grid-auto-columns: minmax(19rem, 26rem);
+        gap: 1.0rem;
+        padding: 0.4rem 1.8rem 1.0rem;
+        scroll-padding-left: 1.8rem;
+    }
+
+    .workshopLessonSliderContainer::before,
+    .workshopLessonSliderContainer::after {
+        width: 1.8rem;
+    }
+
+    .workshopLessonCard {
+        padding: 1.2rem 1.2rem 1.0rem;
+        min-height: 17.0rem;
+    }
+
+    .workshopLessonCardHeader {
+        margin-top: 2.2rem;
+    }
+
+    .workshopLessonCardTitleMain {
+        font-size: 1.4rem;
+    }
+
+    .workshopLessonCardTitleSub {
+        font-size: 1.2rem;
+    }
+}
+
+/* ==========================
+   Workshop : Next Lesson Button
+========================== */
+
+/* ボタンエリア（独立・横幅100%） */
+.workshopNextLessonButtonArea {
+    width: 100%;
+    margin: 3.5rem 0 1.5rem;
+    padding-top: 2.0rem;
+    border-top: 1px solid #e3e7f0;
+
+    display: flex;
+    justify-content: center;
+}
+
+/* メインボタン */
+.workshopNextLessonButton {
+    width: 100%;
+    max-width: 420px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 1.1rem 2.4rem;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+
+    background-color: var(--main-color-1);
+    color: #000000;
+
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.14);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+/* hover */
+.workshopNextLessonButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+}
+
+/* active */
+.workshopNextLessonButton:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.14);
+}
+
+/* disabled 想定（将来用） */
+.workshopNextLessonButton:disabled {
+    opacity: 0.5;
+    cursor: default;
+    transform: none;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.10);
+}
+
+/* スマホ微調整 */
+@media (max-width: 480px) {
+    .workshopNextLessonButtonArea {
+        margin-top: 3.0rem;
+        padding-top: 1.6rem;
+    }
+
+    .workshopNextLessonButton {
+        font-size: 1.5rem;
+        padding: 1.0rem 2.0rem;
+    }
+}
+
+
+/* ==========================
+   History : whiteboard (modal) - COMPLETE
+   - 3レイヤを board 基準で完全重ね
+   - linked container / 各canvas を board 同寸に固定
+   - クリック系は履歴では無効化
+========================== */
+
+/* ---------- Board ---------- */
+#lessonWhiteboardModalBoard{
+    position: relative;
+    background: transparent;
+    /* overflow: hidden; */
+}
+
+/* ---------- Layers ---------- */
+/* 3レイヤ（Canvas / Elements / Marks）を board と同寸で重ねる */
+#lessonWhiteboardModalCanvasLayer,
+#lessonWhiteboardModalElementsLayer,
+#lessonWhiteboardModalMarksLayer{
+    position: absolute;
+    inset: 0; /* left/top/right/bottom = 0 */
+}
+
+/* レイヤの重なり順 */
+#lessonWhiteboardModalCanvasLayer{ z-index: 10; }
+#lessonWhiteboardModalElementsLayer{ z-index: 20; }
+#lessonWhiteboardModalMarksLayer{ z-index: 30; }
+
+/* ---------- CanvasLayer internal ---------- */
+/* linked canvas を置くコンテナも board 同寸 */
+#lessonWhiteboardModalCanvasLinkedContainer{
+    position: absolute;
+    inset: 0;
+}
+
+/* CanvasLayer 内の canvas はすべて board 同寸で重ねる */
+#lessonWhiteboardModalCanvasLayer canvas{
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* linked canvas 群（createLinkedCanvas 由来） */
+#lessonWhiteboardModalCanvasLinkedContainer .wiseCanvasLinked{
+    z-index: 11;
+}
+
+/* 単一リンクキャンバス（独自描画用） */
+#lessonWhiteboardModalLinkCanvas{
+    z-index: 12;
+}
+
+/* 手書きストロークキャンバス */
+#lessonWhiteboardModalCanvas{
+    z-index: 13;
+}
+
+
+/* ---------- ElementsLayer ---------- */
+/* movable はレイヤ内で left/top を効かせる */
+#lessonWhiteboardModalElementsLayer .movableContainer{
+    position: absolute;
+}
+
+.historyItemContainer{
+	margin-bottom: 20px;
+}
+.historyItemContainerTitle{
+	font-size: var(--main-font-size-2);
+}

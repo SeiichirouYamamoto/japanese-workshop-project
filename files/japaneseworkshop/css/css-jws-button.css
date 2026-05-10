@@ -1,0 +1,310 @@
+
+.jwsAction {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.4rem;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    background-color: var(--main-color-1);
+    color: #000000;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 700;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.jwsAction:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.jwsAction:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+}
+
+/* Disabled link */
+.jwsAction.is-disabled {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.10);
+}
+
+
+
+.loginCreateAccountLink,
+.loginForgotPasswordLink,
+.grammarViewCreateAccountLink,
+.grammarViewUpgradeMembershipLink
+{
+    margin-top: 1.6rem;
+    font-size: 1.4rem;
+    color: #555;
+}
+
+.loginCreateAccountLink a,
+.loginForgotPasswordLink a,
+.grammarViewCreateAccountLink a,
+.grammarViewUpgradeMembershipLink a
+{
+    color: var(--main-color-3);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: 0.15s ease;
+}
+
+.loginCreateAccountLink a:hover,
+.loginForgotPasswordLink a:hover,
+.grammarViewCreateAccountLink a:hover,
+.grammarViewUpgradeMembershipLink a:hover
+{
+    color: #2c3e50;
+    border-color: var(--main-color-3);
+}
+
+.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none !important;
+}
+
+.imageMagnifier
+{
+	min-width: 24px;
+	max-height: 24px;
+}
+.grammarViewZoomButton,
+.wiseUiFontSizeButton
+{
+	max-width: 48px;
+	max-height: 48px;
+}
+
+
+
+/* =========================
+   ツールバー本体
+========================= */
+.wiseExpandableToolbar {
+    --wise-toolbar-button-size: 52px;
+    --wise-toolbar-button-step: 60px;
+
+    position: relative;
+
+    width: var(--wise-toolbar-button-size);
+    height: var(--wise-toolbar-button-size);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+	margin: 0 10px;
+}
+
+
+/* =========================
+   ボタン一覧エリア
+========================= */
+.wiseToolbarButtonsArea {
+    position: absolute;
+    left: 0;
+    bottom: var(--wise-toolbar-button-step);
+
+    gap: 8px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    opacity: 1;
+    pointer-events: none;
+}
+
+.wiseExpandableToolbar.is-open .wiseToolbarButtonsArea {
+    pointer-events: auto;
+}
+
+.wiseExpandableToolbar.is-collapsed .wiseToolbarButtonsArea {
+    pointer-events: none;
+}
+
+/* =========================
+   current button エリア
+========================= */
+.wiseToolbarCurrentButtonArea {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* =========================
+   メインボタン（リアクター）
+========================= */
+.wiseToolbarCurrentButton {
+    display: flex;
+
+    box-shadow:
+        0 0 8px rgba(0, 180, 255, 0.7),
+        0 0 18px rgba(0, 180, 255, 0.35);
+
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.wiseExpandableToolbar.is-open .wiseToolbarCurrentButton {
+    box-shadow:
+        0 0 12px rgba(0, 220, 255, 0.9),
+        0 0 28px rgba(0, 220, 255, 0.6);
+
+    transform: scale(1.04);
+}
+
+
+/* =========================
+   一覧内ボタン
+========================= */
+.wiseToolbarButtonsArea .wiseVerticalToolbarButton {
+    display: flex;
+
+    opacity: 0;
+    transform: translateY(34px) scale(0.55);
+    transform-origin: center bottom;
+    pointer-events: none;
+
+    transition:
+        opacity 0.18s ease,
+        transform 0.34s cubic-bezier(0.16, 1.35, 0.35, 1);
+}
+
+.wiseExpandableToolbar.is-open .wiseToolbarButtonsArea .wiseVerticalToolbarButton {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.wiseExpandableToolbar.is-open .wiseToolbarButtonsArea .wiseVerticalToolbarButton.is-disabled {
+	opacity: 0.5 !important;
+    cursor: not-allowed;
+}
+
+.wiseExpandableToolbar.is-collapsed .wiseToolbarButtonsArea .wiseVerticalToolbarButton {
+    opacity: 0;
+    transform: translateY(34px) scale(0.55);
+    pointer-events: none;
+    transition-delay: 0s;
+}
+
+/* ーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーー */
+
+#wiseVerticalToolbarContainer,
+#wiseRightVerticalToolbarContainer
+{
+	position: absolute;
+	z-index: var(--wise-front-z-index-plus5);
+}
+
+#wiseVerticalToolbarContainer,
+#globalVerticalToolbarContainer
+{
+	bottom: 20px;
+	left: 0;
+}
+#wiseRightVerticalToolbarContainer
+{
+	bottom: 20px;
+	right: 0;
+}
+
+#globalVerticalToolbarContainer
+{
+	position: fixed;
+	display: flex;
+    flex-direction: column;
+	z-index: var(--wise-front-z-index-plus5);
+	gap: 10px;
+	margin: 0 10px;
+}
+
+#wiseZoomContainer
+{
+	position: absolute;
+	top: 20px;
+	right: 20px;
+}
+
+.wiseVerticalToolbarButton,
+.globalVerticalToolbarButton,
+.wisePanelLessonContentsViewLessonToolbarButton
+{
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
+	text-align: center;
+}
+
+.wiseVerticalToolbarButton,
+.globalVerticalToolbarButton
+{
+	width: 50px;
+	height: 50px;
+	padding: 0;
+}
+
+.wiseVerticalToolbarButton img,
+.globalVerticalToolbarButton img,
+.wisePanelLessonContentsViewLessonToolbarButton img{
+	width: 60%;
+	height: 60%;
+	pointer-events: none;
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+.wiseVerticalToolbarButton,
+.globalVerticalToolbarButton,
+.wisePanelLessonContentsViewLessonToolbarButton
+{
+	background: var(--main-color-1);
+	color: #FFF;
+}
+
+.wiseToolbarCurrentButton,
+.globalVerticalToolbarButton.globalVerticalToolbarButton-selected,
+.wisePanelLessonContentsViewLessonToolbarButton.wisePanelLessonContentsViewLessonToolbarButton-selected{
+	color: var(--main-color-1);
+	background: #FFF;
+	border: solid 1px var(--main-color-1);
+}
+
+
+.quizScreenButton,
+.wisePanelChartButton,
+.sentenceLayerUpdateScreenButton,
+#wisePoliteFormPlainFormButtonExit,
+.grammarOutlinePreviewScreenButton,
+.quizContentsButton,
+.workshopContentsButton,
+.quizItemButton,
+.quizFeedbackScreenContentExplanationToGrammarButton
+{
+	background-color: var(--main-color-1);
+	color: black;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 20px;
+	font-size: 18px;
+	margin:5px;
+}

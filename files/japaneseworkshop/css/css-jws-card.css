@@ -1,0 +1,699 @@
+
+/* ▼ アカウント系ページ共通レイアウト */
+.accountSection .container {
+    max-width: 480px;
+    margin: 0 auto 3rem;
+}
+
+/* ▼ カード型コンテンツ（フォームやメッセージを囲むボックス） */
+.accountSection .loginContent,
+.accountSection .registerContent,
+.accountSection .logoutContent,
+.accountSection .logoutCompleteContent,
+.accountSection .profileContent,
+.accountSection .changeEmailContent,
+.accountSection .changePasswordContent,
+.accountSection .lostPasswordContent,
+.accountSection .resetPasswordContent,
+.accountSection .deleteAccountContent,
+.accountSection .deleteAccountCompleteContent,
+.accountSection .loginAlready,
+.accountSection .registerAlready {
+    position: relative;
+    margin: 35px 0 0 0;
+    padding: 3.4rem 2rem 2rem;
+    background-color: #f9fafe;
+    border-left: 4px solid var(--main-color-3);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* ▼ 浮いた見出し風タイトル（全ページ共通） */
+.accountSection .loginTitle,
+.accountSection .registerTitle,
+.accountSection .logoutTitle,
+.accountSection .logoutCompleteTitle,
+.accountSection .profileTitle,
+.accountSection .changeEmailTitle,
+.accountSection .changePasswordTitle,
+.accountSection .lostPasswordTitle,
+.accountSection .resetPasswordTitle,
+.accountSection .deleteAccountTitle,
+.accountSection .deleteAccountCompleteTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #34495e;
+    background-color: #ffffff;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid #e1e5ef;
+    position: absolute;
+    left: 1.6rem;
+    bottom: calc(100% - 3.3rem);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    z-index: 2;
+    max-width: calc(100% - 3.2rem);
+    line-height: 1.4;
+}
+
+/* ▼ 文字サイズのベース */
+.accountSection label,
+.accountSection input,
+.accountSection button,
+.accountSection p,
+.accountSection a {
+    font-size: 1.5rem;
+}
+
+/* ▼ 共通フォームグループ */
+.accountSection .formGroup {
+    margin-bottom: 3.5rem;
+}
+.accountSection form .formGroup:last-child {
+    margin-bottom: 0.1rem;
+}
+
+.accountSection .formGroup label {
+    display: block;
+    color: #34495e;
+    margin-bottom: 0.45rem;
+    font-weight: 500;
+}
+
+/* ▼ テキスト入力欄共通 */
+.accountSection input[type="text"],
+.accountSection input[type="email"],
+.accountSection input[type="password"],
+.accountSection input[type="number"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #d0d7e2;
+    background-color: #ffffff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.accountSection input[type="text"]:focus,
+.accountSection input[type="email"]:focus,
+.accountSection input[type="password"]:focus,
+.accountSection input[type="number"]:focus {
+    outline: none;
+    border-color: var(--main-color-3);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.18);
+}
+
+/* ▼ チェックボックス（ログイン状態維持、削除確認など） */
+.accountSection .formGroup.checkBox label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-weight: 400;
+}
+
+.accountSection .formGroup.checkBox input[type="checkbox"] {
+    margin-top: 0.2rem;
+}
+
+/* ▼ エラーメッセージ共通 */
+.accountSection .errorMessage {
+    margin: 0 0 1.5rem;
+    padding: 1rem 1.2rem;
+    background-color: #fff5f5;
+    border-left: 4px solid #e74c3c;
+    border-radius: 6px;
+}
+
+.accountSection .errorMessage .errorItem {
+    margin: 0 0 0.3rem;
+    font-size: 1.4rem;
+    color: #c0392b;
+}
+
+/* ▼ お知らせ・案内メッセージ系 */
+.accountSection .profileNotice,
+.accountSection .changeEmailNotice,
+.accountSection .changeEmailInfo,
+.accountSection .autoRenewActiveInfo,
+.accountSection .changePasswordNotice,
+.accountSection .lostPasswordNotice,
+.accountSection .resetPasswordNotice,
+.accountSection .deleteAccountCompleteMessageMain,
+.accountSection .deleteAccountCompleteMessageDetail {
+    font-size: 1.4rem;
+    color: #555;
+}
+
+.accountSection .profileInfo p,
+.accountSection .changeEmailInfo p,
+.accountSection .autoRenewActiveInfo p {
+    font-size: 1.4rem;
+    margin-bottom: 3.5rem;
+}
+
+/* ▼ パスワード系ページ説明文 */
+.accountSection .lostPasswordDescription,
+.accountSection .resetPasswordDescription {
+    font-size: 1.4rem;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+/* ▼ ボタン共通（見た目を統一） */
+.accountSection .loginBtn,
+.accountSection .registerBtn,
+.accountSection .logoutBtn,
+.accountSection .logoutCompleteBtn,
+.accountSection .profileBtn,
+.accountSection .changeEmailBtn,
+.accountSection .changePasswordBtn,
+.accountSection .lostPasswordBtn,
+.accountSection .resetPasswordBtn,
+.accountSection .deleteAccountBtn,
+.accountSection .cancelAutoRenewBtn,
+.accountSection .homeBtn {
+    display: inline-block;
+    padding: 0.7rem 2.2rem;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: 600;
+    background-color: var(--main-color-1);
+    color: #000000;
+    text-decoration: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+    transition: 0.2s;
+}
+
+.accountSection .loginBtn:hover,
+.accountSection .registerBtn:hover,
+.accountSection .logoutBtn:hover,
+.accountSection .profileBtn:hover,
+.accountSection .changeEmailBtn:hover,
+.accountSection .changePasswordBtn:hover,
+.accountSection .lostPasswordBtn:hover,
+.accountSection .resetPasswordBtn:hover,
+.accountSection .deleteAccountBtn:hover,
+.accountSection .cancelAutoRenewBtn:hover,
+.accountSection .homeBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.accountSection .loginBtn:active,
+.accountSection .registerBtn:active,
+.accountSection .logoutBtn:active,
+.accountSection .profileBtn:active,
+.accountSection .changeEmailBtn:active,
+.accountSection .changePasswordBtn:active,
+.accountSection .lostPasswordBtn:active,
+.accountSection .resetPasswordBtn:active,
+.accountSection .deleteAccountBtn:active,
+.accountSection .cancelAutoRenewBtn:active,
+.accountSection .homeBtn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+}
+
+/* ▼ ボタンを右寄せしたい場合（formGroup 内） */
+.accountSection .formGroup > button,
+.accountSection .formGroup > .loginBtn,
+.accountSection .formGroup > .registerBtn,
+.accountSection .formGroup > .logoutBtn,
+.accountSection .formGroup > .profileBtn,
+.accountSection .formGroup > .changeEmailBtn,
+.accountSection .formGroup > .changePasswordBtn,
+.accountSection .formGroup > .lostPasswordBtn,
+.accountSection .formGroup > .resetPasswordBtn,
+.accountSection .formGroup > .deleteAccountBtn {
+    margin-left: auto;
+}
+
+/* ▼ ログイン済み／未ログイン時のリンク（マイページ・ログインページへなど） */
+.accountSection .loginAlready a,
+.accountSection .registerAlready a,
+.accountSection .deleteAccountCompleteHomeLink a,
+.accountSection .profileContent a,
+.accountSection .changeEmailContent a,
+.accountSection .changePasswordContent a,
+.accountSection .lostPasswordContent a,
+.accountSection .resetPasswordContent a,
+.accountSection .deleteAccountContent a {
+    color: var(--main-color-3);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: 0.15s ease;
+}
+
+.accountSection .loginAlready a:hover,
+.accountSection .registerAlready a:hover,
+.accountSection .deleteAccountCompleteHomeLink a:hover,
+.accountSection .profileContent a:hover,
+.accountSection .changeEmailContent a:hover,
+.accountSection .changePasswordContent a:hover,
+.accountSection .lostPasswordContent a:hover,
+.accountSection .resetPasswordContent a:hover,
+.accountSection .deleteAccountContent a:hover {
+    color: #2c3e50;
+    border-color: var(--main-color-3);
+}
+
+
+/* ▼ 削除完了ページのメッセージ整形 */
+.deleteAccountCompleteMessageMain {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.deleteAccountCompleteMessageDetail {
+    margin-bottom: 1.2rem;
+}
+
+/* ▼ スマホ対応 */
+@media (max-width: 480px) {
+
+    .accountSection .loginContent,
+    .accountSection .registerContent,
+    .accountSection .logoutContent,
+    .accountSection .logoutCompleteContent,
+    .accountSection .profileContent,
+    .accountSection .changeEmailContent,
+    .accountSection .changePasswordContent,
+    .accountSection .lostPasswordContent,
+    .accountSection .resetPasswordContent,
+    .accountSection .deleteAccountContent,
+    .accountSection .deleteAccountCompleteContent,
+    .accountSection .loginAlready,
+    .accountSection .registerAlready {
+        padding: 3rem 1.4rem 2rem;
+    }
+
+    .accountSection .loginTitle,
+    .accountSection .registerTitle,
+    .accountSection .logoutTitle,
+    .accountSection .logoutCompleteTitle,
+    .accountSection .profileTitle,
+    .accountSection .changeEmailTitle,
+    .accountSection .changePasswordTitle,
+    .accountSection .lostPasswordTitle,
+    .accountSection .resetPasswordTitle,
+    .accountSection .deleteAccountTitle,
+    .accountSection .deleteAccountCompleteTitle {
+
+        bottom: calc(100% - 3.3rem);
+        top: auto;
+
+        font-size: 1.8rem;
+        padding: 0.45rem 1.1rem;
+
+        max-width: calc(100% - 2.8rem);
+        line-height: 1.4;
+    }
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+/* ==========================
+   JWS Common Layout (Dashboard base)
+   Structure:
+   jwsSection
+     jwsContainer
+       header
+       jwsCardContainer
+         jwsCard
+           jwsCardTitle
+           p
+           a (button)
+========================== */
+
+/* ---------- Section ---------- */
+.jwsSection {
+    padding: 2.5rem 0 3.5rem;
+}
+
+/* ---------- Width control ---------- */
+.jwsContainer {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.2rem;
+}
+
+/* ---------- Group header ---------- */
+.jwsSection > .jwsContainer > header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.2rem;
+    margin: 0 0 1.2rem 0;
+    padding: 0 0.2rem;
+}
+
+.jwsSection > .jwsContainer > header h2 {
+    margin: 0;
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: #34495e;
+    letter-spacing: 0.02em;
+}
+
+.jwsSection > .jwsContainer > header p {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #6b7280;
+}
+
+/* ---------- Cards container ---------- */
+.jwsCardContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem;
+}
+
+/* ---------- Card ---------- */
+.jwsCard {
+    position: relative;
+    padding: 1.6rem 1.6rem 1.4rem;
+    background-color: #f9fafe;
+    border-left: 4px solid var(--main-color-3);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Card title */
+.jwsCardTitle {
+    margin: 0 0 0.8rem 0;
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: #34495e;
+}
+
+/* Card description (ベース) */
+.jwsCard p {
+    margin: 0 0 1.2rem 0;
+    font-size: 1.4rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* ===== 追加：説明文を役割で固定（ここが効く） ===== */
+.jwsCardDesc {
+    margin: 0 0 1.2rem 0;
+    font-size: 1.35rem;
+    color: #555;
+    line-height: 1.65;
+}
+
+/* ===== 追加：ボタンを「小さく・揃えて・上品」にする ===== */
+.jwsAction {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    padding: 0.7rem 1.1rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: 0.02em;
+
+    background: #2fd0e1;
+    color: #0a2a2e;
+
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.10);
+    transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+}
+
+.jwsAction:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.14);
+    filter: brightness(0.98);
+}
+
+/* ===== 追加：カード内の “最後の要素” が下に揃うと整う（任意だが強い） ===== */
+.jwsCard {
+    display: flex;
+    flex-direction: column;
+}
+
+.jwsCard .jwsAction {
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+/* --- can_do を復活させた時用（コメントアウト解除時に使う） --- */
+.jwsCardSubLink {
+    margin: 0.9rem 0 0 0;
+    font-size: 1.2rem;
+}
+
+.jwsCardSubLink a {
+    color: #34495e;
+    text-decoration: underline;
+}
+
+/* ---------- Spacing between multiple sections ---------- */
+/* 連続する jwsSection の間隔を自然に */
+.jwsSection + .jwsSection {
+    padding-top: 0;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+    .jwsSection {
+        padding: 2.0rem 0 3.0rem;
+    }
+
+    .jwsCardContainer {
+        grid-template-columns: 1fr;
+        gap: 1.0rem;
+    }
+
+    .jwsCard {
+        padding: 1.4rem 1.3rem 1.2rem;
+    }
+
+    .jwsCardTitle {
+        font-size: 1.6rem;
+    }
+
+    .jwsSection > .jwsContainer > header h2 {
+        font-size: 1.8rem;
+    }
+
+    .jwsAction {
+        min-width: 110px;
+        padding: 0.65rem 1.0rem;
+        font-size: 1.15rem;
+    }
+}
+
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+
+
+.aboutUsText {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0.5em;
+    color: #2c3e50;
+}
+
+.landingPageContentsSection,
+.workshopHomeContentsSection,
+.aboutUsSection
+ {
+    border-left: 4px solid var(--main-color-3);
+    padding: 1em 1.5em;
+    margin-bottom: 2em;
+    background-color: #f9fafe;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    border-radius: 6px;
+}
+
+.aboutUsH1 {
+    font-size: 2rem;
+    color: #34495e;
+    margin-bottom: 1em;
+}
+
+.aboutUsH2 {
+    font-size: 1.5rem;
+    color: var(--main-color-3);
+    margin-bottom: 0.75em;
+}
+
+/* =========================================================
+   what-japanese-workshop page styles (Complete)
+   ========================================================= */
+
+/* ---- Wrapper ---- */
+.whatJwWrap{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 24px 16px;
+}
+
+/* ---- Headings / Text ---- */
+.whatJwH1{
+    font-size: 2rem;
+    color: #34495e;
+    margin: 0 0 1em 0;
+}
+
+.whatJwH2{
+    font-size: 1.5rem;
+    color: var(--main-color-3);
+    margin: 0 0 0.75em 0;
+}
+
+.whatJwH3{
+    font-size: 1.15rem;
+    color: #2c3e50;
+    margin: 0 0 0.6em 0;
+    font-weight: 700;
+}
+
+.whatJwP{
+    line-height: 1.9;
+    margin: 0.6em 0;
+    color: #2c3e50;
+}
+
+/* 強調テキスト（必要なら使用） */
+.whatJwTextStrong{
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 0.5em;
+    color: #2c3e50;
+}
+
+/* ---- Sections (match your aboutUsSection taste) ---- */
+.whatJwSection{
+    border-left: 4px solid var(--main-color-3);
+    padding: 1em 1.5em;
+    margin: 28px 0;
+    background-color: #f9fafe;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    border-radius: 6px;
+}
+
+/* ---- Images ---- */
+.whatJwSectionImageWrap,
+.whatJwCardImageWrap,
+.whatJwFeatureImageWrap{
+    width: 100%;
+    margin: 10px 0 14px 0;
+}
+
+.whatJwSectionImage,
+.whatJwCardImage,
+.whatJwFeatureImage{
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+}
+
+/* ---- Cards (pillar / experience blocks) ---- */
+.whatJwCards{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 14px;
+}
+
+.whatJwCard{
+    border-radius: 6px;
+    padding: 14px;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: rgba(255,255,255,0.75);
+}
+
+/* ---- Features (Lesson Contents / Grammar Insights etc.) ---- */
+.whatJwFeatures{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+/* Feature row */
+.whatJwFeature{
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 12px;
+    align-items: start;
+    padding: 12px;
+    border-radius: 6px;
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.06);
+}
+
+/* If there is no image, you can add this class on HTML side */
+.whatJwFeature.noImage{
+    grid-template-columns: 1fr;
+}
+
+.whatJwFeatureName{
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #2c3e50;
+}
+
+/* Optional: feature body area */
+.whatJwFeatureBody{
+    min-width: 0;
+}
+
+/* ---- Spacing utilities (optional) ---- */
+.whatJwMt8{ margin-top: 8px; }
+.whatJwMt12{ margin-top: 12px; }
+.whatJwMt16{ margin-top: 16px; }
+.whatJwMb8{ margin-bottom: 8px; }
+.whatJwMb12{ margin-bottom: 12px; }
+.whatJwMb16{ margin-bottom: 16px; }
+
+/* ---- Responsive ---- */
+@media (max-width: 720px){
+    .whatJwWrap{
+        padding: 20px 14px;
+    }
+
+    .whatJwSection{
+        padding: 1em 1.1em;
+    }
+
+    .whatJwFeature{
+        grid-template-columns: 1fr;
+    }
+
+    .whatJwFeatureImageWrap{
+        margin: 0 0 10px 0;
+    }
+}
+
+/* ---- Optional: slightly wider layout on large screens ---- */
+@media (min-width: 1100px){
+    .whatJwWrap{
+        max-width: 1040px;
+    }
+}
