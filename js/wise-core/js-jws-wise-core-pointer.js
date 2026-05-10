@@ -883,13 +883,18 @@ function handleCancelMoving() {
     return true;
 }
 
-window.addEventListener('blur', function () {
+function cancelAllMovablePointerState() {
     handleCancelMoving();
+    resetMovablePointerState();
+}
+
+window.addEventListener('blur', function () {
+    cancelAllMovablePointerState();
 });
 
 document.addEventListener('visibilitychange', function () {
     if (document.hidden) {
-        handleCancelMoving();
+        cancelAllMovablePointerState();
     }
 });
 
