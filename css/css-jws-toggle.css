@@ -1,0 +1,88 @@
+
+.registeredSentenceToggleButton,
+.sentenceLayerElementToggleButton,
+.waypointToggleButton,
+.sentenceLayerUpdateOverrideToggleButton,
+.wiseSetupToggleButton
+{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 5;
+	opacity: 0;
+	cursor: pointer;
+}
+.registeredSentenceToggleLabel,
+.sentenceLayerElementToggleLabel,
+.waypointToggleLabel,
+.sentenceLayerUpdateOverrideToggleLabel,
+.wiseSetupToggleLabel
+{
+    width: 75px;
+    height: 35px;
+    background: rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: inline-block;
+    border-radius: 40px;
+    transition: 0.4s;
+    box-sizing: border-box;
+    border: 1px solid var(--wise-border, #1c2a3a);
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.4);
+}
+
+.registeredSentenceToggleLabel:after,
+.sentenceLayerElementToggleLabel:after,
+.waypointToggleLabel:after,
+.sentenceLayerUpdateOverrideToggleLabel:after,
+.wiseSetupToggleLabel:after
+{
+    content: "";
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    background: linear-gradient(180deg, #fff, #ddd);
+    box-shadow: 0 0 6px rgba(0,0,0,0.4);
+    transition: 0.4s;
+}
+
+/* ON状態：背景をシアン発光に */
+.registeredSentenceToggleButton:checked + .registeredSentenceToggleLabel,
+.sentenceLayerElementToggleButton:checked + .sentenceLayerElementToggleLabel,
+.waypointToggleButton:checked + .waypointToggleLabel,
+.sentenceLayerUpdateOverrideToggleButton:checked + .sentenceLayerUpdateOverrideToggleLabel,
+.wiseSetupToggleButton:checked + .wiseSetupToggleLabel
+{
+    background: linear-gradient(180deg, color-mix(in srgb, var(--wise-cyan, #39d5ff) 40%, #0c1b2b), var(--wise-cyan, #39d5ff));
+    box-shadow: 0 0 8px var(--wise-cyan), 0 0 22px color-mix(in srgb, var(--wise-cyan) 70%, transparent);
+    border-color: color-mix(in srgb, var(--wise-cyan) 50%, var(--wise-border, #1c2a3a));
+}
+
+.registeredSentenceToggleButton:checked + .registeredSentenceToggleLabel:after,
+.sentenceLayerElementToggleButton:checked + .sentenceLayerElementToggleLabel:after,
+.waypointToggleButton:checked + .waypointToggleLabel:after,
+.sentenceLayerUpdateOverrideToggleButton:checked + .sentenceLayerUpdateOverrideToggleLabel:after,
+.wiseSetupToggleButton:checked + .wiseSetupToggleLabel:after
+{
+    left: 40px;
+    background: linear-gradient(180deg, #e9fcff, #c7f6ff);
+    box-shadow: 0 0 8px var(--wise-cyan), 0 0 20px color-mix(in srgb, var(--wise-cyan) 70%, transparent);
+}
+
+/* コンテナはそのままでもOKですが、暗背景に調整するなら */
+.registeredSentenceToggleButtonContainer,
+.sentenceLayerElementToggleButtonContainer,
+.waypointToggleButtonContainer,
+.sentenceLayerUpdateOverrideToggleButtonContainer,
+.wiseSetupToggleButtonContainer
+{
+    position: relative;
+    width: 75px;
+    height: 35px;
+    margin-left: 20px;
+}

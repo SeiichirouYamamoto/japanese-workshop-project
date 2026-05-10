@@ -1,0 +1,32 @@
+
+/* #wisePanelMemoPadViewMainContainer{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow: visible;
+	position: relative;
+} */
+
+#wisePanelMemoPadViewTextareaContainer{
+	width: 100%;
+	flex-grow: 1;
+	overflow: auto;
+}
+
+.wisePanelMemoPadViewTextarea{
+	font-family: var(--main-font-family-1) !important;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 15px 50px 35vh 15px;
+	resize: none;
+	display: none;
+	overflow: auto;
+	overscroll-behavior-y: contain;
+	line-height: 1.5;
+}
+.wisePanelMemoPadViewTextarea.visible{
+	display: block;
+}

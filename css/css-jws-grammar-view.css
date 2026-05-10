@@ -1,0 +1,212 @@
+
+/* 展開ボタン */
+.grammarListDetails {
+	font: var(--main-font-size-1) var(--main-font-family-1);
+	width: 100%;
+}
+.grammarViewDetails,
+.grammarOutlineDetails
+{
+	font: var(--main-font-size-1) var(--main-font-family-1);
+	width: 100%;
+	margin-bottom: 0px;
+}
+.investigateSummary {
+	padding: 2px 6px;
+	width: 90%;
+	background-color: #ddd;
+	border: none;
+	box-shadow: 3px 3px 4px black;
+	cursor: pointer;
+	margin-left: auto;
+	margin-right: auto;
+}
+.headingSummary {
+	cursor: pointer;
+	transition: background-color 0.5s, transform 0.5s !important;
+}
+.headingSummary.highlight,
+.divGrammarOutlineInputLabel.highlight,
+.divGrammarOutlineText.highlight,
+.contentsSummary.highlight{
+	color: black !important;
+	background-color: var(--main-color-3) !important;
+	transform: scale(1.05) !important;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+.detailsDiv {
+	overflow: hidden;
+}
+.detailsDivAddMarginBottom {
+	margin-bottom: 50px;
+}
+
+.animationSlideIn{
+	animation-name: slideIn;
+	animation-duration: 0.7s;
+	animation-timing-function: ease;
+	animation-delay: 0s;
+	animation-iteration-count: 1;
+	animation-direction: normal;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	perspective: 1000;
+}
+.animationFadeIn{
+	animation-name: fadeIn;
+	animation-duration: 1.5s;
+	animation-timing-function: ease;
+	animation-delay: 0s;
+	animation-iteration-count: 1;
+	animation-direction: normal;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	perspective: 1000;
+}
+@keyframes slideIn {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateX(64px);
+		transform: translateX(64px);
+	}
+	99.9% ,
+	to{
+		opacity: 1;
+		-webkit-transform: translateX(0px);
+		transform: translateX(0px);
+	}
+}
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	99.9% ,
+	to{
+		opacity: 1;
+	}
+}
+.contentsMargin{
+	margin-bottom:40vh;
+}
+@keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+.japaneseMainImageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.japaneseMainImage {
+    width: auto;
+	max-height: 50vh;
+    max-height: 50dvh;
+}
+.grammarViewContentLinksUl{
+	padding-left: 0;
+	align-self: flex-start;
+}
+.grammarViewContentLinksLi{
+	display: flex;
+}
+
+/* ==============================
+   Grammar View : 共通セクション
+   ============================== */
+
+/* .sectionGrammarView.sectionStandard
+{
+    margin-top: 3.2rem;
+    padding: 2.4rem 2.8rem;
+    background-color: #fafafa;
+    border: 1px solid #e6e6e6;
+    border-radius: 6px;
+} */
+
+/* ==============================
+   見出し
+   ============================== */
+
+.grammarViewCreateAccountLinkTitle,
+.grammarViewLockedContentsTitle
+{
+    margin: 0 0 1.2rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* ==============================
+   説明文（p）
+   ============================== */
+
+.sectionGrammarViewCreateAccountLink p,
+.sectionGrammarViewLockedContents p
+{
+    margin: 0.8rem 0 0;
+    font-size: 1.4rem;
+    line-height: 1.7;
+    color: #555;
+}
+
+/* 見出し直後の説明文は少しだけ間をあける */
+.sectionGrammarViewCreateAccountLink h3 + p,
+.sectionGrammarViewLockedContents h3 + p
+{
+    margin-top: 0.6rem;
+}
+
+/* ==============================
+   ロックされたコンテンツリスト
+   ============================== */
+
+.grammarViewLockedContentsList
+{
+    margin: 1.6rem 0 0;
+    padding-left: 1.6rem;
+}
+
+.grammarViewLockedContentsList li
+{
+    margin: 0.6rem 0;
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: #666;
+    list-style: disc;
+}
+
+/* ==============================
+   create account / upgrade link
+   （既存CSSと自然につながるよう補助）
+   ============================== */
+
+.sectionGrammarViewCreateAccountLink .grammarViewCreateAccountLink,
+.sectionGrammarViewLockedContents .grammarViewUpgradeMembershipLink
+{
+    margin-top: 2.0rem;
+}
+
+
+.grammarViewZoomContainer{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	right: 20px;
+	top: 5px;
+	position: fixed;
+	z-index: 9999;
+}
+.grammarViewZoomContainer .grammarViewZoomButton{
+	width: 30px;
+	height: 30px;
+	border-radius : var(--vk-size-radius);
+	text-align: center;
+	cursor: pointer;
+	background: var(--main-color-1);
+	color: #ffffff;
+	border: 2px solid #000066;
+	line-height: 30px;
+}

@@ -1,0 +1,705 @@
+
+/* W.I.S.E. MAP */
+#wiseMapScreenOverlay {
+	flex-direction: column;
+	height: 100svh; 
+    padding-top: 5%;
+    padding-bottom: 5%;
+	gap: 3%;
+    z-index: var(--wise-front-z-index-plus1);
+	transition:
+        opacity 0.8s ease,
+        transform 0.8s ease,
+        visibility 0.8s ease;
+}
+#wiseMapScreenOverlay.overlay-on
+{
+	visibility: visible;
+	opacity: 1;
+	transition:
+        opacity 0.8s ease,
+        transform 0.8s ease,
+        visibility 0.8s ease;
+}
+
+#wiseMapScreen,
+#wiseNaviScreen
+{
+    width: 80%;
+	display: flex;
+	flex-direction: column;
+    background: radial-gradient(60% 80% at 50% 10%, rgba(57,213,255,.08), transparent 70%), linear-gradient(180deg, var(--wise-bg-900), #050c14 58%, #03080e 100%);
+    color: var(--wise-panel-ink);
+    border-radius: 14px;
+    border: 1px solid var(--wise-border);
+    box-shadow: 0 12px 60px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.03);
+    backdrop-filter: blur(2px);
+    padding: 16px;
+    text-align: left;
+    position: relative;
+	overflow: hidden;
+}
+
+#wiseMapScreen {
+	flex: 0 0 100%;
+}
+#wiseNaviScreen {
+	flex: 0 0 80%;
+    min-height: 0;
+}
+#wiseMapMessageScreen {
+	width: 80%;
+	display: flex;
+	flex: 0 0 20%;
+    min-height: 0;
+}
+/* #wiseMapMessageScreen::before {
+  content: "";
+  flex: 0 0 10%;
+  width: 80%;
+  align-self: center;
+} */
+
+
+#wiseMapScreenButtonsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px;
+    background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+    border: 1px solid var(--wise-border);
+    border-radius: var(--wise-radius);
+    box-shadow: var(--wise-card-shadow);
+    margin-bottom: 12px;
+	flex: 0 0 auto;
+}
+#wiseMapControlButtons {
+    display: flex;
+    gap: 8px;
+}
+#wiseMapScreenTabs {
+    display: flex;
+    gap: 8px;
+}
+.wiseMapControlButton,
+.wiseMapScreenTabButton {
+    appearance: none;
+    border: 1px solid var(--wise-border);
+    background: color-mix(in srgb, var(--wise-panel) 86%, black);
+    color: var(--wise-panel-ink);
+    padding: 8px 12px;
+    border-radius: 8px;
+    letter-spacing: .02em;
+    transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease, color .12s ease;
+    box-shadow: 0 0 0 0 transparent;
+    cursor: pointer;
+}
+.wiseMapControlButton:hover,
+.wiseMapScreenTabButton:hover {
+    border-color: color-mix(in srgb, var(--wise-cyan) 28%, var(--wise-border));
+    box-shadow: 0 0 6px var(--wise-cyan), 0 0 18px var(--wise-cyan), 0 0 32px var(--wise-cyan);
+    transform: translateZ(0) scale(1.02);
+}
+.wiseMapScreenTabButton[aria-current="true"] {
+    background: linear-gradient(180deg, color-mix(in srgb, var(--wise-cyan) 14%, var(--wise-panel)), var(--wise-panel));
+    border-color: color-mix(in srgb, var(--wise-cyan) 38%, var(--wise-border));
+    box-shadow: 0 0 6px var(--wise-cyan), 0 0 20px var(--wise-cyan), 0 0 40px color-mix(in srgb, var(--wise-cyan) 80%, transparent);
+}
+.wiseMapScreenSection {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+	flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+}
+.wiseMapScreenUiUxContainer {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    gap: var(--wise-gap);
+	min-height: 0;
+    overflow: hidden;
+}
+.wiseMapScreenUiContainer,
+.wiseMapScreenListContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 3;
+    height: 100%;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--wise-panel) 92%, black), color-mix(in srgb, var(--wise-panel) 86%, black));
+    border: 1px solid var(--wise-border);
+    border-right: 1px solid color-mix(in srgb, var(--wise-border) 70%, black);
+    border-radius: var(--wise-radius);
+    color: var(--wise-panel-ink);
+    box-sizing: border-box;
+    padding: 10px;
+    box-shadow: var(--wise-card-shadow);
+}
+.wiseMapScreenUiDisplayArea,
+.wiseMapScreenListDisplayArea {
+    flex: 1;
+	overflow-y: auto;
+    overflow-x: hidden;
+    background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
+    border: 1px solid var(--wise-border);
+    border-radius: 8px;
+    padding: 10px;
+    box-sizing: border-box;
+    color: var(--wise-panel-ink);
+}
+.wiseMapScreenUxContainer {
+    flex: 7;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--wise-panel) 88%, black), color-mix(in srgb, var(--wise-panel) 80%, black));
+    border: 1px solid var(--wise-border);
+    border-radius: var(--wise-radius);
+    padding: 10px;
+    box-sizing: border-box;
+    box-shadow: var(--wise-card-shadow);
+}
+.wiseMapScreenNodeDisplayArea {
+    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.00));
+    border: 1px solid var(--wise-border);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    color: var(--wise-panel-ink);
+    box-shadow: var(--wise-card-shadow);
+}
+.wiseMapScreenMapContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background: radial-gradient(70% 90% at 50% 10%, rgba(57,213,255,.06), transparent 70%), linear-gradient(180deg, #0a1624, #091420 60%, #08121e 100%);
+    border: 1px solid var(--wise-border);
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;
+    min-height: 200px;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.03), var(--wise-card-shadow);
+	overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#wiseNaviScreen .wiseMapScreenMapContainer{
+    overflow: hidden !important;
+}
+.wiseMapScreenMapDisplayArea {
+    flex: 1;
+    border-radius: 8px;
+    background-image: linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size: 24px 24px, 24px 24px;
+}
+.wiseMapScreenUiDisplayAreaUl {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    list-style-type: none;
+    text-align: left;
+    padding: 0;
+}
+.wiseMapWaypoint {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
+    border-bottom: 1px solid color-mix(in srgb, var(--wise-border) 80%, black);
+    font-size: 16px;
+    color: var(--wise-panel-ink);
+}
+.waypointTitle {
+    flex: 1;
+    text-align: left;
+    color: var(--wise-panel-ink);
+}
+.wiseMapUXWaypointContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+    border: 1px solid var(--wise-border);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+    will-change: transform, opacity;
+    color: var(--wise-panel-ink);
+    box-shadow: var(--wise-card-shadow);
+    transition: box-shadow .16s ease, transform .16s ease, border-color .16s ease;
+}
+.wiseMapUXWaypointContainer:hover,
+.wiseMapUXWaypointContainer.newRendered,
+#wiseMapScreenNodeDisplayAreaFocus.newRendered
+{
+    border-color: color-mix(in srgb, var(--wise-cyan) 28%, var(--wise-border));
+    box-shadow: 0 0 6px var(--wise-cyan), 0 0 18px var(--wise-cyan), 0 0 32px var(--wise-cyan);
+    transform: translateZ(0) scale(1.01);
+}
+
+.wiseMapGoal {
+    line-height: 1.2;
+}
+.wiseMapGoal span {
+    line-height: inherit;
+}
+
+.wise-diff-line { 
+    line-height: 1.2;
+}
+.wise-diff-line .wise-arrow {
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+    font-size: 0.95em;
+}
+.wise-diff-line .wise-prev,
+.wise-diff-line .wise-current {
+    line-height: inherit;
+    white-space: normal;
+    word-break: break-word;
+}
+
+
+.wiseMapUXWaypointContainerUl {
+    margin: 0;
+    padding: 0;
+}
+.wiseMapSentence,
+.wiseMapUXWaypointContainerLi {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    gap: 8px;
+    color: var(--wise-panel-ink);
+}
+.wiseMapTextEditable {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: block;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    outline: none;
+    padding: 2px 4px;
+    color: var(--wise-panel-ink);
+    background: transparent;
+    border-radius: 4px;
+}
+.wiseMapTextEditable:focus {
+    outline: 2px solid color-mix(in srgb, var(--wise-cyan) 55%, #88c2ff);
+}
+.wiseMapSeparator {
+    text-align: center;
+    color: var(--wise-muted-ink);
+    font-size: 14px;
+    margin: 10px 0 0 0;
+    font-weight: bold;
+}
+.wiseMapSlideInFromRight {
+    transform: translateX(100%);
+    opacity: 0;
+}
+.wiseMapDeleteButton {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    color: rgba(255,255,255,.55);
+    cursor: pointer;
+    transition: color .12s ease, transform .12s ease;
+}
+.wiseMapDeleteButton:hover {
+    color: color-mix(in srgb, #ff7070 80%, white);
+    transform: scale(1.06);
+}
+
+.wiseMapScreenLoading,
+.wiseMapScreenMapContainerLoading {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    background: rgba(8, 20, 33, 0.85); /* ダークトーンの半透明 */
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(2px);
+}
+
+.wiseMapScreenLoadingSpinner,
+.wiseMapScreenMapContainerLoadingSpinner {
+    width: 42px;
+    height: 42px;
+    border: 4px solid rgba(255, 255, 255, 0.08);
+    border-top-color: var(--wise-cyan, #39d5ff);
+    border-right-color: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    animation: spin 1.2s linear infinite;
+    box-shadow:
+        0 0 8px var(--wise-cyan),
+        0 0 18px color-mix(in srgb, var(--wise-cyan) 70%, transparent);
+}
+
+
+@keyframes spin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    .wiseMapScreenUiUxContainer {
+        flex-direction: column;
+    }
+    .wiseMapScreenUiContainer,
+    .wiseMapScreenListContainer {
+        order: 2;
+        width: 100%;
+        background: linear-gradient(180deg, color-mix(in srgb, var(--wise-panel) 92%, black), color-mix(in srgb, var(--wise-panel) 86%, black));
+        bottom: 0;
+        left: 0;
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0;
+        border-top: 1px solid var(--wise-border);
+        z-index: 9999;
+    }
+    .wiseMapScreenUiDisplayAreaUl {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .wiseMapScreenUiDisplayAreaUl > * {
+        flex: 1;
+        text-align: center;
+    }
+	.wiseMapScreenUiDisplayArea,
+	.wiseMapScreenUxContainer
+	{
+		overflow-y: hidden;
+		overflow-x: auto;
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+    #wiseMapScreen * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+.wiseCyanGlowRing {
+    position: relative;
+}
+.wiseCyanGlowRing::after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: inherit;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    box-shadow: 0 0 12px var(--wise-cyan), 0 0 28px var(--wise-cyan), 0 0 56px var(--wise-cyan), 0 0 96px color-mix(in srgb, var(--wise-cyan) 70%, transparent);
+    opacity: 0;
+    transform: scale(.96);
+    transition: opacity .2s ease, transform .2s ease;
+}
+.wiseCyanGlowRing.is-active::after {
+    opacity: .95;
+    transform: scale(1.02);
+}
+.wiseMapShowGrammarExplanationButton,
+.wisePaletteButton
+{
+    appearance: none;
+    border: 1px solid var(--wise-border, #1c2a3a);
+    background: color-mix(in srgb, var(--wise-panel, #0c1b2b) 90%, black);
+    color: var(--wise-panel-ink, rgba(255,255,255,0.86));
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background .2s ease, box-shadow .2s ease, transform .2s ease, color .2s ease;
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+.wiseMapShowGrammarExplanationButton:hover,
+.wisePaletteButton:hover
+{
+    background: var(--wise-cyan, #39d5ff);
+    color: #fff;
+    border-color: color-mix(in srgb, var(--wise-cyan) 40%, var(--wise-border, #1c2a3a));
+    box-shadow: 0 0 8px var(--wise-cyan),
+                0 0 20px var(--wise-cyan),
+                0 0 40px color-mix(in srgb, var(--wise-cyan) 70%, transparent);
+    transform: translateZ(0) scale(1.05);
+}
+
+.wiseMapShowGrammarExplanationButton:active,
+.wisePaletteButton:active
+{
+    transform: scale(0.96);
+    box-shadow: 0 0 6px var(--wise-cyan);
+}
+
+.wiseLearningHiContrast {
+    --ink-strong: rgba(255,255,255,0.97);
+    --ink: rgba(255,255,255,0.92);
+    --ink-muted: rgba(255,255,255,0.75);
+    --accent-cyan: var(--wise-cyan, #39d5ff);
+    --accent-red: #ff6060;
+    --accent-yellow: #ffd65c;
+    color: var(--ink);
+    text-shadow: 0 0 1px rgba(0,0,0,0.35);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+.wiseLearningHiContrast .wiseMapScreenNodeDisplayArea,
+.wiseLearningHiContrast .wiseMapScreenMapDisplayArea {
+    color: var(--ink);
+}
+
+.wiseLearningHiContrast h1,
+.wiseLearningHiContrast h2,
+.wiseLearningHiContrast h3 {
+    color: var(--ink-strong);
+    letter-spacing: .01em;
+}
+
+.wiseLearningHiContrast .wiseMapSentence,
+.wiseLearningHiContrast .wiseMapTextEditable {
+    color: var(--ink-strong);
+    /* font-weight: 550; */
+    line-height: 1.55;
+    letter-spacing: .01em;
+}
+
+.wiseLearningHiContrast .wiseMapSeparator,
+.wiseLearningHiContrast .wiseMapWaypoint {
+    color: var(--ink-muted);
+}
+
+.wiseLearningHiContrast .wiseMapShowGrammarExplanationButton {
+    border: 1px solid color-mix(in srgb, var(--accent-cyan) 45%, var(--wise-border, #1c2a3a));
+    background: linear-gradient(180deg, color-mix(in srgb, var(--accent-cyan) 18%, #0c1b2b), #0c1b2b);
+    color: var(--ink-strong);
+    font-size: 14px;
+    /* font-weight: 700; */
+    padding: 4px 12px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px color-mix(in srgb, var(--accent-cyan) 65%, transparent);
+    transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+
+.wiseLearningHiContrast .wiseMapShowGrammarExplanationButton:hover {
+    background: var(--accent-cyan);
+    color: #00121a;
+    box-shadow: 0 0 10px var(--accent-cyan), 0 0 26px var(--accent-cyan);
+    transform: scale(1.04);
+}
+
+.wiseLearningHiContrast .wiseMapShowGrammarExplanationButton:active {
+    transform: scale(.97);
+}
+
+.wiseLearningHiContrast .wiseGrammarParticle,
+.wiseLearningHiContrast .wiseGrammarFocus,
+.wiseLearningHiContrast .wiseParticle {
+    color: var(--accent-red);
+    text-shadow: 0 0 6px color-mix(in srgb, var(--accent-red) 65%, transparent), 0 0 1px rgba(0,0,0,0.35);
+    /* font-weight: 700; */
+}
+
+.naviItemsSideMenuAddContentsLiDiv .wiseGrammarParticle,
+.naviItemsSideMenuAddContentsLiDiv .wiseGrammarFocus,
+.naviItemsSideMenuAddContentsLiDiv .wiseParticle {
+    color: red;
+}
+
+
+.wiseLearningHiContrast .wiseGrammarNoun,
+.wiseLearningHiContrast .wiseTokenNoun {
+    color: var(--ink-strong);
+}
+
+.wiseLearningHiContrast .wiseTokenHighlight {
+    color: var(--accent-yellow);
+    text-shadow: 0 0 6px color-mix(in srgb, var(--accent-yellow) 55%, transparent);
+    /* font-weight: 700; */
+}
+
+.wiseLearningHiContrast .wiseMapScreenTabButton[aria-current="true"] {
+    color: var(--ink-strong);
+}
+
+.wiseLearningHiContrast .wiseMapScreenUiDisplayArea,
+.wiseLearningHiContrast .wiseMapScreenListDisplayArea {
+    color: var(--ink);
+}
+
+.wiseLearningHiContrast .wiseMapScreenMapContainer {
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), 0 0 24px rgba(0,0,0,.35);
+}
+
+.wiseLearningHiContrast .wiseMapScreenMapDisplayArea {
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px);
+}
+
+.wiseLearningHiContrast .wiseMapScreenNodeDisplayArea {
+    box-shadow: 0 0 18px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.05);
+}
+
+.wiseLearningHiContrast .wiseMapSentence a,
+.wiseLearningHiContrast .wiseMapTextEditable a {
+    color: var(--accent-cyan);
+    text-decoration-thickness: 2px;
+}
+
+.wiseLearningHiContrast .is-dim {
+    color: var(--ink-muted);
+}
+
+.wiseLearningHiContrast .is-strong {
+    color: var(--ink-strong);
+    font-weight: 700;
+}
+
+.wiseMapFloatIn {
+    opacity: 0;
+    transform: scale(.975);
+    filter: blur(2px);
+    will-change: transform, opacity, filter;
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+/* W.I.S.E. NAVIGATION */
+
+#wiseNaviEventOverlay {
+    position: absolute;
+    inset: 0;
+    z-index: 9999;
+    background: transparent;
+    pointer-events: auto;
+    outline: none;
+}
+
+#wiseNaviNextLabel {
+    display: none;
+    /* display: block; */
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    padding: 10px 16px;
+    font-size: 16px;
+    border-radius: 8px;
+    background: transparent;
+    user-select: none;
+    pointer-events: none;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.08);
+    border: 1px solid transparent;
+}
+
+#wiseNaviNextLabel.white-text {
+    color: #fff;
+    /* border-color: #fff; */
+}
+
+#wiseNaviNextLabel.black-text {
+    color: #000;
+    /* border-color: #000; */
+}
+
+
+.wiseStartOverlayMessage{
+    display: none;
+    max-width: min(80ch, 90vw);
+}
+
+.wiseNaviMessage{
+    background: linear-gradient(180deg, color-mix(in srgb, var(--wise-panel) 92%, black), color-mix(in srgb, var(--wise-panel) 86%, black));
+    color: var(--wise-panel-ink);
+    border: 1px solid var(--wise-border);
+    border-radius: var(--wise-radius, 12px);
+    box-shadow: var(--wise-card-shadow, 0 12px 60px rgba(0,0,0,.55)), inset 0 0 0 1px rgba(255,255,255,.03);
+    backdrop-filter: blur(2px);
+    padding: 12px 16px;
+    line-height: 1.6;
+    letter-spacing: .01em;
+    text-align: left;
+    position: relative;
+	font-size: clamp(14px, 1.8vw, 18px);
+    word-wrap: break-word;
+}
+
+.wiseTypingText{
+    display: block;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    white-space: pre-wrap;
+    /* overflow-wrap: anywhere; */
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+
+#wiseStartOverlayTopicMessage.is-typing{
+	display: inline-block !important;
+}
+
+.wiseNaviMessage.is-typing .wiseTypingText{
+    border-right-color: var(--wise-cyan, #39d5ff);
+    animation: wiseCaretBlink 1s steps(1) infinite;
+}
+
+.wiseNaviMessage.is-typing .wiseTypingText::after{
+    content: "";
+    display: inline-block;
+    width: 0;
+    border-right: 2px solid var(--wise-cyan, #39d5ff);
+    animation: wiseCaretBlink 1s steps(1) infinite;
+    vertical-align: -0.1em;
+}
+
+.wiseNaviMessage.wiseCyanGlowRing::after{
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: inherit;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    box-shadow: 0 0 12px var(--wise-cyan), 0 0 28px var(--wise-cyan), 0 0 56px var(--wise-cyan), 0 0 96px color-mix(in srgb, var(--wise-cyan) 70%, transparent);
+    opacity: .9;
+    transform: scale(1.01);
+}
+
+@keyframes wiseCaretBlink{
+    50% { border-right-color: transparent; }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .wiseNaviMessage.is-typing .wiseTypingText{
+        animation: none;
+        border-right-color: transparent;
+    }
+}
