@@ -172,38 +172,6 @@ async function loadWisePanelImageViewerPdf(file) {
 }
 
 
-// async function renderWisePanelImageViewerPdfAllPages() {
-
-//     if (!wisePanelImageViewerPdfDoc || !wisePanelImageViewerPdfContainer) {
-//         return;
-//     }
-
-//     wisePanelImageViewerPdfContainer.innerHTML = '';
-
-//     for (let pageNumber = 1; pageNumber <= wisePanelImageViewerPdfDoc.numPages; pageNumber++) {
-
-//         const page = await wisePanelImageViewerPdfDoc.getPage(pageNumber);
-
-//         const scale = 1;
-//         const viewport = page.getViewport({ scale: scale });
-
-//         const canvas = document.createElement('canvas');
-//         const ctx = canvas.getContext('2d');
-
-//         canvas.classList.add('wisePanelImageViewerPdfCanvas');
-
-//         canvas.width = viewport.width;
-//         canvas.height = viewport.height;
-
-//         wisePanelImageViewerPdfContainer.appendChild(canvas);
-
-//         await page.render({
-//             canvasContext: ctx,
-//             viewport: viewport
-//         }).promise;
-//     }
-// }
-
 async function renderWisePanelImageViewerPdfAllPages() {
 
     if (!wisePanelImageViewerPdfDoc || !wisePanelImageViewerPdfContainer) {
@@ -217,7 +185,6 @@ async function renderWisePanelImageViewerPdfAllPages() {
     }
 }
 
-
 async function renderWisePanelImageViewerPdfPage(pageNumber) {
 
     if (!wisePanelImageViewerPdfDoc || !wisePanelImageViewerPdfContainer) {
@@ -226,8 +193,10 @@ async function renderWisePanelImageViewerPdfPage(pageNumber) {
 
     const page = await wisePanelImageViewerPdfDoc.getPage(pageNumber);
 
-    const scale = 1;
-    const viewport = page.getViewport({ scale: scale });
+    const displayScale = 1;
+    const outputScale = window.devicePixelRatio || 1;
+
+    const viewport = page.getViewport({ scale: displayScale });
 
     const pageContainer = document.createElement('div');
     pageContainer.classList.add('wisePanelImageViewerPdfPage');
@@ -240,8 +209,11 @@ async function renderWisePanelImageViewerPdfPage(pageNumber) {
 
     const ctx = canvas.getContext('2d');
 
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
+    canvas.width = Math.floor(viewport.width * outputScale);
+    canvas.height = Math.floor(viewport.height * outputScale);
+
+    canvas.style.width = viewport.width + 'px';
+    canvas.style.height = viewport.height + 'px';
 
     pageContainer.style.width = viewport.width + 'px';
     pageContainer.style.height = viewport.height + 'px';
@@ -249,20 +221,26 @@ async function renderWisePanelImageViewerPdfPage(pageNumber) {
     textLayer.style.width = viewport.width + 'px';
     textLayer.style.height = viewport.height + 'px';
 
-	textLayer.style.setProperty('--scale-factor', viewport.scale);
+    textLayer.style.setProperty('--scale-factor', viewport.scale);
+
+    const transform =
+        outputScale !== 1
+            ? [outputScale, 0, 0, outputScale, 0, 0]
+            : null;
 
     pageContainer.appendChild(canvas);
     pageContainer.appendChild(textLayer);
+
     wisePanelImageViewerPdfContainer.appendChild(pageContainer);
 
     await page.render({
         canvasContext: ctx,
-        viewport: viewport
+        viewport: viewport,
+        transform: transform
     }).promise;
 
     await renderWisePanelImageViewerTextLayer(page, viewport, textLayer);
 }
-
 
 async function renderWisePanelImageViewerTextLayer(page, viewport, textLayer) {
 
