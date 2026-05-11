@@ -184,7 +184,6 @@ async function renderWisePanelImageViewerPdfAllPages() {
         await renderWisePanelImageViewerPdfPage(pageNumber);
     }
 }
-
 async function renderWisePanelImageViewerPdfPage(pageNumber) {
 
     if (!wisePanelImageViewerPdfDoc || !wisePanelImageViewerPdfContainer) {
@@ -193,10 +192,12 @@ async function renderWisePanelImageViewerPdfPage(pageNumber) {
 
     const page = await wisePanelImageViewerPdfDoc.getPage(pageNumber);
 
-    const displayScale = 1;
+    const displayScale = imageViewerState.zoomScale;
     const outputScale = window.devicePixelRatio || 1;
+    const renderScale = displayScale * outputScale;
 
     const viewport = page.getViewport({ scale: displayScale });
+    const renderViewport = page.getViewport({ scale: renderScale });
 
     const pageContainer = document.createElement('div');
     pageContainer.classList.add('wisePanelImageViewerPdfPage');
@@ -209,8 +210,8 @@ async function renderWisePanelImageViewerPdfPage(pageNumber) {
 
     const ctx = canvas.getContext('2d');
 
-    canvas.width = Math.floor(viewport.width * outputScale);
-    canvas.height = Math.floor(viewport.height * outputScale);
+    canvas.width = Math.floor(renderViewport.width);
+    canvas.height = Math.floor(renderViewport.height);
 
     canvas.style.width = viewport.width + 'px';
     canvas.style.height = viewport.height + 'px';
@@ -223,11 +224,6 @@ async function renderWisePanelImageViewerPdfPage(pageNumber) {
 
     textLayer.style.setProperty('--scale-factor', viewport.scale);
 
-    const transform =
-        outputScale !== 1
-            ? [outputScale, 0, 0, outputScale, 0, 0]
-            : null;
-
     pageContainer.appendChild(canvas);
     pageContainer.appendChild(textLayer);
 
@@ -235,8 +231,7 @@ async function renderWisePanelImageViewerPdfPage(pageNumber) {
 
     await page.render({
         canvasContext: ctx,
-        viewport: viewport,
-        transform: transform
+        viewport: renderViewport
     }).promise;
 
     await renderWisePanelImageViewerTextLayer(page, viewport, textLayer);
@@ -317,8 +312,12 @@ function setImageViewerZoomScale(newScale) {
 /******************************************************
  *  Apply Zoom
  ******************************************************/
-
 function applyImageViewerZoom() {
+
+    if (wisePanelImageViewerPdfDoc) {
+        renderWisePanelImageViewerPdfAllPages();
+        return;
+    }
 
     const zoomStage = document.getElementById('wisePanelImageViewerZoomStage');
 
