@@ -1076,6 +1076,49 @@ function clearSelectedDragStartPositions() {
     }
 }
 
+
+
+function clampMovingDistance(distanceX, distanceY) {
+
+    const parent = wisePanelWhiteboardViewMainContentArea;
+
+    if (!(parent instanceof HTMLElement)) {
+        return { x: distanceX, y: distanceY };
+    }
+
+    const zoomScale = getWiseZoomScale();
+
+    const parentWidth = parent.clientWidth;
+    const parentHeight = parent.clientHeight;
+
+    let minX = -Infinity;
+    let maxX = Infinity;
+    let minY = -Infinity;
+    let maxY = Infinity;
+
+    for (let i = 0; i < currentSelectedMovableContainers.length; i++) {
+        const elm = currentSelectedMovableContainers[i];
+        if (!elm) continue;
+
+        const startLeft = parseFloat(elm.dataset.selectedDragStartLeftPx) || 0;
+        const startTop = parseFloat(elm.dataset.selectedDragStartTopPx) || 0;
+
+        const rect = elm.getBoundingClientRect();
+        const width = rect.width / zoomScale;
+        const height = rect.height / zoomScale;
+
+        minX = Math.max(minX, -startLeft);
+        maxX = Math.min(maxX, parentWidth - (startLeft + width));
+
+        minY = Math.max(minY, -startTop);
+        maxY = Math.min(maxY, parentHeight - (startTop + height));
+    }
+
+    return {
+        x: Math.min(Math.max(distanceX, minX), maxX),
+        y: Math.min(Math.max(distanceY, minY), maxY)
+    };
+}
 function moveSelectedMovableContainers(x, y) {
 
     const currentScrollLeft = wisePanelWhiteboardBody instanceof HTMLElement ? wisePanelWhiteboardBody.scrollLeft : 0;
@@ -1084,10 +1127,15 @@ function moveSelectedMovableContainers(x, y) {
     const scrollDiffX = currentScrollLeft - dragStartScrollLeft;
     const scrollDiffY = currentScrollTop - dragStartScrollTop;
 
-    const distanceX = (x - moveStartPointX) + scrollDiffX;
-    const distanceY = (y - moveStartPointY) + scrollDiffY;
+    let distanceX = (x - moveStartPointX) + scrollDiffX;
+    let distanceY = (y - moveStartPointY) + scrollDiffY;
 
     cacheSelectedDragStartPositions();
+
+    const clampedDistance = clampMovingDistance(distanceX, distanceY);
+
+    distanceX = clampedDistance.x;
+    distanceY = clampedDistance.y;
 
     for (let i = 0; i < currentSelectedMovableContainers.length; i++) {
         const elm = currentSelectedMovableContainers[i];
@@ -2284,6 +2332,7 @@ function prepareMovableContainerMove(e, movableContainer, localPoint, clientPoin
     }
 
     if (hasPanelDropTarget) {
+        cacheDragPreviewStartRects(movingTargets);
         createDragOriginPreviewClones(movingTargets);
         createDragCurrentPreviewClones(movingTargets);
     }
@@ -2365,6 +2414,32 @@ function createSingleDragPreviewClone(sourceElm, className, zIndex) {
     return wrapper;
 }
 
+function cacheDragPreviewStartRects(targets) {
+
+    targets = normalizeTargetContainers(targets);
+
+    for (const target of targets) {
+        const rect = target.getBoundingClientRect();
+
+        target.dataset.dragPreviewStartClientLeft = rect.left;
+        target.dataset.dragPreviewStartClientTop = rect.top;
+        target.dataset.dragPreviewStartClientWidth = rect.width;
+        target.dataset.dragPreviewStartClientHeight = rect.height;
+    }
+}
+
+function clearDragPreviewStartRects(targets) {
+
+    targets = normalizeTargetContainers(targets);
+
+    for (const target of targets) {
+        delete target.dataset.dragPreviewStartClientLeft;
+        delete target.dataset.dragPreviewStartClientTop;
+        delete target.dataset.dragPreviewStartClientWidth;
+        delete target.dataset.dragPreviewStartClientHeight;
+    }
+}
+
 function createDragOriginPreviewClones(targets) {
 
     removeDragOriginPreviewClones();
@@ -2414,7 +2489,7 @@ function updateDragPreviewStateOnPointerMove(clientX, clientY, pointX, pointY) {
     const dropPanel = detectDropPanel(clientX, clientY);
     currentDropPanel = dropPanel;
 
-    updateDragCurrentPreviewPositions(movingTargets);
+    updateDragCurrentPreviewPositionsByPointer(movingTargets, pointX, pointY);
 
     if (dropPanel === 'whiteboard') {
         for (const target of movingTargets) {
@@ -2455,9 +2530,20 @@ function updateDragPreviewStateOnPointerMove(clientX, clientY, pointX, pointY) {
     }
 }
 
-function updateDragCurrentPreviewPositions(targets) {
+function updateDragCurrentPreviewPositionsByPointer(targets, pointX, pointY) {
 
     targets = normalizeTargetContainers(targets);
+
+    const currentScrollLeft = wisePanelWhiteboardBody instanceof HTMLElement ? wisePanelWhiteboardBody.scrollLeft : 0;
+    const currentScrollTop = wisePanelWhiteboardBody instanceof HTMLElement ? wisePanelWhiteboardBody.scrollTop : 0;
+
+    const scrollDiffX = currentScrollLeft - dragStartScrollLeft;
+    const scrollDiffY = currentScrollTop - dragStartScrollTop;
+
+    const distanceX = (pointX - moveStartPointX) + scrollDiffX;
+    const distanceY = (pointY - moveStartPointY) + scrollDiffY;
+
+    const zoomScale = getWiseZoomScale();
 
     for (let i = 0; i < targets.length; i++) {
         const target = targets[i];
@@ -2465,12 +2551,15 @@ function updateDragCurrentPreviewPositions(targets) {
 
         if (!target || !clone) continue;
 
-        const rect = target.getBoundingClientRect();
+        const startLeft = parseFloat(target.dataset.dragPreviewStartClientLeft) || 0;
+        const startTop = parseFloat(target.dataset.dragPreviewStartClientTop) || 0;
+        const startWidth = parseFloat(target.dataset.dragPreviewStartClientWidth) || 0;
+        const startHeight = parseFloat(target.dataset.dragPreviewStartClientHeight) || 0;
 
-        clone.style.left = rect.left + 'px';
-        clone.style.top = rect.top + 'px';
-        clone.style.width = rect.width + 'px';
-        clone.style.height = rect.height + 'px';
+        clone.style.left = (startLeft + distanceX * zoomScale) + 'px';
+        clone.style.top = (startTop + distanceY * zoomScale) + 'px';
+        clone.style.width = startWidth + 'px';
+        clone.style.height = startHeight + 'px';
     }
 }
 
@@ -2498,6 +2587,7 @@ function cleanupMovingState() {
     const movingTargets = getMovingTargetContainers();
 
     clearSelectedDragStartPositions();
+    clearDragPreviewStartRects(movingTargets);
     removeDragPreviewClones();
     stopDragAutoScroll();
     setWhiteboardDragScrollLock(false);
