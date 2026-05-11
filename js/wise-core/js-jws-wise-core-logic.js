@@ -61,7 +61,56 @@ function updateTextareaContainerSize(elm, text){
 	}
 
 	updateLinkContainerWidths();
+	ensureMovableContainerInsideBounds(elm_targetContainer);
 	redrawLinkLines();
+}
+
+function ensureMovableContainerInsideBounds(elm_targetContainer) {
+
+    if (!(elm_targetContainer instanceof HTMLElement)) {
+        return;
+    }
+
+    const parent = wisePanelWhiteboardViewMainContentArea;
+
+    if (!(parent instanceof HTMLElement)) {
+        return;
+    }
+
+    const zoomScale = getWiseZoomScale();
+
+    const parentWidth = parent.clientWidth;
+    const parentHeight = parent.clientHeight;
+
+    const left = parseFloat(elm_targetContainer.style.left) || 0;
+    const top = parseFloat(elm_targetContainer.style.top) || 0;
+
+    const rect = elm_targetContainer.getBoundingClientRect();
+
+    const width = rect.width / zoomScale;
+    const height = rect.height / zoomScale;
+
+    let nextLeft = left;
+    let nextTop = top;
+
+    if (nextLeft + width > parentWidth) {
+        nextLeft = parentWidth - width;
+    }
+
+    if (nextTop + height > parentHeight) {
+        nextTop = parentHeight - height;
+    }
+
+    if (nextLeft < 0) {
+        nextLeft = 0;
+    }
+
+    if (nextTop < 0) {
+        nextTop = 0;
+    }
+
+    elm_targetContainer.style.left = nextLeft + 'px';
+    elm_targetContainer.style.top = nextTop + 'px';
 }
 
 function updateTextareaSize(elm, text) {
