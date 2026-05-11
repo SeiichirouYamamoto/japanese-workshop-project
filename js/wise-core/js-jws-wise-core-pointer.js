@@ -2294,7 +2294,7 @@ function createSingleDragPreviewClone(sourceElm, className, zIndex) {
 
     const contentClone = sourceElm.cloneNode(true);
     const rect = sourceElm.getBoundingClientRect();
-    const zoomScale = whiteboardState?.zoomScale || 1;
+    const zoomScale = getWiseZoomScale();
 
     if (contentClone.id) {
         contentClone.removeAttribute('id');

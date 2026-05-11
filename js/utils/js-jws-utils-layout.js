@@ -10,7 +10,7 @@ function getClientPoint(e) {
 function getLocalPoint(clientPoint, elm) {
 
     const rect = elm.getBoundingClientRect();
-    const zoomScale = whiteboardState?.zoomScale || 1;
+    const zoomScale = getWiseZoomScale();
 
     return {
         x: (clientPoint.x - rect.left) / zoomScale,
@@ -39,7 +39,7 @@ function getScrollContainer(elm) {
 function getVisibleLocalTopLeft(elm) {
 
     const scrollElm = getScrollContainer(elm);
-    const zoomScale = whiteboardState?.zoomScale || 1;
+    const zoomScale = getWiseZoomScale();
 
     return {
         x: (scrollElm ? scrollElm.scrollLeft : 0) / zoomScale,
@@ -85,7 +85,7 @@ function convertClientRectToCanvasRect(rect, canvas) {
 function convertClientRectToLocalRect(rect, elm) {
 
     const baseRect = elm.getBoundingClientRect();
-    const zoomScale = whiteboardState?.zoomScale || 1;
+    const zoomScale = getWiseZoomScale();
 
     return {
         left: (rect.left - baseRect.left) / zoomScale,
@@ -104,7 +104,7 @@ function cacheWiseLocalPointBase(elm) {
     pointerLocalCache.active = true;
     pointerLocalCache.rectLeft = rect.left;
     pointerLocalCache.rectTop = rect.top;
-    pointerLocalCache.zoomScale = whiteboardState?.zoomScale || 1;
+    pointerLocalCache.zoomScale = getWiseZoomScale();
 }
 
 function getCachedLocalPoint(clientPoint) {

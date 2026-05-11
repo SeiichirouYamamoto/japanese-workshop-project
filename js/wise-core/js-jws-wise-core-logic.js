@@ -996,7 +996,7 @@ function initWiseLayout(isOnload) {
     }
 
     finalizeLayout();
-    setZoomScale(whiteboardState.zoomScale);
+    setZoomScale(getWiseZoomScale());
 }
 
 function applyFullscreenRequirement(targetSelector = '.wise-require-fullscreen') {
@@ -1016,7 +1016,9 @@ function applyFullscreenRequirement(targetSelector = '.wise-require-fullscreen')
 
 function setZoomScale(newScale) {
 
-    if (typeof newScale !== 'number' || Number.isNaN(newScale)) {
+    newScale = Number(newScale);
+
+    if (!Number.isFinite(newScale)) {
         return;
     }
 
@@ -1045,16 +1047,32 @@ function applyZoomToWhiteboard() {
         return;
     }
 
-    wiseZoomStage.style.transform = 'scale(' + whiteboardState.zoomScale + ')';
-    wiseZoomStage.style.transformOrigin = 'top left';
+    const zoomScale = getWiseZoomScale();
+
+    wiseZoomStage.style.transform =
+        'scale(' + zoomScale + ')';
+
+    wiseZoomStage.style.transformOrigin =
+        'top left';
+}
+
+function getWiseZoomScale() {
+
+    const zoomScale = whiteboardState?.zoomScale || 1;
+
+    if (!Number.isFinite(zoomScale) || zoomScale <= 0) {
+        return 1;
+    }
+
+    return zoomScale;
 }
 
 function zoomInWhiteboard() {
-    setZoomScale(whiteboardState.zoomScale + 0.1);
+    setZoomScale(getWiseZoomScale() + 0.1);
 }
 
 function zoomOutWhiteboard() {
-    setZoomScale(whiteboardState.zoomScale - 0.1);
+    setZoomScale(getWiseZoomScale() - 0.1);
 }
 
 function resetZoomWhiteboard() {

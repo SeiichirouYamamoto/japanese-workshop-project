@@ -500,7 +500,7 @@ function advanceAppearanceOrder(
     const elementHeight = appearanceAreaGapHeight;
 
     const scrollElm = getScrollContainer(elm);
-    const zoomScale = whiteboardState?.zoomScale || 1;
+    const zoomScale = getWiseZoomScale();
     const visibleTopLeft = getVisibleLocalTopLeft(elm);
     const visibleWidth = (scrollElm ? scrollElm.clientWidth : window.innerWidth) / zoomScale;
     const visibleHeight = (scrollElm ? scrollElm.clientHeight : window.innerHeight) / zoomScale;
