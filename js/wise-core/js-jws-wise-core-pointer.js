@@ -381,8 +381,8 @@ async function handleBodyPointerEnd(e) {
     }
 }
 
-document.body.addEventListener('mouseup', handleBodyPointerEnd);
-document.body.addEventListener('touchend', handleBodyPointerEnd);
+document.body.addEventListener('pointerup', handleBodyPointerEnd);
+
 
 
 function isWhiteboardPanelSplitMode() {
@@ -836,8 +836,8 @@ function handleBodyPointerCancel(e) {
     }
 }
 
-document.body.addEventListener('mouseout', handleBodyPointerCancel);
-document.body.addEventListener('touchcancel', handleBodyPointerCancel);
+document.body.addEventListener('pointercancel', handleBodyPointerCancel);
+
 
 function handleCancelWiseLaser(e) {
 
@@ -939,8 +939,7 @@ function handleWisePointerMovePrimary(e) {
     }
 }
 
-document.addEventListener('mousemove', handleWisePointerMovePrimary);
-document.addEventListener('touchmove', handleWisePointerMovePrimary, { passive: false });
+document.addEventListener('pointermove', handleWisePointerMovePrimary, { passive: false });
 
 function isInWisePointerMoveScope(e) {
 	return !!e.target.closest('#sectionWise');
@@ -953,15 +952,12 @@ function preventDefaultIfTouchMove(e) {
 }
 
 function shouldPreventTouchScroll(e) {
-    if (!e.type.startsWith('touch')) {
+
+    if (e.pointerType !== 'touch') {
         return false;
     }
 
     if (!isInWisePointerMoveScope(e)) {
-        return false;
-    }
-
-    if (e.touches.length >= 2) {
         return false;
     }
 
