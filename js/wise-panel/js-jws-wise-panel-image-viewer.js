@@ -208,7 +208,9 @@ async function renderWisePanelImageViewerPdfPage(pageNumber) {
     const textLayer = document.createElement('div');
     textLayer.classList.add('wisePanelImageViewerTextLayer');
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', {
+        willReadFrequently: true
+    });
 
     canvas.width = Math.floor(renderViewport.width);
     canvas.height = Math.floor(renderViewport.height);
