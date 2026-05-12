@@ -3704,6 +3704,7 @@ function fetch_arr_overrides_by_layer_element_id($layer_element_id, $int_selecte
 		$t_layer_element_overrides,
 		$t_masta_override,
 		$t_masta_override_operation,
+		$str_snake_to_camel_form_id,
 		$arr_columns_masta_override;
 
     $arr_strSQL_select = [
@@ -3713,7 +3714,7 @@ function fetch_arr_overrides_by_layer_element_id($layer_element_id, $int_selecte
         [$t_layer_element_overrides, 'is_highlighted'],
         [$t_masta_override_operation, 'operation'],
         [$t_masta_override, 'operation_id'],
-        [$t_masta_override, 'form_id as formId'],
+        [$t_masta_override, 'form_id as ' . $str_snake_to_camel_form_id],
         [$t_masta_override, 'voice_id as voiceId'],
         [$t_masta_override, $arr_columns_masta_override[$int_selected_language].' as display_text_from_masta']
     ];

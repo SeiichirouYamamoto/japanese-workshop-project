@@ -52,7 +52,7 @@
 			[$t_masta_japanese_root, 'unique_code as item_unique_code'],
 			[$t_masta_japanese_root, $arr_columns_masta_japanese_root[$int_selected_language] . ' as item_japanese'],
 			[$t_layer_elements, 'id as layerElementId'],
-			[$t_layer_elements, 'form_id as formId'],
+			[$t_layer_elements, 'form_id as ' . $str_snake_to_camel_form_id],
 			[$t_layer_elements, 'voice_id as voiceId'],
 			[$t_registered_sentence_elements, 'id as sentenceElementId'],
 			[$t_registered_sentence_elements, 'japanese_id as ' . $str_snake_to_camel_japanese_id],

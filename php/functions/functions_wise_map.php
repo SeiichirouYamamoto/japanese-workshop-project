@@ -1233,7 +1233,8 @@ function get_data_focus_point(int $t_registered_sentence_id = 0, int $int_select
 		$t_registered_sentences,
 		$t_layers,
 		$t_layer_elements,
-		$t_registered_sentence_elements;
+		$t_registered_sentence_elements,
+		$str_snake_to_camel_form_id;
 
     $arr_strSQL_select = [
         [$t_registered_sentences,'id as registeredSentenceId'],
@@ -1246,7 +1247,7 @@ function get_data_focus_point(int $t_registered_sentence_id = 0, int $int_select
         [$t_layers,'layer_name'],
         [$t_layer_elements,'id as layerElementId'],
         [$t_layer_elements,'unique_code as item_unique_code'],
-        [$t_layer_elements,'form_id as formId'],
+        [$t_layer_elements,'form_id as ' . $str_snake_to_camel_form_id],
         [$t_layer_elements,'voice_id as voiceId'],
         [$t_layer_elements,'is_highlighted'],
         [$t_registered_sentence_elements,'id as sentenceElementId'],
@@ -1749,6 +1750,7 @@ function get_data_wise_map_sentence_from_waypoints(array $arr_layer_unique_codes
 		$str_snake_to_camel_japanese_id,
 		$str_snake_to_camel_japanese_element_id,
 		$str_snake_to_camel_sub_classification_id,
+		$str_snake_to_camel_form_id,
 		$arr_columns_masta_japanese_root;
 
     $arr_waypoints = [];
@@ -1763,7 +1765,7 @@ function get_data_wise_map_sentence_from_waypoints(array $arr_layer_unique_codes
 			[$t_masta_japanese_root, 'unique_code as item_unique_code'],
 			[$t_masta_japanese_root, $arr_columns_masta_japanese_root[$int_selected_language] . ' as item_japanese'],
 			[$t_layer_elements, 'id as layerElementId'],
-			[$t_layer_elements, 'form_id as formId'],
+			[$t_layer_elements, 'form_id as ' . $str_snake_to_camel_form_id],
 			[$t_layer_elements, 'voice_id as voiceId'],
 			[$t_layer_elements, 'is_highlighted'],
 			[$t_registered_sentence_elements, 'id as sentenceElementId'],
