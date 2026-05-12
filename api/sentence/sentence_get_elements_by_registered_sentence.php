@@ -12,12 +12,6 @@
 			respond_error('Login required', 401);
 		}
 
-		// $user_id = jws_require_single_session();
-
-		// if (!is_admin_level($user_level)) {
-        //     respond_error('Forbidden', 403);
-        // }
-
         $raw = file_get_contents('php://input');
         $input = json_decode($raw, true);
 
@@ -107,7 +101,7 @@
             [$t_registered_sentence_elements, 'link_type as linkType'],
             [$t_registered_sentence_elements, 'japanese as ' . $str_snake_to_camel_japanese],
             [$t_registered_sentence_elements, 'kana as ' . $str_snake_to_camel_kana],
-            [$t_registered_sentence_elements, 'sub_classification as subClassification'],
+            [$t_registered_sentence_elements, 'sub_classification as ' . $str_snake_to_camel_sub_classification],
             [$t_registered_sentence_elements, 'phrase_clause_type as phraseClauseType'],
             [$t_registered_sentence_elements, 'phrase_clause_id as phraseClauseId'],
             [$t_registered_sentence_elements, 'japanese_phrase_clause as japanesePhraseClause'],

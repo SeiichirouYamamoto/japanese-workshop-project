@@ -180,7 +180,7 @@
             $stmt_insert_element->bindValue(13, intval($loop_link_id_add_sort['linkType'] ?? 0), PDO::PARAM_INT);
             $stmt_insert_element->bindValue(14, (string)($loop_link_id_add_sort[$str_snake_to_camel_japanese] ?? ''), PDO::PARAM_STR);
             $stmt_insert_element->bindValue(15, (string)($loop_link_id_add_sort[$str_snake_to_camel_kana] ?? ''), PDO::PARAM_STR);
-            $stmt_insert_element->bindValue(16, (string)($loop_link_id_add_sort['subClassification'] ?? ''), PDO::PARAM_STR);
+            $stmt_insert_element->bindValue(16, (string)($loop_link_id_add_sort[$str_snake_to_camel_sub_classification] ?? ''), PDO::PARAM_STR);
             $stmt_insert_element->bindValue(17, (string)($loop_link_id_add_sort['phraseClauseType'] ?? ''), PDO::PARAM_STR);
             $stmt_insert_element->bindValue(18, intval($loop_link_id_add_sort['phraseClauseId'] ?? 0), PDO::PARAM_INT);
             $stmt_insert_element->bindValue(19, (string)($loop_link_id_add_sort['japanesePhraseClause'] ?? ''), PDO::PARAM_STR);
