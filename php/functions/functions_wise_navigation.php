@@ -1200,7 +1200,8 @@ function build_html_check_wise_navigation_sequence_page($unique_code, $int_selec
 function build_html_navi_items_add_contents($registered_sentence_id, $int_selected_language){
 
 	global
-		$t_layers;
+		$t_layers,
+		$str_snake_to_camel_japanese;
 
 	$str_html = '';
 	$str_add_li = '';
@@ -1247,7 +1248,7 @@ function build_html_navi_items_add_contents($registered_sentence_id, $int_select
 				'data-layer-name="'.escape_html_with_nl2br($str_layer_name).'" '.
 				'data-index="'.escape_html_with_nl2br($key).'">'.
 					'<div class="searchWordListLiDiv naviItemsSideMenuAddContentsLiDiv display-on">'.
-						$arr_display['title'].' : '.$arr_display['japanese'].
+						$arr_display['title'].' : '.$arr_display[$str_snake_to_camel_japanese].
 					'</div>'.
 			'</li>';
 		}
@@ -1539,6 +1540,6 @@ function get_arr_layer_title_with_highlight(string $t_layer_unique_code, int $in
 
     return [
         'title' => $html,
-        'japanese' => $japanese
+        $str_snake_to_camel_japanese => $japanese
     ];
 }

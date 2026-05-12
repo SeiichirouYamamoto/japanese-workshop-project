@@ -58,7 +58,7 @@
 			[$t_registered_sentence_elements, 'japanese_id as ' . $str_snake_to_camel_japanese_id],
 			[$t_registered_sentence_elements, 'japanese_element_id as ' . $str_snake_to_camel_japanese_element_id],
 			[$t_registered_sentence_elements, 'sub_classification_id as ' . $str_snake_to_camel_sub_classification_id],
-			[$t_registered_sentence_elements, 'japanese'],
+			[$t_registered_sentence_elements, $str_snake_to_camel_japanese],
 			[$t_registered_sentence_elements, 'label_id as ' . $str_snake_to_camel_label_id],
 			[$t_registered_sentence_elements, 'sort as rseSort']
 		];
@@ -111,11 +111,11 @@
 				if (empty($overrides)) {
 
 					if ($selected[$str_snake_to_camel_form_id] == 0 || $selected[$str_snake_to_camel_voice_id] == 0) {
-						$base = $selected['japanese'];
+						$base = $selected[$str_snake_to_camel_japanese];
 					} else {
 						$arr_indicator_labels = get_arr_indicator_label($selected[$str_snake_to_camel_label_id], false, $int_selected_language);
 						$arr_inflected_label = get_arr_inflected_label($arr_indicator_labels, $selected[$str_snake_to_camel_japanese_id], $selected[$str_snake_to_camel_japanese_element_id], $selected[$str_snake_to_camel_sub_classification_id], $selected[$str_snake_to_camel_form_id], $selected[$str_snake_to_camel_voice_id], false, $int_selected_language);
-						$base = !empty($arr_inflected_label['japanese']) ? $arr_inflected_label['japanese'] : $selected['japanese'];
+						$base = !empty($arr_inflected_label[$str_snake_to_camel_japanese]) ? $arr_inflected_label[$str_snake_to_camel_japanese] : $selected[$str_snake_to_camel_japanese];
 					}
 
 					$out = $base;
@@ -124,7 +124,7 @@
 
 					$arr_indicator_labels = get_arr_indicator_label($selected[$str_snake_to_camel_label_id], false, $int_selected_language);
 					$arr_inflected_label = get_arr_inflected_label($arr_indicator_labels, $selected[$str_snake_to_camel_japanese_id], $selected[$str_snake_to_camel_japanese_element_id], $selected[$str_snake_to_camel_sub_classification_id], $selected[$str_snake_to_camel_form_id], $selected[$str_snake_to_camel_voice_id], false, $int_selected_language);
-					$base = !empty($arr_inflected_label['japanese']) ? $arr_inflected_label['japanese'] : $selected['japanese'];
+					$base = !empty($arr_inflected_label[$str_snake_to_camel_japanese]) ? $arr_inflected_label[$str_snake_to_camel_japanese] : $selected[$str_snake_to_camel_japanese];
 
 					list($prefix, $out, $suffix) = get_data_override_text_parts_for_update($base, $overrides);
 				}

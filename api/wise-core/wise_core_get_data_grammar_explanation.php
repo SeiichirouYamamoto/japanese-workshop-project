@@ -77,7 +77,7 @@
         $result = [
             $str_snake_to_camel_japanese_id => $arr_masta_japanese_root['id'],
             $str_snake_to_camel_unique_code => $arr_masta_japanese_root[$str_snake_to_camel_unique_code],
-            'japanese' => $arr_masta_japanese_root[$arr_columns_masta_japanese_root[$int_selected_language]],
+            $str_snake_to_camel_japanese => $arr_masta_japanese_root[$arr_columns_masta_japanese_root[$int_selected_language]],
             'kana' => $arr_masta_japanese_root[$str_column_root_kana],
             'categoryId' => $arr_masta_japanese_root['category_id']
         ];

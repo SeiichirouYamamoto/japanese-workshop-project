@@ -105,7 +105,7 @@
             [$t_registered_sentence_elements, 'bounds_left as boundsLeft'],
             [$t_registered_sentence_elements, 'link_id as ' . $str_snake_to_camel_link_id],
             [$t_registered_sentence_elements, 'link_type as linkType'],
-            [$t_registered_sentence_elements, 'japanese'],
+            [$t_registered_sentence_elements, $str_snake_to_camel_japanese],
             [$t_registered_sentence_elements, 'kana'],
             [$t_registered_sentence_elements, 'sub_classification as subClassification'],
             [$t_registered_sentence_elements, 'phrase_clause_type as phraseClauseType'],

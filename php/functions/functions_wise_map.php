@@ -1235,7 +1235,8 @@ function get_data_focus_point(int $t_registered_sentence_id = 0, int $int_select
 		$t_layer_elements,
 		$t_registered_sentence_elements,
 		$str_snake_to_camel_form_id,
-		$str_snake_to_camel_voice_id;
+		$str_snake_to_camel_voice_id,
+		$str_snake_to_camel_japanese;
 
     $arr_strSQL_select = [
         [$t_registered_sentences,'id as registeredSentenceId'],
@@ -1252,7 +1253,7 @@ function get_data_focus_point(int $t_registered_sentence_id = 0, int $int_select
         [$t_layer_elements,'voice_id as ' . $str_snake_to_camel_voice_id],
         [$t_layer_elements,'is_highlighted'],
         [$t_registered_sentence_elements,'id as sentenceElementId'],
-        [$t_registered_sentence_elements,'japanese'],
+        [$t_registered_sentence_elements,$str_snake_to_camel_japanese],
         [$t_registered_sentence_elements,'sort']
     ];
 
@@ -1321,6 +1322,10 @@ function get_data_focus_point(int $t_registered_sentence_id = 0, int $int_select
 
 
 function get_data_focus_point_route(array $array = [], int $int_selected_language): array {
+
+    global
+        $str_snake_to_camel_japanese;
+
     if (empty($array)) {
         return [];
     }
@@ -1342,7 +1347,7 @@ function get_data_focus_point_route(array $array = [], int $int_selected_languag
         }
         $route_data[$waypointUniqueCode]['items'][] = [
             'item_unique_code' => $row['item_unique_code'],
-            'item_title' => $row['japanese'],
+            'item_title' => $row[$str_snake_to_camel_japanese],
             'priority' => (int)$row['is_highlighted'],
             'sort' => (int)$row['sort']
         ];
@@ -1456,13 +1461,14 @@ function generate_sentence_base_from_japanese(array $selected_transform, int $in
 		$str_snake_to_camel_sub_classification_id,
 		$str_snake_to_camel_form_id,
 		$str_snake_to_camel_label_id,
-		$str_snake_to_camel_voice_id;
+		$str_snake_to_camel_voice_id,
+		$str_snake_to_camel_japanese;
 
     $t_masta_form_root_id = intval($selected_transform[$str_snake_to_camel_form_id]);
     $int_voice_id = intval($selected_transform[$str_snake_to_camel_voice_id]);
 
     if ($t_masta_form_root_id === 0 || $int_voice_id === 0) {
-        return $selected_transform['japanese'];
+        return $selected_transform[$str_snake_to_camel_japanese];
     }
 
     $t_masta_japanese_root_id = $selected_transform[$str_snake_to_camel_japanese_id];
@@ -1482,9 +1488,9 @@ function generate_sentence_base_from_japanese(array $selected_transform, int $in
         $int_selected_language
     );
 
-    return !empty($arr_inflected_label['japanese'])
-        ? $arr_inflected_label['japanese']
-        : $selected_transform['japanese'];
+    return !empty($arr_inflected_label[$str_snake_to_camel_japanese])
+        ? $arr_inflected_label[$str_snake_to_camel_japanese]
+        : $selected_transform[$str_snake_to_camel_japanese];
 }
 
 
@@ -1762,6 +1768,7 @@ function get_data_wise_map_sentence_from_waypoints(array $arr_layer_unique_codes
 		$str_snake_to_camel_form_id,
 		$str_snake_to_camel_label_id,
 		$str_snake_to_camel_voice_id,
+		$str_snake_to_camel_japanese,
 		$arr_columns_masta_japanese_root;
 
     $arr_waypoints = [];
@@ -1783,7 +1790,7 @@ function get_data_wise_map_sentence_from_waypoints(array $arr_layer_unique_codes
 			[$t_registered_sentence_elements, 'japanese_id as ' . $str_snake_to_camel_japanese_id],
 			[$t_registered_sentence_elements, 'japanese_element_id as ' . $str_snake_to_camel_japanese_element_id],
 			[$t_registered_sentence_elements, 'sub_classification_id as ' . $str_snake_to_camel_sub_classification_id],
-			[$t_registered_sentence_elements, 'japanese'],
+			[$t_registered_sentence_elements, $str_snake_to_camel_japanese],
 			[$t_registered_sentence_elements, 'label_id as ' . $str_snake_to_camel_label_id],
 			[$t_registered_sentence_elements, 'sort as rseSort']
 		];

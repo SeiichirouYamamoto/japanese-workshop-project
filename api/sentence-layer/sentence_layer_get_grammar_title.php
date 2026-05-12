@@ -52,7 +52,7 @@
 			respond_success([]);
 		}
 
-		respond_success(['japanese' => $str_japanese]);
+		respond_success([$str_snake_to_camel_japanese => $str_japanese]);
 
 	} catch (Throwable $e) {
 		respond_exception($e);
