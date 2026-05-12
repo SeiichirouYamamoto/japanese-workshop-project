@@ -13,6 +13,7 @@ function build_html_sorting_quiz_fullscreen_page($unique_code, $isAdvanceStage, 
 		$str_sortingQuizPieceListContainerLiButtonsKana,
 		$str_sortingQuizPieceListContainerLiButtonsInflection,
 		$str_phrase_clause_container,
+		$str_snake_to_camel_japanese_id,
 		$str_snake_to_camel_japanese,
 		$str_snake_to_camel_kana,
 		$str_quizButtonFinishQuiz;
@@ -51,7 +52,7 @@ function build_html_sorting_quiz_fullscreen_page($unique_code, $isAdvanceStage, 
 		[$t_registered_sentence_elements, 'registered_sentence_id'],
 		[$t_registered_sentence_elements, 'id_name as idName'],
 		[$t_registered_sentence_elements, 'unique_key as uniqueKey'],
-		[$t_registered_sentence_elements, 'japanese_id as japaneseId'],
+		[$t_registered_sentence_elements, 'japanese_id as ' . $str_snake_to_camel_japanese_id],
 		[$t_registered_sentence_elements, 'japanese_element_id as japaneseElementId'],
 		[$t_registered_sentence_elements, 'sub_classification_id as subClassificationId'],
 		[$t_registered_sentence_elements, 'form_id as formId'],
@@ -1474,6 +1475,7 @@ function get_data_japanese_particle_quiz($pageType, $int_mastery_level, $unique_
 		$t_masta_japanese_sub_category,
 		$int_JapaneseParticle,
 		$int_masta_japanese_category_id_grammar,
+		$str_snake_to_camel_japanese_id,
 		$arr_case_particles_reject_pairs,
 		$str_quizMessageQuestionWhich;
 
@@ -1576,7 +1578,7 @@ function get_data_japanese_particle_quiz($pageType, $int_mastery_level, $unique_
 		[$t_japanese_labels,'masta_japanese_label_id'],
 		[$t_registered_sentence_elements,'japanese'],
 		[$t_registered_sentence_elements,'kana'],
-		[$t_registered_sentence_elements,'japanese_id as japaneseId']
+		[$t_registered_sentence_elements,'japanese_id as ' . $str_snake_to_camel_japanese_id]
 	];
 
 	$strSQL_from = " FROM
@@ -2057,6 +2059,7 @@ function get_data_sorting_quiz($pageType, $isAdvanceStage, $int_mastery_level, $
 		$t_registered_sentence_elements,
 		$int_phrase_clause_id_target,
 		$t_japanese_elements,
+		$str_snake_to_camel_japanese_id,
 		$str_snake_to_camel_japanese,
 		$str_snake_to_camel_kana,
 		$str_phrase_clause_container,
@@ -2128,7 +2131,7 @@ function get_data_sorting_quiz($pageType, $isAdvanceStage, $int_mastery_level, $
 		[$t_registered_sentence_elements, 'registered_sentence_id'],
 		[$t_registered_sentence_elements, 'id_name as idName'],
 		[$t_registered_sentence_elements, 'unique_key as uniqueKey'],
-		[$t_registered_sentence_elements, 'japanese_id as japaneseId'],
+		[$t_registered_sentence_elements, 'japanese_id as ' . $str_snake_to_camel_japanese_id],
 		[$t_registered_sentence_elements, 'japanese_element_id as japaneseElementId'],
 		[$t_registered_sentence_elements, 'sub_classification_id as subClassificationId'],
 		[$t_registered_sentence_elements, 'form_id as formId'],
@@ -2647,8 +2650,8 @@ function try_get_data_quiz_from_japanese_elements(
 		$int_quiz_grammarQuiz,
 		$t_masta_japanese_sub_category,
 		$t_masta_japanese_root,
-		$str_snake_to_camel_japanese_id,
 		$t_japanese_elements,
+		$str_snake_to_camel_japanese_id,
 		$str_snake_to_camel_japanese_element_id,
 		$t_masta_japanese_sub_classification,
 		$int_masta_japanese_category_id_grammar,
@@ -2752,7 +2755,7 @@ function try_get_data_quiz_from_japanese_elements(
     $acceptables = [$str_correct_answer_japanese];
 
     $arr_strSQL_select = [
-        [$t_registered_sentence_elements, 'japanese_id as japaneseId'],
+        [$t_registered_sentence_elements, 'japanese_id as ' . $str_snake_to_camel_japanese_id],
         [$t_registered_sentence_elements, 'japanese_element_id as japaneseElementId'],
         [$t_registered_sentence_elements, 'japanese'],
         [$t_registered_sentence_elements, 'kana'],
@@ -2885,6 +2888,7 @@ function try_get_data_quiz_from_inflection(
 		$int_masta_japanese_classification_id_verb,
 		$t_japanese_labels,
 		$str_column_masta_japanese_label_id,
+		$str_snake_to_camel_japanese_id,
 		$str_quizMessageQuestionInput,
 		$str_quizMessageQuestionWhich;
 
@@ -2903,7 +2907,7 @@ function try_get_data_quiz_from_inflection(
 		[$t_registered_sentences, 'unique_code'],
 		[$t_registered_sentences, 'sentence'],
 		[$t_registered_sentence_elements, 'id as sentenceElementId'],
-		[$t_registered_sentence_elements, 'japanese_id as japaneseId'],
+		[$t_registered_sentence_elements, 'japanese_id as ' . $str_snake_to_camel_japanese_id],
 		[$t_registered_sentence_elements, 'japanese_element_id as japaneseElementId'],
 		[$t_registered_sentence_elements, 'sub_classification_id as subClassificationId'],
 		[$t_registered_sentence_elements, 'form_id as formId'],
