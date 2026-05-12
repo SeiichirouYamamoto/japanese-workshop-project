@@ -41,7 +41,7 @@
 			[$t_layer_elements, 'form_id as ' . $str_snake_to_camel_form_id],
 			[$t_layer_elements, 'voice_id as ' . $str_snake_to_camel_voice_id],
 			[$t_layer_elements, 'is_highlighted as isHighlighted'],
-			[$t_registered_sentence_elements, $str_snake_to_camel_japanese]
+			[$t_registered_sentence_elements, 'japanese as ' . $str_snake_to_camel_japanese]
 		];
 
 		$strSQL_from = " FROM

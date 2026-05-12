@@ -68,8 +68,8 @@ function build_html_sorting_quiz_fullscreen_page($unique_code, $isAdvanceStage, 
 		[$t_registered_sentence_elements, 'bounds_left as boundsLeft'],
 		[$t_registered_sentence_elements, 'link_id as ' . $str_snake_to_camel_link_id],
 		[$t_registered_sentence_elements, 'link_type as linkType'],
-		[$t_registered_sentence_elements, $str_snake_to_camel_japanese],
-		[$t_registered_sentence_elements, $str_snake_to_camel_kana],
+		[$t_registered_sentence_elements, 'japanese as ' . $str_snake_to_camel_japanese],
+		[$t_registered_sentence_elements, 'kana as ' . $str_snake_to_camel_kana],
 		[$t_registered_sentence_elements, 'sub_classification as subClassification'],
 		[$t_registered_sentence_elements, 'phrase_clause_type as phraseClauseType'],
 		[$t_registered_sentence_elements, 'phrase_clause_id as phraseClauseId'],
@@ -2157,8 +2157,8 @@ function get_data_sorting_quiz($pageType, $isAdvanceStage, $int_mastery_level, $
 		[$t_registered_sentence_elements, 'bounds_left as boundsLeft'],
 		[$t_registered_sentence_elements, 'link_id as ' . $str_snake_to_camel_link_id],
 		[$t_registered_sentence_elements, 'link_type as linkType'],
-		[$t_registered_sentence_elements, $str_snake_to_camel_japanese],
-		[$t_registered_sentence_elements, $str_snake_to_camel_kana],
+		[$t_registered_sentence_elements, 'japanese as ' . $str_snake_to_camel_japanese],
+		[$t_registered_sentence_elements, 'kana as ' . $str_snake_to_camel_kana],
 		[$t_registered_sentence_elements, 'sub_classification as subClassification'],
 		[$t_registered_sentence_elements, 'phrase_clause_type as phraseClauseType'],
 		[$t_registered_sentence_elements, 'phrase_clause_id as phraseClauseId'],
@@ -2731,8 +2731,8 @@ function try_get_data_quiz_from_japanese_elements(
 
     $arr_strSQL_select = [
         [$t_registered_sentence_elements, 'registered_sentence_id'],
-        [$t_registered_sentence_elements, $str_snake_to_camel_japanese],
-        [$t_registered_sentence_elements, $str_snake_to_camel_kana],
+        [$t_registered_sentence_elements, 'japanese as ' . $str_snake_to_camel_japanese],
+        [$t_registered_sentence_elements, 'kana as ' . $str_snake_to_camel_kana],
         [$t_registered_sentences, 'unique_code'],
         [$t_registered_sentences, 'sentence']
     ];
@@ -2775,8 +2775,8 @@ function try_get_data_quiz_from_japanese_elements(
     $arr_strSQL_select = [
         [$t_registered_sentence_elements, 'japanese_id as ' . $str_snake_to_camel_japanese_id],
         [$t_registered_sentence_elements, 'japanese_element_id as ' . $str_snake_to_camel_japanese_element_id],
-        [$t_registered_sentence_elements, $str_snake_to_camel_japanese],
-        [$t_registered_sentence_elements, $str_snake_to_camel_kana],
+        [$t_registered_sentence_elements, 'japanese as ' . $str_snake_to_camel_japanese],
+        [$t_registered_sentence_elements, 'kana as ' . $str_snake_to_camel_kana],
         [$t_registered_sentence_elements, 'sort']
     ];
     $strSQL_from = " FROM $t_registered_sentence_elements";
@@ -2938,8 +2938,8 @@ function try_get_data_quiz_from_inflection(
 		[$t_registered_sentence_elements, 'form_id as ' . $str_snake_to_camel_form_id],
 		[$t_registered_sentence_elements, 'label_id as ' . $str_snake_to_camel_label_id],
 		[$t_registered_sentence_elements, 'voice_id as ' . $str_snake_to_camel_voice_id],
-		[$t_registered_sentence_elements, $str_snake_to_camel_japanese],
-		[$t_registered_sentence_elements, $str_snake_to_camel_kana]
+		[$t_registered_sentence_elements, 'japanese as ' . $str_snake_to_camel_japanese],
+		[$t_registered_sentence_elements, 'kana as ' . $str_snake_to_camel_kana]
 	];
 	
 	$strSQL_from = " FROM
