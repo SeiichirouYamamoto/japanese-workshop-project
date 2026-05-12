@@ -262,7 +262,7 @@
 		) {
 			$arr_matched = array_filter(
 				$arr_matched,
-				function ($item) use ($arr_already_learned_list) {
+				function ($item) use ($arr_already_learned_list, $str_snake_to_camel_japanese_id) {
 					return in_array(
 						intval($item[$str_snake_to_camel_japanese_id]),
 						$arr_already_learned_list,
