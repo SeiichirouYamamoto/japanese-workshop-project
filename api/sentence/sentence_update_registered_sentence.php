@@ -176,7 +176,7 @@
             $loop_link_id_add_sort = array_map('escape_html', $loop_link_id_add_sort);
 
             $japaneseId = intval($loop_link_id_add_sort[$str_snake_to_camel_japanese_id] ?? 0);
-            $subClassificationId = intval($loop_link_id_add_sort['subClassificationId'] ?? 0);
+            $subClassificationId = intval($loop_link_id_add_sort[$str_snake_to_camel_sub_classification_id] ?? 0);
 
             $stmt_insert_element->bindValue(1, $t_registered_sentence_id, PDO::PARAM_INT);
             $stmt_insert_element->bindValue(2, (string)($loop_link_id_add_sort['idName'] ?? ''), PDO::PARAM_STR);

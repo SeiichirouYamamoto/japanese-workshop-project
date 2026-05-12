@@ -170,7 +170,7 @@
             $stmt_insert_element->bindValue(3,  intval($loop_link_id_add_sort['uniqueKey'] ?? 0), PDO::PARAM_INT);
             $stmt_insert_element->bindValue(4,  intval($loop_link_id_add_sort[$str_snake_to_camel_japanese_id] ?? 0), PDO::PARAM_INT);
             $stmt_insert_element->bindValue(5,  intval($loop_link_id_add_sort[$str_snake_to_camel_japanese_element_id] ?? 0), PDO::PARAM_INT);
-            $stmt_insert_element->bindValue(6,  intval($loop_link_id_add_sort['subClassificationId'] ?? 0), PDO::PARAM_INT);
+            $stmt_insert_element->bindValue(6,  intval($loop_link_id_add_sort[$str_snake_to_camel_sub_classification_id] ?? 0), PDO::PARAM_INT);
             $stmt_insert_element->bindValue(7,  intval($loop_link_id_add_sort['formId'] ?? 0), PDO::PARAM_INT);
             $stmt_insert_element->bindValue(8,  intval($loop_link_id_add_sort['labelId'] ?? 0), PDO::PARAM_INT);
             $stmt_insert_element->bindValue(9,  intval($loop_link_id_add_sort['voiceId'] ?? 0), PDO::PARAM_INT);
@@ -197,11 +197,11 @@
             // ★必須：未登録語彙の保存（山本様の仕様）
             if (
                 intval($loop_link_id_add_sort[$str_snake_to_camel_japanese_id] ?? 0) <= 1 &&
-                intval($loop_link_id_add_sort['subClassificationId'] ?? 0) !== $int_Num
+                intval($loop_link_id_add_sort[$str_snake_to_camel_sub_classification_id] ?? 0) !== $int_Num
             ) {
                 $stmt_insert_new_word->bindValue(1, $registered_sentence_elements_id, PDO::PARAM_INT);
                 $stmt_insert_new_word->bindValue(2, intval($loop_link_id_add_sort[$str_snake_to_camel_japanese_id] ?? 0), PDO::PARAM_INT);
-                $stmt_insert_new_word->bindValue(3, intval($loop_link_id_add_sort['subClassificationId'] ?? 0), PDO::PARAM_INT);
+                $stmt_insert_new_word->bindValue(3, intval($loop_link_id_add_sort[$str_snake_to_camel_sub_classification_id] ?? 0), PDO::PARAM_INT);
                 $stmt_insert_new_word->bindValue(4, (string)($loop_link_id_add_sort['japanese'] ?? ''), PDO::PARAM_STR);
                 $stmt_insert_new_word->bindValue(5, (string)($loop_link_id_add_sort['kana'] ?? ''), PDO::PARAM_STR);
                 $stmt_insert_new_word->execute();

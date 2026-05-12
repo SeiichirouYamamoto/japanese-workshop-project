@@ -34,7 +34,7 @@
         $int_sub_classification_id = intval($input['int_sub_classification_id'] ?? $int_id_default);
 
         if ($int_sub_classification_id === intval($int_Num)) {
-            respond_success(['subClassificationId' => $int_sub_classification_id]);
+            respond_success([$str_snake_to_camel_sub_classification_id => $int_sub_classification_id]);
         }
 
         $arr_insertSQL = [

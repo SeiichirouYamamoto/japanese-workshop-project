@@ -142,7 +142,7 @@
         handle_database_error_and_respond($pdo_has_error, $select_has_error, $e);
 
         foreach ($arr_registered_sentence_elements as $key => $loop_registered_sentence_elements) {
-            $t_masta_japanese_sub_classification_id = intval($loop_registered_sentence_elements['subClassificationId']);
+            $t_masta_japanese_sub_classification_id = intval($loop_registered_sentence_elements[$str_snake_to_camel_sub_classification_id]);
             $t_masta_form_root_id = intval($loop_registered_sentence_elements['formId']);
             $int_voice_id = intval($loop_registered_sentence_elements['voiceId']);
 
