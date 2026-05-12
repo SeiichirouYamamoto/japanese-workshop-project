@@ -144,7 +144,7 @@
         foreach ($arr_registered_sentence_elements as $key => $loop_registered_sentence_elements) {
             $t_masta_japanese_sub_classification_id = intval($loop_registered_sentence_elements[$str_snake_to_camel_sub_classification_id]);
             $t_masta_form_root_id = intval($loop_registered_sentence_elements[$str_snake_to_camel_form_id]);
-            $int_voice_id = intval($loop_registered_sentence_elements['voiceId']);
+            $int_voice_id = intval($loop_registered_sentence_elements[$str_snake_to_camel_voice_id]);
 
             $str_japanese_sub_classification = fetch_str_sub_classification_name_by_id($t_masta_japanese_sub_classification_id, $int_selected_language);
             $str_japanese_form = fetch_str_form_name_by_form_root_id($t_masta_form_root_id, $int_selected_language);

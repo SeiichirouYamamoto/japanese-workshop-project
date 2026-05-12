@@ -72,11 +72,11 @@
                 $updated_value = $formId;
                 break;
 
-            case 'voiceId':
-                if (!isset($input['voiceId'])) {
+            case $str_snake_to_camel_voice_id:
+                if (!isset($input[$str_snake_to_camel_voice_id])) {
                     respond_error('Value not found: voiceId', 400);
                 }
-                $voiceId = intval($input['voiceId']);
+                $voiceId = intval($input[$str_snake_to_camel_voice_id]);
                 if ($voiceId < 0) {
                     respond_error('Invalid value: voiceId', 400);
                 }
