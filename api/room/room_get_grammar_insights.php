@@ -101,7 +101,7 @@
 						$str_snake_to_camel_japanese_id => $arr_masta_japanese_root['id'],
 						'grammarUniqueCode' => $grammar_unique_code,
 						$str_snake_to_camel_japanese => $arr_masta_japanese_root[$arr_columns_masta_japanese_root[$int_selected_language]],
-						'kana' => $arr_masta_japanese_root[$str_column_root_kana],
+						$str_snake_to_camel_kana => $arr_masta_japanese_root[$str_column_root_kana],
 						'categoryId' => $arr_masta_japanese_root['category_id'],
 						'rootText' => apply_remove_original_tags($arr_masta_japanese_root[$arr_columns_masta_japanese_root[$int_selected_language]]),
 						'rootExample' => apply_remove_original_tags($arr_masta_japanese_root['root_example']),

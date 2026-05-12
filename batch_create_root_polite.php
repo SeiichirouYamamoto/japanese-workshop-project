@@ -98,7 +98,7 @@
 				$arr_indicator_labels = get_arr_indicator_label($int_label_id, false, $int_selected_language);
 				$arr_inflected_label = get_arr_inflected_label($arr_indicator_labels, $t_masta_japanese_root_id, $t_japanese_element_id, $t_masta_japanese_sub_classification_id, $t_masta_form_root_id, $int_voice_id, false, $int_selected_language);
 				$str_japanese = $arr_inflected_label[$str_snake_to_camel_japanese];
-				$str_kana = $arr_inflected_label['kana'];
+				$str_kana = $arr_inflected_label[$str_snake_to_camel_kana];
 			}
 
 			$update_table = $t_masta_japanese_root;
