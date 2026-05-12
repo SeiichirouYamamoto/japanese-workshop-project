@@ -100,7 +100,7 @@
 
 		respond_success($arr_layer_elements, [
 			'inflection' => $arr_form_list,
-			'voice' => $arr_voice_list
+			$str_snake_to_camel_voice => $arr_voice_list
 		]);
 
 	} catch (Throwable $e) {
