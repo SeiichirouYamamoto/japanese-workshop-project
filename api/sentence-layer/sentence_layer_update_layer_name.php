@@ -113,7 +113,7 @@
 					if ($selected[$str_snake_to_camel_form_id] == 0 || $selected['voiceId'] == 0) {
 						$base = $selected['japanese'];
 					} else {
-						$arr_indicator_labels = get_arr_indicator_label($selected['labelId'], false, $int_selected_language);
+						$arr_indicator_labels = get_arr_indicator_label($selected[$str_snake_to_camel_label_id], false, $int_selected_language);
 						$arr_inflected_label = get_arr_inflected_label($arr_indicator_labels, $selected[$str_snake_to_camel_japanese_id], $selected[$str_snake_to_camel_japanese_element_id], $selected[$str_snake_to_camel_sub_classification_id], $selected[$str_snake_to_camel_form_id], $selected['voiceId'], false, $int_selected_language);
 						$base = !empty($arr_inflected_label['japanese']) ? $arr_inflected_label['japanese'] : $selected['japanese'];
 					}
@@ -122,7 +122,7 @@
 
 				} else {
 
-					$arr_indicator_labels = get_arr_indicator_label($selected['labelId'], false, $int_selected_language);
+					$arr_indicator_labels = get_arr_indicator_label($selected[$str_snake_to_camel_label_id], false, $int_selected_language);
 					$arr_inflected_label = get_arr_inflected_label($arr_indicator_labels, $selected[$str_snake_to_camel_japanese_id], $selected[$str_snake_to_camel_japanese_element_id], $selected[$str_snake_to_camel_sub_classification_id], $selected[$str_snake_to_camel_form_id], $selected['voiceId'], false, $int_selected_language);
 					$base = !empty($arr_inflected_label['japanese']) ? $arr_inflected_label['japanese'] : $selected['japanese'];
 

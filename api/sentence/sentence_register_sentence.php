@@ -172,7 +172,7 @@
             $stmt_insert_element->bindValue(5,  intval($loop_link_id_add_sort[$str_snake_to_camel_japanese_element_id] ?? 0), PDO::PARAM_INT);
             $stmt_insert_element->bindValue(6,  intval($loop_link_id_add_sort[$str_snake_to_camel_sub_classification_id] ?? 0), PDO::PARAM_INT);
             $stmt_insert_element->bindValue(7,  intval($loop_link_id_add_sort[$str_snake_to_camel_form_id] ?? 0), PDO::PARAM_INT);
-            $stmt_insert_element->bindValue(8,  intval($loop_link_id_add_sort['labelId'] ?? 0), PDO::PARAM_INT);
+            $stmt_insert_element->bindValue(8,  intval($loop_link_id_add_sort[$str_snake_to_camel_label_id] ?? 0), PDO::PARAM_INT);
             $stmt_insert_element->bindValue(9,  intval($loop_link_id_add_sort['voiceId'] ?? 0), PDO::PARAM_INT);
             $stmt_insert_element->bindValue(10, (string)($loop_link_id_add_sort['boundsTop'] ?? ''), PDO::PARAM_STR);
             $stmt_insert_element->bindValue(11, (string)($loop_link_id_add_sort['boundsLeft'] ?? ''), PDO::PARAM_STR);

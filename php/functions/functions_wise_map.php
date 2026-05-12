@@ -1453,7 +1453,8 @@ function generate_sentence_base_from_japanese(array $selected_transform, int $in
 		$str_snake_to_camel_japanese_id,
 		$str_snake_to_camel_japanese_element_id,
 		$str_snake_to_camel_sub_classification_id,
-		$str_snake_to_camel_form_id;
+		$str_snake_to_camel_form_id,
+		$str_snake_to_camel_label_id;
 
     $t_masta_form_root_id = intval($selected_transform[$str_snake_to_camel_form_id]);
     $int_voice_id = intval($selected_transform['voiceId']);
@@ -1465,7 +1466,7 @@ function generate_sentence_base_from_japanese(array $selected_transform, int $in
     $t_masta_japanese_root_id = $selected_transform[$str_snake_to_camel_japanese_id];
     $t_japanese_element_id = $selected_transform[$str_snake_to_camel_japanese_element_id];
     $t_masta_japanese_sub_classification_id = $selected_transform[$str_snake_to_camel_sub_classification_id];
-    $int_label_id = $selected_transform['labelId'];
+    $int_label_id = $selected_transform[$str_snake_to_camel_label_id];
 
     $arr_indicator_labels = get_arr_indicator_label($int_label_id, false, $int_selected_language);
     $arr_inflected_label = get_arr_inflected_label(
