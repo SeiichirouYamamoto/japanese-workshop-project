@@ -103,7 +103,7 @@
             [$t_registered_sentence_elements, 'voice_id as ' . $str_snake_to_camel_voice_id],
             [$t_registered_sentence_elements, 'bounds_top as boundsTop'],
             [$t_registered_sentence_elements, 'bounds_left as boundsLeft'],
-            [$t_registered_sentence_elements, 'link_id as linkId'],
+            [$t_registered_sentence_elements, 'link_id as ' . $str_snake_to_camel_link_id],
             [$t_registered_sentence_elements, 'link_type as linkType'],
             [$t_registered_sentence_elements, 'japanese'],
             [$t_registered_sentence_elements, 'kana'],
