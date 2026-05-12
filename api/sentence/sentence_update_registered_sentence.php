@@ -182,7 +182,7 @@
             $stmt_insert_element->bindValue(2, (string)($loop_link_id_add_sort['idName'] ?? ''), PDO::PARAM_STR);
             $stmt_insert_element->bindValue(3, intval($loop_link_id_add_sort['uniqueKey'] ?? 0), PDO::PARAM_INT);
             $stmt_insert_element->bindValue(4, $japaneseId, PDO::PARAM_INT);
-            $stmt_insert_element->bindValue(5, intval($loop_link_id_add_sort['japaneseElementId'] ?? 0), PDO::PARAM_INT);
+            $stmt_insert_element->bindValue(5, intval($loop_link_id_add_sort[$str_snake_to_camel_japanese_element_id] ?? 0), PDO::PARAM_INT);
             $stmt_insert_element->bindValue(6, $subClassificationId, PDO::PARAM_INT);
             $stmt_insert_element->bindValue(7, intval($loop_link_id_add_sort['formId'] ?? 0), PDO::PARAM_INT);
             $stmt_insert_element->bindValue(8, intval($loop_link_id_add_sort['labelId'] ?? 0), PDO::PARAM_INT);

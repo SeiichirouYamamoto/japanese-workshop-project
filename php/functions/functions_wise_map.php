@@ -1449,7 +1449,8 @@ function generate_sentence_base_from_japanese(array $selected_transform, int $in
 {
 
     global 
-		$str_snake_to_camel_japanese_id;
+		$str_snake_to_camel_japanese_id,
+		$str_snake_to_camel_japanese_element_id;
 
     $t_masta_form_root_id = intval($selected_transform['formId']);
     $int_voice_id = intval($selected_transform['voiceId']);
@@ -1459,7 +1460,7 @@ function generate_sentence_base_from_japanese(array $selected_transform, int $in
     }
 
     $t_masta_japanese_root_id = $selected_transform[$str_snake_to_camel_japanese_id];
-    $t_japanese_element_id = $selected_transform['japaneseElementId'];
+    $t_japanese_element_id = $selected_transform[$str_snake_to_camel_japanese_element_id];
     $t_masta_japanese_sub_classification_id = $selected_transform['subClassificationId'];
     $int_label_id = $selected_transform['labelId'];
 
