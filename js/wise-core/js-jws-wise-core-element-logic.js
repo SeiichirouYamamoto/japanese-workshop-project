@@ -1064,7 +1064,7 @@ function renderWiseMapContentContainer(toggleElm, items, isForcusPoint, isNavi) 
     ul.classList.add('wiseMapUXWaypointContainerUl');
 
     items.forEach(item => {
-        let str_grammarUniqueCode = item.item_unique_code;
+        let grammarUniqueCode = item.item_unique_code;
         let str_title = item.item_title;
         let str_japanese = item.item_title;
 
@@ -1083,7 +1083,7 @@ function renderWiseMapContentContainer(toggleElm, items, isForcusPoint, isNavi) 
 
 		const controls = document.createElement('div');
 		controls.classList.add('wiseMapControlsContainer');
-		if (str_grammarUniqueCode !== null) {
+		if (grammarUniqueCode) {
 			controls.appendChild(btn);
 		}
 
@@ -1122,17 +1122,17 @@ function renderWiseMapContentContainer(toggleElm, items, isForcusPoint, isNavi) 
             ul.appendChild(li);
         }
 
-        li.dataset.uniqueCode = str_grammarUniqueCode;
+        li.dataset.uniqueCode = grammarUniqueCode;
         li.dataset.japanese = str_japanese;
 
         btn.addEventListener('pointerup', async function () {
 			
             switchToGrammarExplanationPanel();
 
-            await createGrammarExplanation(str_grammarUniqueCode);
+            await createGrammarExplanation(grammarUniqueCode);
 
             const obj_grammarData = {
-                uniqueCode: str_grammarUniqueCode,
+                uniqueCode: grammarUniqueCode,
                 japanese: str_japanese
             };
 
