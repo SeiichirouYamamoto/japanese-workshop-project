@@ -59,11 +59,11 @@
                 $updated_value = $is_highlighted_new;
                 break;
 
-            case 'formId':
-                if (!isset($input['formId'])) {
+            case $str_snake_to_camel_form_id:
+                if (!isset($input[$str_snake_to_camel_form_id])) {
                     respond_error('Value not found: formId', 400);
                 }
-                $formId = intval($input['formId']);
+                $formId = intval($input[$str_snake_to_camel_form_id]);
                 if ($formId < 0) {
                     respond_error('Invalid value: formId', 400);
                 }

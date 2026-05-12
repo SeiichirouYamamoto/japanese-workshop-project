@@ -1452,9 +1452,10 @@ function generate_sentence_base_from_japanese(array $selected_transform, int $in
     global 
 		$str_snake_to_camel_japanese_id,
 		$str_snake_to_camel_japanese_element_id,
-		$str_snake_to_camel_sub_classification_id;
+		$str_snake_to_camel_sub_classification_id,
+		$str_snake_to_camel_form_id;
 
-    $t_masta_form_root_id = intval($selected_transform['formId']);
+    $t_masta_form_root_id = intval($selected_transform[$str_snake_to_camel_form_id]);
     $int_voice_id = intval($selected_transform['voiceId']);
 
     if ($t_masta_form_root_id === 0 || $int_voice_id === 0) {
@@ -1637,11 +1638,15 @@ function apply_override_infomation($base, $overrides, $isHighlightedLayer){
 
 function apply_form_voice_override_to_transform(array $selected_transform, array $selected_overrides) : array
 {
+
+    global
+        $str_snake_to_camel_form_id;
+
     if (empty($selected_overrides)) { return $selected_transform; }
     foreach ($selected_overrides as $ov) {
-        $mf = isset($ov['formId']) ? intval($ov['formId']) : 0;
+        $mf = isset($ov[$str_snake_to_camel_form_id]) ? intval($ov[$str_snake_to_camel_form_id]) : 0;
         $mv = isset($ov['voiceId']) ? intval($ov['voiceId']) : 0;
-        if ($mf !== 0) { $selected_transform['formId'] = $mf; }
+        if ($mf !== 0) { $selected_transform[$str_snake_to_camel_form_id] = $mf; }
         if ($mv !== 0) { $selected_transform['voiceId'] = $mv; }
     }
     return $selected_transform;
