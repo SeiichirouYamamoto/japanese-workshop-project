@@ -651,7 +651,6 @@ async function createClickableContainers(
 				str_voice = escapeHTML(arr_balance[i][j]['voice']),
 				int_link_id = escapeHTML(arr_balance[i][j]['linkId']),
 				int_link_type = escapeNumber(arr_balance[i][j]['linkType']),
-				// int_sort = escapeNumber(arr_balance[i][j]['sort']),
 				int_vertical_order = escapeNumber(arr_balance[i][j]['verticalOrder']);
 
 			elm_clickableContainer = document.createElement('div');
