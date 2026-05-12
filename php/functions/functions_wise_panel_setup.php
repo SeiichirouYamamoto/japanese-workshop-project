@@ -126,7 +126,8 @@ function build_html_wise_setup_body($int_selected_language)
 
     $html_main_content_area = build_html_wise_panel_main_content_area(
         $contents,
-        'wisePanelWiseSetupViewMainContentArea'
+        'wisePanelWiseSetupViewMainContentArea',
+        'wisePanelMainContentArea wiseScrollableArea'
     );
 
     $html_loading = build_html_loading_spinner('wisePanelWiseSetupViewLoading');
