@@ -17,7 +17,7 @@
 	$arr_strSQL_select = [
 		[$t_masta_japanese_root,'id as japaneseRootId'],
 		[$t_masta_japanese_root,'search_criteria'],
-		[$t_japanese_labels,'id as labelId'],
+		[$t_japanese_labels,'id as ' . $str_snake_to_camel_label_id],
 		[$t_japanese_elements,'id as elementId'],
 		[$t_masta_japanese_label,'id as mastaLabelId'],
 		[$t_masta_japanese_label,'label_japanese'],
@@ -87,7 +87,7 @@
 			$t_japanese_element_id = intval($loot_masta_japanese_root['elementId']);
 			$t_masta_japanese_sub_classification_id = intval($loot_masta_japanese_root['masta_japanese_sub_classification_id']);
 			$t_masta_form_root_id = $int_PoliteFormAffirmativeNotPastTense;
-			$int_label_id = intval($loot_masta_japanese_root['labelId']);
+			$int_label_id = intval($loot_masta_japanese_root[$str_snake_to_camel_label_id]);
 			$int_voice_id = $int_id_default;
 			$str_search_criteria = escape_html($loot_masta_japanese_root['search_criteria']);
 			$str_japanese = escape_html($loot_masta_japanese_root['label_japanese']);

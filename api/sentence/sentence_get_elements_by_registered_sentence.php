@@ -99,7 +99,7 @@
             [$t_registered_sentence_elements, 'japanese_element_id as ' . $str_snake_to_camel_japanese_element_id],
             [$t_registered_sentence_elements, 'sub_classification_id as ' . $str_snake_to_camel_sub_classification_id],
             [$t_registered_sentence_elements, 'form_id as ' . $str_snake_to_camel_form_id],
-            [$t_registered_sentence_elements, 'label_id as labelId'],
+            [$t_registered_sentence_elements, 'label_id as ' . $str_snake_to_camel_label_id],
             [$t_registered_sentence_elements, 'voice_id as voiceId'],
             [$t_registered_sentence_elements, 'bounds_top as boundsTop'],
             [$t_registered_sentence_elements, 'bounds_left as boundsLeft'],

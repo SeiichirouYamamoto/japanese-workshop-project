@@ -1756,6 +1756,7 @@ function get_data_wise_map_sentence_from_waypoints(array $arr_layer_unique_codes
 		$str_snake_to_camel_japanese_element_id,
 		$str_snake_to_camel_sub_classification_id,
 		$str_snake_to_camel_form_id,
+		$str_snake_to_camel_label_id,
 		$arr_columns_masta_japanese_root;
 
     $arr_waypoints = [];
@@ -1778,7 +1779,7 @@ function get_data_wise_map_sentence_from_waypoints(array $arr_layer_unique_codes
 			[$t_registered_sentence_elements, 'japanese_element_id as ' . $str_snake_to_camel_japanese_element_id],
 			[$t_registered_sentence_elements, 'sub_classification_id as ' . $str_snake_to_camel_sub_classification_id],
 			[$t_registered_sentence_elements, 'japanese'],
-			[$t_registered_sentence_elements, 'label_id as labelId'],
+			[$t_registered_sentence_elements, 'label_id as ' . $str_snake_to_camel_label_id],
 			[$t_registered_sentence_elements, 'sort as rseSort']
 		];
 
