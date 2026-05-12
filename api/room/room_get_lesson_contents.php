@@ -43,7 +43,7 @@
 
 		$arr_strSQL_select = [
 			[$t_room_lesson_contents, 'id as lessonContentId'],
-			[$t_room_lesson_contents, 'masta_japanese_root_id as japaneseId'],
+			[$t_room_lesson_contents, 'masta_japanese_root_id as ' . $str_snake_to_camel_japanese_id],
 			[$t_masta_japanese_root, $arr_columns_masta_japanese_root[$int_selected_language] . ' as japanese'],
 			[$t_room_lesson_contents, 'sort']
 		];
