@@ -75,7 +75,7 @@
         $arr_masta_japanese_root = fetch_arr_masta_japanese_root_default($t_masta_japanese_root_id, $int_selected_language);
 
         $result = [
-            'japaneseId' => $arr_masta_japanese_root['id'],
+            $str_snake_to_camel_japanese_id => $arr_masta_japanese_root['id'],
             'uniqueCode' => $arr_masta_japanese_root[$str_snake_to_camel_unique_code],
             'japanese' => $arr_masta_japanese_root[$arr_columns_masta_japanese_root[$int_selected_language]],
             'kana' => $arr_masta_japanese_root[$str_column_root_kana],

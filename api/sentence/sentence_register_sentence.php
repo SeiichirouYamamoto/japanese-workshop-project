@@ -168,7 +168,7 @@
             $stmt_insert_element->bindValue(1,  $t_registered_sentence_id, PDO::PARAM_INT);
             $stmt_insert_element->bindValue(2,  $loop_link_id_add_sort['idName'] ?? '', PDO::PARAM_STR);
             $stmt_insert_element->bindValue(3,  intval($loop_link_id_add_sort['uniqueKey'] ?? 0), PDO::PARAM_INT);
-            $stmt_insert_element->bindValue(4,  intval($loop_link_id_add_sort['japaneseId'] ?? 0), PDO::PARAM_INT);
+            $stmt_insert_element->bindValue(4,  intval($loop_link_id_add_sort[$str_snake_to_camel_japanese_id] ?? 0), PDO::PARAM_INT);
             $stmt_insert_element->bindValue(5,  intval($loop_link_id_add_sort['japaneseElementId'] ?? 0), PDO::PARAM_INT);
             $stmt_insert_element->bindValue(6,  intval($loop_link_id_add_sort['subClassificationId'] ?? 0), PDO::PARAM_INT);
             $stmt_insert_element->bindValue(7,  intval($loop_link_id_add_sort['formId'] ?? 0), PDO::PARAM_INT);
@@ -196,11 +196,11 @@
 
             // ★必須：未登録語彙の保存（山本様の仕様）
             if (
-                intval($loop_link_id_add_sort['japaneseId'] ?? 0) <= 1 &&
+                intval($loop_link_id_add_sort[$str_snake_to_camel_japanese_id] ?? 0) <= 1 &&
                 intval($loop_link_id_add_sort['subClassificationId'] ?? 0) !== $int_Num
             ) {
                 $stmt_insert_new_word->bindValue(1, $registered_sentence_elements_id, PDO::PARAM_INT);
-                $stmt_insert_new_word->bindValue(2, intval($loop_link_id_add_sort['japaneseId'] ?? 0), PDO::PARAM_INT);
+                $stmt_insert_new_word->bindValue(2, intval($loop_link_id_add_sort[$str_snake_to_camel_japanese_id] ?? 0), PDO::PARAM_INT);
                 $stmt_insert_new_word->bindValue(3, intval($loop_link_id_add_sort['subClassificationId'] ?? 0), PDO::PARAM_INT);
                 $stmt_insert_new_word->bindValue(4, (string)($loop_link_id_add_sort['japanese'] ?? ''), PDO::PARAM_STR);
                 $stmt_insert_new_word->bindValue(5, (string)($loop_link_id_add_sort['kana'] ?? ''), PDO::PARAM_STR);

@@ -1447,6 +1447,10 @@ function apply_wise_map_route_data_merge(array $a, array $b): array
 
 function generate_sentence_base_from_japanese(array $selected_transform, int $int_selected_language) : string
 {
+
+    global 
+		$str_snake_to_camel_japanese_id;
+
     $t_masta_form_root_id = intval($selected_transform['formId']);
     $int_voice_id = intval($selected_transform['voiceId']);
 
@@ -1454,7 +1458,7 @@ function generate_sentence_base_from_japanese(array $selected_transform, int $in
         return $selected_transform['japanese'];
     }
 
-    $t_masta_japanese_root_id = $selected_transform['japaneseId'];
+    $t_masta_japanese_root_id = $selected_transform[$str_snake_to_camel_japanese_id];
     $t_japanese_element_id = $selected_transform['japaneseElementId'];
     $t_masta_japanese_sub_classification_id = $selected_transform['subClassificationId'];
     $int_label_id = $selected_transform['labelId'];

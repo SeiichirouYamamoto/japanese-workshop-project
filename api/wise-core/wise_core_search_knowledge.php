@@ -264,7 +264,7 @@
 				$arr_matched,
 				function ($item) use ($arr_already_learned_list) {
 					return in_array(
-						intval($item['japaneseId']),
+						intval($item[$str_snake_to_camel_japanese_id]),
 						$arr_already_learned_list,
 						true
 					);

@@ -100,7 +100,7 @@ function build_html_sorting_quiz_fullscreen_page($unique_code, $isAdvanceStage, 
 	foreach($arr_registered_sentence_elements as $loop_registered_sentence_elements){
 
 		$int_unique_key = escape_html($loop_registered_sentence_elements['uniqueKey']);
-		$int_japanese_id = escape_html($loop_registered_sentence_elements['japaneseId']);
+		$int_japanese_id = escape_html($loop_registered_sentence_elements[$str_snake_to_camel_japanese_id]);
 		$int_japanese_element_id = escape_html($loop_registered_sentence_elements['japaneseElementId']);
 		$int_sub_classification_id = escape_html($loop_registered_sentence_elements['subClassificationId']);
 		$int_form_id = escape_html($loop_registered_sentence_elements['formId']);
@@ -2179,7 +2179,7 @@ function get_data_sorting_quiz($pageType, $isAdvanceStage, $int_mastery_level, $
 
 	foreach($arr_registered_sentence_elements as $loop_registered_sentence_elements){
 		$int_unique_key = escape_html($loop_registered_sentence_elements['uniqueKey']);
-		$int_japanese_id = intval($loop_registered_sentence_elements['japaneseId']);
+		$int_japanese_id = intval($loop_registered_sentence_elements[$str_snake_to_camel_japanese_id]);
 		$int_japanese_element_id = intval($loop_registered_sentence_elements['japaneseElementId']);
 		$int_sub_classification_id = intval($loop_registered_sentence_elements['subClassificationId']);
 		$int_form_id = intval($loop_registered_sentence_elements['formId']);
@@ -3012,7 +3012,7 @@ function try_get_data_quiz_from_inflection(
 		$str_kana = $arr_registered_sentence['kana'];
 		$int_registered_sentence_id = $arr_registered_sentence['id'];
 		$int_sentence_element_id = $arr_registered_sentence['sentenceElementId'];
-		$t_masta_japanese_root_id = $arr_registered_sentence['japaneseId'];
+		$t_masta_japanese_root_id = $arr_registered_sentence[$str_snake_to_camel_japanese_id];
 		$int_japanese_element_id = $arr_registered_sentence['japaneseElementId'];
 		$int_japanese_label_id = $arr_registered_sentence['labelId'];
 		$t_masta_japanese_sub_classification_id = $arr_registered_sentence['subClassificationId'];

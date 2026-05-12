@@ -114,7 +114,7 @@
 						$base = $selected['japanese'];
 					} else {
 						$arr_indicator_labels = get_arr_indicator_label($selected['labelId'], false, $int_selected_language);
-						$arr_inflected_label = get_arr_inflected_label($arr_indicator_labels, $selected['japaneseId'], $selected['japaneseElementId'], $selected['subClassificationId'], $selected['formId'], $selected['voiceId'], false, $int_selected_language);
+						$arr_inflected_label = get_arr_inflected_label($arr_indicator_labels, $selected[$str_snake_to_camel_japanese_id], $selected['japaneseElementId'], $selected['subClassificationId'], $selected['formId'], $selected['voiceId'], false, $int_selected_language);
 						$base = !empty($arr_inflected_label['japanese']) ? $arr_inflected_label['japanese'] : $selected['japanese'];
 					}
 
@@ -123,7 +123,7 @@
 				} else {
 
 					$arr_indicator_labels = get_arr_indicator_label($selected['labelId'], false, $int_selected_language);
-					$arr_inflected_label = get_arr_inflected_label($arr_indicator_labels, $selected['japaneseId'], $selected['japaneseElementId'], $selected['subClassificationId'], $selected['formId'], $selected['voiceId'], false, $int_selected_language);
+					$arr_inflected_label = get_arr_inflected_label($arr_indicator_labels, $selected[$str_snake_to_camel_japanese_id], $selected['japaneseElementId'], $selected['subClassificationId'], $selected['formId'], $selected['voiceId'], false, $int_selected_language);
 					$base = !empty($arr_inflected_label['japanese']) ? $arr_inflected_label['japanese'] : $selected['japanese'];
 
 					list($prefix, $out, $suffix) = get_data_override_text_parts_for_update($base, $overrides);
