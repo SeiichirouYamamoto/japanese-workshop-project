@@ -97,7 +97,7 @@
             [$t_registered_sentence_elements, 'unique_key as uniqueKey'],
             [$t_registered_sentence_elements, 'japanese_id as ' . $str_snake_to_camel_japanese_id],
             [$t_registered_sentence_elements, 'japanese_element_id as ' . $str_snake_to_camel_japanese_element_id],
-            [$t_registered_sentence_elements, 'sub_classification_id as subClassificationId'],
+            [$t_registered_sentence_elements, 'sub_classification_id as ' . $str_snake_to_camel_sub_classification_id],
             [$t_registered_sentence_elements, 'form_id as formId'],
             [$t_registered_sentence_elements, 'label_id as labelId'],
             [$t_registered_sentence_elements, 'voice_id as voiceId'],
