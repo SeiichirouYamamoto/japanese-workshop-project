@@ -39,7 +39,7 @@
 			[$t_layer_elements, 'id'],
 			[$t_layer_elements, 'registered_sentence_element_id as sentenceElementId'],
 			[$t_layer_elements, 'form_id as ' . $str_snake_to_camel_form_id],
-			[$t_layer_elements, 'voice_id as voiceId'],
+			[$t_layer_elements, 'voice_id as ' . $str_snake_to_camel_voice_id],
 			[$t_layer_elements, 'is_highlighted as isHighlighted'],
 			[$t_registered_sentence_elements, 'japanese']
 		];
