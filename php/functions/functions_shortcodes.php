@@ -512,16 +512,30 @@ function jws_japanese_particle_quiz_page(){
 
 	$unique_code_type = $str_option_value_default;
 	$arr_grammar_unique_code = [];
-	if (isset($_GET['uniqueCode'])) {
-		$unique_code_type = validate_quiz_unique_code_and_get_room_unique_code($int_selected_language);
+
+	$unique_code = $_GET['uniqueCode'] ?? '';
+
+	if ($unique_code !== '') {
+
+		$unique_code_type
+			= validate_quiz_unique_code_and_get_room_unique_code(
+				$unique_code,
+				$int_selected_language
+			);
+
 	}
-	elseif (
-		$unique_code_type === $str_option_value_default && 
-		isset($_GET['createFromArray']) && 
-		intval($_GET['createFromArray']) === 1
+
+	if (
+		$unique_code_type === $str_option_value_default &&
+		isset($_GET['createFromArray']) &&
+		intval($_GET['createFromArray']) === FLAG_TRUE
 	) {
+
 		$unique_code_type = $str_option_value_array;
-		$arr_grammar_unique_code = isset($_GET['arr_grammar_unique_code']) ? $_GET['arr_grammar_unique_code'] : [];
+
+		$arr_grammar_unique_code
+			= $_GET['arr_grammar_unique_code'] ?? [];
+
 	}
 
 	$arr_sub_category = [];
@@ -576,16 +590,30 @@ function jws_grammar_quiz_page(){
 
 	$unique_code_type = $str_option_value_default;
 	$arr_grammar_unique_code = [];
-	if (isset($_GET['uniqueCode'])) {
-		$unique_code_type = validate_quiz_unique_code_and_get_room_unique_code($int_selected_language);
+
+	$unique_code = $_GET['uniqueCode'] ?? '';
+
+	if ($unique_code !== '') {
+
+		$unique_code_type
+			= validate_quiz_unique_code_and_get_room_unique_code(
+				$unique_code,
+				$int_selected_language
+			);
+
 	}
-	elseif (
-		$unique_code_type === $str_option_value_default && 
-		isset($_GET['createFromArray']) && 
-		intval($_GET['createFromArray']) === 1
+
+	if (
+		$unique_code_type === $str_option_value_default &&
+		isset($_GET['createFromArray']) &&
+		intval($_GET['createFromArray']) === FLAG_TRUE
 	) {
+
 		$unique_code_type = $str_option_value_array;
-		$arr_grammar_unique_code = isset($_GET['arr_grammar_unique_code']) ? $_GET['arr_grammar_unique_code'] : [];
+
+		$arr_grammar_unique_code
+			= $_GET['arr_grammar_unique_code'] ?? [];
+
 	}
 
 	$arr_sub_category = [];
@@ -639,16 +667,30 @@ function jws_plainform_quiz_page(){
 
 	$unique_code_type = $str_option_value_default;
 	$arr_grammar_unique_code = [];
-	if (isset($_GET['uniqueCode'])) {
-		$unique_code_type = validate_quiz_unique_code_and_get_room_unique_code($int_selected_language);
+
+	$unique_code = $_GET['uniqueCode'] ?? '';
+
+	if ($unique_code !== '') {
+
+		$unique_code_type
+			= validate_quiz_unique_code_and_get_room_unique_code(
+				$unique_code,
+				$int_selected_language
+			);
+
 	}
-	elseif (
-		$unique_code_type === $str_option_value_default && 
-		isset($_GET['createFromArray']) && 
-		intval($_GET['createFromArray']) === 1
+	
+	if (
+		$unique_code_type === $str_option_value_default &&
+		isset($_GET['createFromArray']) &&
+		intval($_GET['createFromArray']) === FLAG_TRUE
 	) {
+
 		$unique_code_type = $str_option_value_array;
-		$arr_grammar_unique_code = isset($_GET['arr_grammar_unique_code']) ? $_GET['arr_grammar_unique_code'] : [];
+
+		$arr_grammar_unique_code
+			= $_GET['arr_grammar_unique_code'] ?? [];
+
 	}
 
 	$arr_japanese_classification = [];
@@ -706,16 +748,30 @@ function jws_word_inflection_quiz_page(){
 
 	$unique_code_type = $str_option_value_default;
 	$arr_grammar_unique_code = [];
-	if (isset($_GET['uniqueCode'])) {
-		$unique_code_type = validate_quiz_unique_code_and_get_room_unique_code($int_selected_language);
+
+	$unique_code = $_GET['uniqueCode'] ?? '';
+
+	if ($unique_code !== '') {
+
+		$unique_code_type
+			= validate_quiz_unique_code_and_get_room_unique_code(
+				$unique_code,
+				$int_selected_language
+			);
+
 	}
-	elseif (
-		$unique_code_type === $str_option_value_default && 
-		isset($_GET['createFromArray']) && 
-		intval($_GET['createFromArray']) === 1
+
+	if (
+		$unique_code_type === $str_option_value_default &&
+		isset($_GET['createFromArray']) &&
+		intval($_GET['createFromArray']) === FLAG_TRUE
 	) {
+
 		$unique_code_type = $str_option_value_array;
-		$arr_grammar_unique_code = isset($_GET['arr_grammar_unique_code']) ? $_GET['arr_grammar_unique_code'] : [];
+
+		$arr_grammar_unique_code
+			= $_GET['arr_grammar_unique_code'] ?? [];
+
 	}
 
 	$arr_japanese_classification = [];
@@ -782,16 +838,30 @@ function jws_sorting_quiz_page(){
 
 	$unique_code_type = $str_option_value_default;
 	$arr_grammar_unique_code = [];
-	if (isset($_GET['uniqueCode'])) {
-		$unique_code_type = validate_quiz_unique_code_and_get_room_unique_code($int_selected_language);
+
+	$unique_code = $_GET['uniqueCode'] ?? '';
+
+	if ($unique_code !== '') {
+
+		$unique_code_type
+			= validate_quiz_unique_code_and_get_room_unique_code(
+				$unique_code,
+				$int_selected_language
+			);
+
 	}
-	elseif (
-		$unique_code_type === $str_option_value_default && 
-		isset($_GET['createFromArray']) && 
+
+	if (
+		$unique_code_type === $str_option_value_default &&
+		isset($_GET['createFromArray']) &&
 		intval($_GET['createFromArray']) === FLAG_TRUE
 	) {
+
 		$unique_code_type = $str_option_value_array;
-		$arr_grammar_unique_code = isset($_GET['arr_grammar_unique_code']) ? $_GET['arr_grammar_unique_code'] : [];
+
+		$arr_grammar_unique_code
+			= $_GET['arr_grammar_unique_code'] ?? [];
+
 	}
 	
 	$arr_sub_category = [];

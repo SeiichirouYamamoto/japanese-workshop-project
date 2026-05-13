@@ -230,57 +230,70 @@ function validate_integer_or_exit($value){
 }
 
 
-function validate_quiz_unique_code_and_get_room_unique_code($int_selected_language){
+function validate_quiz_unique_code_and_get_room_unique_code($unique_code, $int_selected_language){
 
-	global
-		$t_room_users,
-		$t_rooms,
-		$str_option_value_default;
+    global
+        $t_room_users,
+        $t_rooms,
+        $str_option_value_default;
 
-	$unique_code = escape_html($_GET['uniqueCode'] ?? '');
-	$room_id = fetch_room_id_from_unique_code($unique_code, $int_selected_language);
-	
-	$current_user = wp_get_current_user();
-	$current_user_id = $current_user->ID;
+    $unique_code = escape_html($unique_code);
 
-	$arr_strSQL_select = [
-		[$t_room_users,'id'],
-		[$t_room_users,'room_id'],
-		[$t_room_users,'user_id'],
-		[$t_rooms,'unique_code']
-	];
-	
-	$strSQL_from = " FROM
-				$t_rooms
-				INNER JOIN $t_room_users
-				ON
-				$t_rooms.id = $t_room_users.room_id 
-				";
-	
-	$arr_strSQL_where = [
-		[
-			[
-				[$t_room_users,'room_id','=',$room_id,'PDO::PARAM_INT','And'],
-				[$t_room_users,'user_id','=',$current_user_id,'PDO::PARAM_INT','And'],
-				[$t_room_users,'confirmed','=',FLAG_TRUE,'PDO::PARAM_INT','']
-			],
-			''
-		]
-	];
-	
-	$arr_strSQL_order = [];
-	
-	$strSQL_option = '';
-	
-	list($pdo_has_error, $select_has_error, $e, $arr_room_users) = execute_select_and_fetch_all($arr_strSQL_select, $strSQL_from, $arr_strSQL_where, $arr_strSQL_order, $strSQL_option);
-	handle_database_error_and_redirect($pdo_has_error, $select_has_error, $e, $int_selected_language);
+    $room_id = fetch_room_id_from_unique_code($unique_code, $int_selected_language);
 
-	if(!empty($arr_room_users)){
-		return $arr_room_users[INDEX_FIRST]['unique_code'];
-	}
-	else{
-		return $str_option_value_default;
-	}
+    $current_user = wp_get_current_user();
+    $current_user_id = $current_user->ID;
+
+    $arr_strSQL_select = [
+        [$t_room_users, 'id'],
+        [$t_room_users, 'room_id'],
+        [$t_room_users, 'user_id'],
+        [$t_rooms, 'unique_code']
+    ];
+
+    $strSQL_from = " FROM
+                $t_rooms
+                INNER JOIN $t_room_users
+                ON
+                $t_rooms.id = $t_room_users.room_id 
+                ";
+
+    $arr_strSQL_where = [
+        [
+            [
+                [$t_room_users, 'room_id', '=', $room_id, 'PDO::PARAM_INT', 'And'],
+                [$t_room_users, 'user_id', '=', $current_user_id, 'PDO::PARAM_INT', 'And'],
+                [$t_room_users, 'confirmed', '=', FLAG_TRUE, 'PDO::PARAM_INT', '']
+            ],
+            ''
+        ]
+    ];
+
+    $arr_strSQL_order = [];
+
+    $strSQL_option = '';
+
+    list($pdo_has_error, $select_has_error, $e, $arr_room_users)
+        = execute_select_and_fetch_all(
+            $arr_strSQL_select,
+            $strSQL_from,
+            $arr_strSQL_where,
+            $arr_strSQL_order,
+            $strSQL_option
+        );
+
+    handle_database_error_and_redirect(
+        $pdo_has_error,
+        $select_has_error,
+        $e,
+        $int_selected_language
+    );
+
+    if (!empty($arr_room_users)) {
+        return $arr_room_users[INDEX_FIRST]['unique_code'];
+    }
+
+    return $str_option_value_default;
 
 }
 
