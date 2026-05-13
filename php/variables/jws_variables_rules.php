@@ -120,14 +120,20 @@ $int_learning_status_learned = STATUS_THIRD;
  *  
  ******************************************************/
 $str_snake_to_camel_japanese_id = 'japaneseId';
-$str_snake_to_camel_unique_code = 'uniqueCode';
 $str_snake_to_camel_japanese_element_id = 'japaneseElementId';
 $str_snake_to_camel_sub_classification_id = 'subClassificationId';
 $str_snake_to_camel_form_id = 'formId';
 $str_snake_to_camel_label_id = 'labelId';
 $str_snake_to_camel_voice_id = 'voiceId';
 $str_snake_to_camel_link_id = 'linkId';
-// $str_snake_to_camel_special_id = 'specialId';
+$str_snake_to_camel_category_id = 'categoryId';
+
+$str_snake_to_camel_unique_code = 'uniqueCode';
+$str_snake_to_camel_japanese_root_unique_code = 'japaneseRootUniqueCode';
+$str_snake_to_camel_japanese_element_unique_code = 'japaneseElementUniqueCode';
+$str_snake_to_camel_grammar_unique_code = 'grammarUniqueCode';
+$str_snake_to_camel_room_unique_code = 'roomUniqueCode';
+
 $str_snake_to_camel_japanese = 'japanese';
 $str_snake_to_camel_japanese_polite = 'japanesePolite';
 $str_snake_to_camel_kana = 'kana';
@@ -136,7 +142,6 @@ $str_snake_to_camel_classification = 'classification';
 $str_snake_to_camel_sub_classification = 'subClassification';
 $str_snake_to_camel_form = 'form';
 $str_snake_to_camel_voice = 'voice';
-$str_snake_to_camel_category_id = 'categoryId';
 $str_snake_to_camel_level = 'level';
 $str_snake_to_camel_sort = 'sort';
 $str_snake_to_camel_parent_id = 'parentId';

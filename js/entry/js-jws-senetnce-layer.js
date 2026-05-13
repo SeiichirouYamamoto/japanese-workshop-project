@@ -677,7 +677,7 @@ async function createClickableContainers(
 			elm_clickableContainer.dataset.verticalOrder = int_vertical_order;
 
 			if(int_link_id !== SENTENCE_END){
-			elm_clickableContainer.dataset.linkId = int_link_id;
+				elm_clickableContainer.dataset.linkId = int_link_id;
 			}
 
 			elm_clickableLeftLinkMarker = document.createElement('div');
@@ -706,7 +706,7 @@ async function createClickableContainers(
 			target_elm_wiseContainersMainContentArea.appendChild(elm_clickableContainer);
 
 			if(int_clickableContainer_max_width<elm_clickableContainer.offsetWidth){
-			int_clickableContainer_max_width=elm_clickableContainer.offsetWidth;
+				int_clickableContainer_max_width=elm_clickableContainer.offsetWidth;
 			}
 		}
 		int_balance_x_interval = int_clickableContainer_max_width+int_add_x_interval;
