@@ -91,7 +91,6 @@
 
         $arr_strSQL_select = [
             [$t_layers,'id'],
-            // [$t_masta_japanese_root,'unique_code as ' . $str_snake_to_camel_grammar_unique_code],
             [$t_masta_japanese_sub_category,$arr_columns_masta_japanese_sub_category[$int_selected_language] . ' as subCategory'],
             [$t_layers,'layer_name'],
             [$t_layers,'sort']

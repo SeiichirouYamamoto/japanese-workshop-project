@@ -785,7 +785,7 @@ function buildGrammarInsightsActionButtons({
 		elm_addDivButtonsContainer.appendChild(chartButton);
 	}
 
-	const str_grammarUniqueCode = escapeHTML(jsonItem['uniqueCode']);
+	const str_grammarUniqueCode = escapeHTML(jsonItem['grammarUniqueCode']);
 
 	if (!isEmptyValue(str_grammarUniqueCode)) {
 		if (showChartButtonOneGrammar) {
@@ -921,7 +921,7 @@ function buildGrammarInsightsActionButtons({
 			ul.replaceChildren();
 
 			const grammar = Array.isArray(data)
-				? data.find(item => item?.uniqueCode === str_grammarUniqueCode)
+				? data.find(item => item?.grammarUniqueCode === str_grammarUniqueCode)
 				: null;
 
 			const arr = Array.isArray(grammar?.array) ? grammar.array : [];

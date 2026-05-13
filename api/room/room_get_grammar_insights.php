@@ -99,7 +99,7 @@
 					$matched_array = [];
 					$matched_array[] = [
 						$str_snake_to_camel_japanese_id => $arr_masta_japanese_root['id'],
-						'grammarUniqueCode' => $grammar_unique_code,
+						$str_snake_to_camel_grammar_unique_code => $grammar_unique_code,
 						$str_snake_to_camel_japanese => $arr_masta_japanese_root[$arr_columns_masta_japanese_root[$int_selected_language]],
 						$str_snake_to_camel_kana => $arr_masta_japanese_root[$str_column_root_kana],
 						$str_snake_to_camel_category_id => $arr_masta_japanese_root['category_id'],
@@ -110,7 +110,7 @@
 
 					$items[] = [
 						$str_snake_to_camel_japanese_id => $t_masta_japanese_root_id,
-						$str_snake_to_camel_unique_code => $arr_masta_japanese_root[$str_snake_to_camel_unique_code],
+						$str_snake_to_camel_grammar_unique_code => $arr_masta_japanese_root[$str_snake_to_camel_grammar_unique_code],
 						'title' => $arr_masta_japanese_root[$arr_columns_masta_japanese_root[$int_selected_language]],
 						'array' => $matched_array
 					];
@@ -130,7 +130,7 @@
 
 						$items[] = [
 							$str_snake_to_camel_japanese_id => $t_masta_japanese_root_id,
-							$str_snake_to_camel_unique_code => $arr_masta_japanese_root[$str_snake_to_camel_unique_code],
+							$str_snake_to_camel_grammar_unique_code => $arr_masta_japanese_root[$str_snake_to_camel_grammar_unique_code],
 							'title' => $arr_masta_japanese_root[$arr_columns_masta_japanese_root[$int_selected_language]],
 							'array' => $arr_active_recall
 						];
@@ -159,7 +159,7 @@
 
 					$items[] = [
 						$str_snake_to_camel_japanese_id => $t_masta_japanese_root_id,
-						$str_snake_to_camel_unique_code => $arr_masta_japanese_root[$str_snake_to_camel_unique_code],
+						$str_snake_to_camel_grammar_unique_code => $arr_masta_japanese_root[$str_snake_to_camel_grammar_unique_code],
 						'title' => $arr_masta_japanese_root[$arr_columns_masta_japanese_root[$int_selected_language]],
 						'array' => $arr_target
 					];
@@ -203,7 +203,7 @@
 
 					$items[] = [
 						$str_snake_to_camel_japanese_id => $t_masta_japanese_root_id,
-						$str_snake_to_camel_unique_code => $arr_masta_japanese_root[$str_snake_to_camel_unique_code],
+						$str_snake_to_camel_grammar_unique_code => $arr_masta_japanese_root[$str_snake_to_camel_grammar_unique_code],
 						'title' => $arr_masta_japanese_root[$arr_columns_masta_japanese_root[$int_selected_language]],
 						'array' => $arr_room_user_input_data
 					];
@@ -233,7 +233,7 @@
 
 				$result_array[] = [
 					$str_snake_to_camel_japanese_id => -2,
-					$str_snake_to_camel_unique_code => '',
+					$str_snake_to_camel_grammar_unique_code => '',
 					'title' => '一覧',
 					'array' => $merged_array
 				];
@@ -253,7 +253,7 @@
 
 				$result_array[] = [
 					$str_snake_to_camel_japanese_id => -2,
-					$str_snake_to_camel_unique_code => '',
+					$str_snake_to_camel_grammar_unique_code => '',
 					'title' => '例文ランダム',
 					'array' => $merged_array
 				];
