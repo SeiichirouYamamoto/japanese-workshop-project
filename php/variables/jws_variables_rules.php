@@ -156,7 +156,7 @@ $str_snake_to_camel_japanese_label_unique_code = 'japaneseLabelUniqueCode';
 
 $str_snake_to_camel_layer_unique_code = 'layerUniqueCode';
 $str_snake_to_camel_layer_element_unique_code = 'layerElementUniqueCode';
-$str_snake_to_camel_registered_sentence_unique_code = 'registeredSentenceUniqueCode';
+$str_snake_to_camel_sentence_unique_code = 'sentenceUniqueCode';
 
 $str_snake_to_camel_room_unique_code = 'roomUniqueCode';
 $str_snake_to_camel_room_lesson_unique_code = 'roomLessonUniqueCode';

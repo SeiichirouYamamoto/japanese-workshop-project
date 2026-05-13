@@ -634,7 +634,7 @@ function buildGrammarInsightSentenceItem({jsonItem}){
 	const elm_addLi = document.createElement('li');
 	elm_addLi.classList.add('grammarInsightsDisplayAreaLi');
 
-	let str_unique_code = escapeHTML(jsonItem['uniqueCode']);
+	let sentenceUniqueCode = escapeHTML(jsonItem['sentenceUniqueCode']);
 	
 
 	let elm_addLiDivButtonsContainer = document.createElement('div');
@@ -642,13 +642,13 @@ function buildGrammarInsightSentenceItem({jsonItem}){
 
 	let elm_addButtonSortingQuiz = document.createElement('button');
 	elm_addButtonSortingQuiz.classList.add('grammarInsightsDisplayAreaLiButton');
-	elm_addButtonSortingQuiz.dataset.uniqueCode = str_unique_code;
+	elm_addButtonSortingQuiz.dataset.uniqueCode = sentenceUniqueCode;
 	// マジックナンバー
 	elm_addButtonSortingQuiz.textContent = 'Sorting Quiz';
 	elm_addButtonSortingQuiz.addEventListener('pointerup',
 		function (e){
 			let url = pageSortingQuizFullscreenUrl;
-			let urlWithParams = `${url}/?${KEY_SENTENCE_UNIQUE_CODE}=${encodeURIComponent(str_unique_code)}&advance_stage=1`;
+			let urlWithParams = `${url}/?${KEY_SENTENCE_UNIQUE_CODE}=${encodeURIComponent(sentenceUniqueCode)}&advance_stage=1`;
 			window.open(urlWithParams, '_blank', 'noopener');
 		}
 	, { passive: false });

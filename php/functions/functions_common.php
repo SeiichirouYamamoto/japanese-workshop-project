@@ -3459,6 +3459,7 @@ function get_registered_sentence_base_by_language($int_selected_language){
 		$t_registered_sentences,
 		$t_registered_sentence_translations,
 		$str_snake_to_camel_unique_code,
+		$str_snake_to_camel_sentence_unique_code,
 		$int_used_language_jpn;
 
 	if($int_selected_language === $int_used_language_jpn){
@@ -3466,6 +3467,7 @@ function get_registered_sentence_base_by_language($int_selected_language){
 		$arr_strSQL_select = [
 			[$t_registered_sentences,'id'],
 			[$t_registered_sentences,'unique_code as '.$str_snake_to_camel_unique_code],
+			[$t_registered_sentences,'unique_code as '.$str_snake_to_camel_sentence_unique_code],
 			[$t_registered_sentences,'sentence'],
 			[$t_registered_sentences,'sentence_kana'],
 			[$t_registered_sentences,'sentence as japaneseText'],
@@ -3478,6 +3480,7 @@ function get_registered_sentence_base_by_language($int_selected_language){
 		$arr_strSQL_select = [
 			[$t_registered_sentences,'id'],
 			[$t_registered_sentences,'unique_code as '.$str_snake_to_camel_unique_code],
+			[$t_registered_sentences,'unique_code as '.$str_snake_to_camel_sentence_unique_code],
 			[$t_registered_sentences,'sentence'],
 			[$t_registered_sentences,'sentence_kana'],
 			[$t_registered_sentences,'sentence as japaneseText'],
