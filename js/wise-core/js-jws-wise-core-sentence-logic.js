@@ -85,7 +85,7 @@ async function reviewLayers(targetBody) {
     }
 
     if (targetBody !== createLayersBody) {
-        let newElement = { id: 0, layer_name: 'Default', sort: 0, uniqueCode: GRAMMAR_UNIQUE_CODE_DEFAULT };
+        let newElement = { id: 0, layer_name: 'Default', sort: 0 };
         arr_layers.unshift(newElement);
     }
 
@@ -94,16 +94,6 @@ async function reviewLayers(targetBody) {
         const int_layer_id = escapeNumber(arr_layers[i]['id']);
         const str_layer_name = escapeHTML(arr_layers[i]['layer_name']);
         const str_button_text = escapeHTML(arr_layers[i]['subCategory']);
-        const str_grammarUniqueCode = escapeHTML(arr_layers[i]['uniqueCode']);
-
-        // 未定義id null変更
-        const obj = {
-            japaneseId: 0,
-            uniqueCode: str_grammarUniqueCode,
-            japanese: '',
-            kana: '',
-            categoryId: 0
-        };
 
         let elm_sentenceLayerNamesContainer = document.createElement('div');
         elm_sentenceLayerNamesContainer.classList.add('sentenceLayerNamesContainer');
