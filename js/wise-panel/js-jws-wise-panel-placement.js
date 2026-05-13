@@ -14,8 +14,8 @@ let wisePanelPlacementDragClone = null;
 let wisePanelPlacementPreviewOverlay = null;
 let wisePanelPlacementPreviewPosition = null;
 
-const WISE_PANEL_PLACEMENT_TOP_BOTTOM_RATIO = 0.22;
-const WISE_PANEL_PLACEMENT_CENTER_RATIO = 0.34;
+const WISE_PANEL_PLACEMENT_SIDE_RATIO = 0.33;
+const WISE_PANEL_PLACEMENT_CENTER_VERTICAL_RATIO = 0.34;
 
 function handleWisePanelPlacementPointerDown(e) {
 
@@ -299,38 +299,29 @@ function detectWisePanelPlacementPosition(pointX, pointY) {
         return null;
     }
 
-    const topBottomHeight = height * 0.22;
+    const sideWidth = width * WISE_PANEL_PLACEMENT_SIDE_RATIO;
 
-    const centerWidth = width * 0.34;
-    const centerHeight = height * 0.34;
-
-    const centerLeft = (width - centerWidth) / 2;
-    const centerRight = centerLeft + centerWidth;
-    const centerTop = (height - centerHeight) / 2;
-    const centerBottom = centerTop + centerHeight;
-
-    if (
-        relativeX >= centerLeft &&
-        relativeX <= centerRight &&
-        relativeY >= centerTop &&
-        relativeY <= centerBottom
-    ) {
-        return WISE_PANEL_POSITION.FULL;
-    }
-
-    if (relativeY < topBottomHeight) {
-        return WISE_PANEL_POSITION.TOP;
-    }
-
-    if (relativeY > height - topBottomHeight) {
-        return WISE_PANEL_POSITION.BOTTOM;
-    }
-
-    if (relativeX < width / 2) {
+    if (relativeX < sideWidth) {
         return WISE_PANEL_POSITION.LEFT;
     }
 
-    return WISE_PANEL_POSITION.RIGHT;
+    if (relativeX > width - sideWidth) {
+        return WISE_PANEL_POSITION.RIGHT;
+    }
+
+    const centerVerticalHeight = height * WISE_PANEL_PLACEMENT_CENTER_VERTICAL_RATIO;
+    const centerTop = (height - centerVerticalHeight) / 2;
+    const centerBottom = centerTop + centerVerticalHeight;
+
+    if (relativeY < centerTop) {
+        return WISE_PANEL_POSITION.TOP;
+    }
+
+    if (relativeY > centerBottom) {
+        return WISE_PANEL_POSITION.BOTTOM;
+    }
+
+    return WISE_PANEL_POSITION.FULL;
 }
 
 function cleanupWisePanelPlacementDrag() {
