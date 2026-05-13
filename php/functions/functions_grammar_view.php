@@ -1264,6 +1264,7 @@ function build_html_action_buttons_from_config(array $buttons, array $ctx): stri
     $id = (int) ($ctx['id'] ?? 0);
     $row = (array) ($ctx['row'] ?? []);
     $unique_code = (string) ($ctx['unique_code'] ?? '');
+    $unique_code_data_attr = (string) ($ctx['unique_code_data_attr'] ?? 'data-unique-code');
     $user_level = (int) ($ctx['user_level'] ?? 0);
     $int_selected_language = (int) ($ctx['int_selected_language'] ?? 0);
     $mode = (string) ($ctx['mode'] ?? 'jp');
@@ -1287,7 +1288,7 @@ function build_html_action_buttons_from_config(array $buttons, array $ctx): stri
 
         $data = 'data-key="' . escape_html($key) . '"';
         $data .= ' data-action="' . escape_html($action) . '"';
-        $data .= ' data-unique-code="' . escape_html($unique_code) . '"';
+        $data .= ' ' . escape_html($unique_code_data_attr) . '="' . escape_html($unique_code) . '"';
 
         if (!empty($cfg['action_target'])) {
             $data .= ' data-action-target="' . escape_html((string) $cfg['action_target']) . '"';
@@ -1328,6 +1329,7 @@ function build_html_action_buttons_from_config(array $buttons, array $ctx): stri
             } else {
 
                 $jp = escape_html((string) ($row['sentence'] ?? ''));
+                
                 if ($jp === '') {
                     continue;
                 }
@@ -1346,7 +1348,6 @@ function build_html_action_buttons_from_config(array $buttons, array $ctx): stri
 
     return $html;
 }
-
 
 
 
@@ -1386,6 +1387,7 @@ function build_html_registered_sentences_ul(
 
     $contenteditable = (bool) ($ui['contenteditable'] ?? false);
     $data_form_list = (string) ($ui['data_form_list'] ?? '');
+    $unique_code_data_attr = (string) ($ui['unique_code_data_attr'] ?? 'data-unique-code');
 
     $apply_text_for_output = (bool) ($ui['apply_text_for_output'] ?? false);
 
@@ -1430,6 +1432,7 @@ function build_html_registered_sentences_ul(
             'id' => $id,
             'row' => $r,
             'unique_code' => $unique_code_raw,
+            'unique_code_data_attr' => $unique_code_data_attr,
             'user_level' => $user_level,
             'int_selected_language' => $int_selected_language,
             'mode' => $mode,
@@ -1474,7 +1477,6 @@ function build_html_registered_sentences_ul(
 
     return '<' . $list_tag . ' class="' . escape_html($list_class) . '">' . $lis . '</' . $list_tag . '>';
 }
-
 
 
 function get_arr_sample_sentence_list($arr_targets_visible, $t_masta_japanese_root_id, $int_selected_language)

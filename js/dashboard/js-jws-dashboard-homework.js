@@ -71,10 +71,10 @@ function navigateToSortingQuizFullscreenFromHomework(isAdvanceStage, elm) {
     }
     const queryParams = formList.map(id => `formList[]=${escapeNumber(id)}`).join('&');
 
-    const uniqueCode = escapeHTML(elm.dataset.uniqueCode);
+    const sentenceUniqueCode = escapeHTML(elm.dataset.sentenceUniqueCode);
     const url = pageSortingQuizFullscreenUrl;
 
-    let urlWithParams = `${url}/?${KEY_SENTENCE_UNIQUE_CODE}=${encodeURIComponent(uniqueCode)}&${queryParams}`;
+    let urlWithParams = `${url}/?${KEY_SENTENCE_UNIQUE_CODE}=${encodeURIComponent(sentenceUniqueCode)}&${queryParams}`;
     if (isAdvanceStage) {
         urlWithParams += '&advance_stage=1';
     }

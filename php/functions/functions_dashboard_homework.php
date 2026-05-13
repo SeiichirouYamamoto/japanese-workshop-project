@@ -908,6 +908,7 @@ function build_html_homework_details_sections($arr_target, $data_form_list, $int
                 'buttons_container_class' => 'homeworkLiButtonsContainer',
                 'contenteditable' => $is_admin,
                 'data_form_list' => (string) $data_form_list,
+                'unique_code_data_attr' => 'data-sentence-unique-code',
                 'apply_text_for_output' => true
             ];
 
