@@ -3368,6 +3368,7 @@ function fetch_arr_masta_japanese_root_default($t_masta_japanese_root_id, $int_s
 		$arr_columns_masta_japanese_root,
 		$int_used_language_jpn,
 		$str_snake_to_camel_unique_code,
+		$str_snake_to_camel_grammar_unique_code,
 		$str_column_root_kana;
 
 	$arr_strSQL_select = [
@@ -3375,6 +3376,7 @@ function fetch_arr_masta_japanese_root_default($t_masta_japanese_root_id, $int_s
 		[$t_masta_japanese_root,'id as masta_japanese_root_id'],
 		[$t_masta_japanese_root,'root_example'],
 		[$t_masta_japanese_root,'unique_code as '.$str_snake_to_camel_unique_code],
+		[$t_masta_japanese_root,'unique_code as '.$str_snake_to_camel_grammar_unique_code],
 		[$t_masta_japanese_root,$arr_columns_masta_japanese_root[$int_used_language_jpn]],
 		[$t_masta_japanese_root,$arr_columns_masta_japanese_root[$int_selected_language]],
 		[$t_masta_japanese_root,$str_column_root_kana],

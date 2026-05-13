@@ -128,12 +128,6 @@ $str_snake_to_camel_voice_id = 'voiceId';
 $str_snake_to_camel_link_id = 'linkId';
 $str_snake_to_camel_category_id = 'categoryId';
 
-$str_snake_to_camel_unique_code = 'uniqueCode';
-$str_snake_to_camel_japanese_root_unique_code = 'japaneseRootUniqueCode';
-$str_snake_to_camel_japanese_element_unique_code = 'japaneseElementUniqueCode';
-$str_snake_to_camel_grammar_unique_code = 'grammarUniqueCode';
-$str_snake_to_camel_room_unique_code = 'roomUniqueCode';
-
 $str_snake_to_camel_japanese = 'japanese';
 $str_snake_to_camel_japanese_polite = 'japanesePolite';
 $str_snake_to_camel_kana = 'kana';
@@ -148,6 +142,32 @@ $str_snake_to_camel_parent_id = 'parentId';
 $str_snake_to_camel_parent_sort = 'parentSort';
 $str_snake_to_camel_root_example = 'rootExample';
 
+
+/******************************************************
+ *  php js connection unique_code
+ *  
+******************************************************/
+
+$str_snake_to_camel_unique_code = 'uniqueCode';
+
+$str_snake_to_camel_grammar_unique_code = 'grammarUniqueCode';
+$str_snake_to_camel_japanese_element_unique_code = 'japaneseElementUniqueCode';
+$str_snake_to_camel_japanese_label_unique_code = 'japaneseLabelUniqueCode';
+
+$str_snake_to_camel_layer_unique_code = 'layerUniqueCode';
+$str_snake_to_camel_layer_element_unique_code = 'layerElementUniqueCode';
+$str_snake_to_camel_registered_sentence_unique_code = 'registeredSentenceUniqueCode';
+
+$str_snake_to_camel_room_unique_code = 'roomUniqueCode';
+$str_snake_to_camel_room_lesson_unique_code = 'roomLessonUniqueCode';
+$str_snake_to_camel_room_lesson_step_unique_code = 'roomLessonStepUniqueCode';
+$str_snake_to_camel_room_lesson_step_unit_unique_code = 'roomLessonStepUnitUniqueCode';
+$str_snake_to_camel_user_lesson_unique_code = 'userLessonUniqueCode';
+
+$str_snake_to_camel_wise_navigation_unique_code = 'wiseNavigationUniqueCode';
+$str_snake_to_camel_wise_navigation_item_unique_code = 'wiseNavigationItemUniqueCode';
+$str_snake_to_camel_wise_navigation_script_unique_code = 'wiseNavigationScriptUniqueCode';
+$str_snake_to_camel_wise_navigation_waypoint_unique_code = 'wiseNavigationWaypointUniqueCode';
 
 
 /******************************************************
