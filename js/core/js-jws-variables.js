@@ -250,6 +250,7 @@ const sectionCreateLayers = document.getElementById('sectionWiseCreateLayers');
 
 const quizBody = document.getElementById('wiseBodyQuiz');
 const quizFeedbackScreen = document.getElementById('quizFeedbackScreen');
+const sortingQuizMainSection = document.getElementById('sortingQuizMainSection');
 const sortingQuizFullScreenSection = document.getElementById('sectionSortingQuizFullScreen');
 
 const grammarExplanationPanel = document.getElementById('wisePanelGrammarExplanation');

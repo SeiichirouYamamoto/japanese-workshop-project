@@ -1441,7 +1441,7 @@ function bindQuizLayoutEvents() {
     }, 150);
 
     window.addEventListener('resize', onResize, { passive: true });
-    // window.addEventListener('orientationchange', onResize, { passive: true });
+    window.addEventListener('orientationchange', onResize, { passive: true });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1457,8 +1457,11 @@ document.addEventListener('DOMContentLoaded', () => {
 }, { passive: true });
 
 document.addEventListener('DOMContentLoaded', () => {
-
-    if (sortingQuizFullScreenSection === null) return;
+    
+    if (
+        sortingQuizMainSection === null &&
+        sortingQuizFullScreenSection === null
+    ) return;
 
     initializeGlobalQuizCorrectAnswers();
     applyFontSizeVariation(
