@@ -4,7 +4,7 @@
  *  PAGE 
  *  
  ******************************************************/
-function build_html_sorting_quiz_fullscreen_page($unique_code, $isAdvanceStage, $int_selected_language){
+function build_html_sorting_quiz_fullscreen_page($sentence_unique_code, $isAdvanceStage, $int_selected_language){
 
 	global
 		$t_registered_sentence_elements,
@@ -39,7 +39,7 @@ function build_html_sorting_quiz_fullscreen_page($unique_code, $isAdvanceStage, 
 		$arr_already_learned_list = get_arr_temp_already_learned_list($int_selected_language);
 	}
 	
-	$arr_registered_sentence = fetch_arr_registered_sentence_by_unique_code($unique_code, $int_selected_language);
+	$arr_registered_sentence = fetch_arr_registered_sentence_by_unique_code($sentence_unique_code, $int_selected_language);
 
 	if(empty($arr_registered_sentence)){
 		return $str_html;
@@ -239,7 +239,7 @@ function build_html_sorting_quiz_fullscreen_page($unique_code, $isAdvanceStage, 
 	$str_sorting_failureScreen = build_html_sorting_quiz_failure_screen($str_next_button, $str_finish_button, $int_selected_language);
 	$str_sorting_usersManualScreen = build_html_sorting_quiz_users_manual_screen(false, $isAdvanceStage, $int_selected_language);
 	$str_sorting_inflectionScreen = build_html_sorting_quiz_inflection_screen($int_selected_language);
-	$str_sorting_quiz_menubar_tools = build_html_sorting_quiz_fullscreen_menubar_tools($unique_code, $int_selected_language);
+	$str_sorting_quiz_menubar_tools = build_html_sorting_quiz_fullscreen_menubar_tools($sentence_unique_code, $int_selected_language);
 	$str_sortingQuizPieceListContainer = build_html_sorting_quiz_piece_list_container(false, $str_sortingQuizPieceListContainerLi, $int_selected_language);
 
 	$str_sortingQuizContentsLeftContainer = '<div id="sortingQuizContentsLeftContainer">'.$str_sorting_quiz_menubar_tools.$str_sortingQuizPieceListContainer.'</div>';
@@ -898,7 +898,7 @@ function build_html_quiz_history_screen($int_selected_language){
  *  
  ******************************************************/
 
-function build_html_sorting_quiz_menubar_tools($unique_code, $int_selected_language){
+function build_html_sorting_quiz_menubar_tools($sentence_unique_code, $int_selected_language){
 
 	global
 		$arr_str_button_caption_submit,
@@ -912,7 +912,7 @@ function build_html_sorting_quiz_menubar_tools($unique_code, $int_selected_langu
 
 	$str_html =
 		'<div id="sortingQuizMenuBarTools">
-			<div id="sortingQuizMenuBarButtonConfirm" class="quizContentsButton quizContentsButtonConfirm" data-unique-code="'.$unique_code.'">'.$arr_str_button_caption_submit[$int_selected_language].'</div>
+			<div id="sortingQuizMenuBarButtonConfirm" class="quizContentsButton quizContentsButtonConfirm" data-sentence-unique-code="'.$sentence_unique_code.'">'.$arr_str_button_caption_submit[$int_selected_language].'</div>
 			<div id="sortingQuizMenuBarButtonReStart"
 				class="quizContentsButton"
 				data-action="quiz:sortingQuiz:restart"
@@ -935,7 +935,7 @@ function build_html_sorting_quiz_menubar_tools($unique_code, $int_selected_langu
 }
 
 
-function build_html_sorting_quiz_fullscreen_menubar_tools($unique_code, $int_selected_language){
+function build_html_sorting_quiz_fullscreen_menubar_tools($sentence_unique_code, $int_selected_language){
 
 	global
 		$arr_str_button_caption_submit,
@@ -951,7 +951,7 @@ function build_html_sorting_quiz_fullscreen_menubar_tools($unique_code, $int_sel
 
 	$str_html =
 		'<div id="sortingQuizMenuBarTools">
-			<div id="sortingQuizMenuBarButtonConfirm" class="quizContentsButton quizContentsButtonConfirm" data-unique-code="'.$unique_code.'">'.$arr_str_button_caption_submit[$int_selected_language].'</div>
+			<div id="sortingQuizMenuBarButtonConfirm" class="quizContentsButton quizContentsButtonConfirm" data-sentence-unique-code="'.$sentence_unique_code.'">'.$arr_str_button_caption_submit[$int_selected_language].'</div>
 			<div id="sortingQuizMenuBarButtonReStart"
 				class="quizContentsButton"
 				data-action="quiz:sortingQuiz:restart"
@@ -1487,6 +1487,7 @@ function get_data_japanese_particle_quiz($pageType, $int_mastery_level, $unique_
 		$str_snake_to_camel_japanese_id,
 		$str_snake_to_camel_japanese,
 		$str_snake_to_camel_kana,
+		$str_snake_to_camel_sentence_unique_code,
 		$arr_case_particles_reject_pairs,
 		$str_quizMessageQuestionWhich;
 
@@ -1530,7 +1531,7 @@ function get_data_japanese_particle_quiz($pageType, $int_mastery_level, $unique_
 
 		$arr_strSQL_select = [
 			[$t_registered_sentence_elements,'registered_sentence_id'],
-			[$t_registered_sentences,'unique_code'],
+			[$t_registered_sentences,'unique_code as ' . $str_snake_to_camel_sentence_unique_code],
 			[$t_registered_sentences,'masta_japanese_root_id'],
 			[$t_registered_sentences,'sentence']
 		];
@@ -1583,7 +1584,7 @@ function get_data_japanese_particle_quiz($pageType, $int_mastery_level, $unique_
 	}
 
 	$int_registered_sentence_id = intval($arr_search_registered_sentence_id['registered_sentence_id']);
-	$sentence_unique_code = escape_html($arr_search_registered_sentence_id['unique_code']);
+	$sentence_unique_code = escape_html($arr_search_registered_sentence_id[$str_snake_to_camel_sentence_unique_code]);
 
 	$arr_strSQL_select = [
 		[$t_japanese_labels,'masta_japanese_label_id'],
@@ -2080,6 +2081,7 @@ function get_data_sorting_quiz($pageType, $isAdvanceStage, $int_mastery_level, $
 		$str_snake_to_camel_japanese,
 		$str_snake_to_camel_kana,
 		$str_snake_to_camel_sub_classification,
+		$str_snake_to_camel_sentence_unique_code,
 		$str_phrase_clause_container,
 		$str_sortingQuizPieceListContainerLiButtonsKana,
 		$str_sortingQuizPieceListContainerLiButtonsInflection,
@@ -2104,7 +2106,7 @@ function get_data_sorting_quiz($pageType, $isAdvanceStage, $int_mastery_level, $
 
 	$arr_strSQL_select = [
 		[$t_registered_sentences,'id'],
-		[$t_registered_sentences,'unique_code'],
+		[$t_registered_sentences,'unique_code as ' . $str_snake_to_camel_sentence_unique_code],
 		[$t_registered_sentences,'masta_japanese_root_id'],
 		[$t_registered_sentences,'sentence']
 	];
@@ -2142,7 +2144,7 @@ function get_data_sorting_quiz($pageType, $isAdvanceStage, $int_mastery_level, $
 	}
 
 	$int_registered_sentence_id = $arr_registered_sentence['id'];
-	$sentence_unique_code = $arr_registered_sentence['unique_code'];
+	$sentence_unique_code = $arr_registered_sentence[$str_snake_to_camel_sentence_unique_code];
 
 	$arr_strSQL_select = [
 		[$t_registered_sentence_elements, 'id'],

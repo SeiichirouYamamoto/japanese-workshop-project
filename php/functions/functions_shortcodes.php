@@ -890,7 +890,7 @@ function jws_sorting_quiz_fullscreen_page(){
 
 	$int_selected_language = jws_get_language_index();
 
-	$unique_code = isset($_GET['sentence_unique_code'])
+	$sentence_unique_code = isset($_GET['sentence_unique_code'])
 		?escape_html($_GET['sentence_unique_code'])
 		: '';
 
@@ -905,7 +905,7 @@ function jws_sorting_quiz_fullscreen_page(){
 		$isAdvanceStage = false;
 	}
 	
-	$str_sorting_quiz_fullscreen = build_html_sorting_quiz_fullscreen_page($unique_code, $isAdvanceStage, $int_selected_language);
+	$str_sorting_quiz_fullscreen = build_html_sorting_quiz_fullscreen_page($sentence_unique_code, $isAdvanceStage, $int_selected_language);
 	echo $str_sorting_quiz_fullscreen;
 
 	$arr_targets_action = [

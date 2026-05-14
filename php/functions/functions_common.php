@@ -3595,7 +3595,7 @@ function fetch_arr_registered_sentence_by_root_id($t_masta_japanese_root_id, $in
 }
 
 
-function fetch_arr_registered_sentence_by_unique_code($unique_code, $int_selected_language){
+function fetch_arr_registered_sentence_by_unique_code($sentence_unique_code, $int_selected_language){
 
 	global
 	    $t_registered_sentences;
@@ -3616,7 +3616,7 @@ function fetch_arr_registered_sentence_by_unique_code($unique_code, $int_selecte
 		],
 		[
 			[
-				['BINARY '.$t_registered_sentences,'unique_code','=',$unique_code,'PDO::PARAM_STR','']
+				['BINARY '.$t_registered_sentences,'unique_code','=',$sentence_unique_code,'PDO::PARAM_STR','']
 			],
 			''
 		]

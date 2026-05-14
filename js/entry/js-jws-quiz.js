@@ -1476,7 +1476,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function initializeGlobalQuizCorrectAnswers() {
 
     const elm_btn = document.getElementById('sortingQuizMenuBarButtonConfirm');
-    const send_sentence_unique_code = escapeHTML(elm_btn.dataset.uniqueCode);
+    const send_sentence_unique_code = escapeHTML(elm_btn.dataset.sentenceUniqueCode);
 
     const arr_registered_sentence_elements = await getRegisteredSentenceElements(send_sentence_unique_code, false);
 
