@@ -61,7 +61,7 @@ if(lessonContentsShowInsightsButton !== null)
 	lis.forEach((elm) => {
 		const obj_grammarData = {
 			japaneseId: escapeNumber(elm.dataset.japaneseId),
-			uniqueCode: escapeHTML(elm.dataset.uniqueCode),
+			grammarUniqueCode: escapeHTML(elm.dataset.grammarUniqueCode),
 			japanese: escapeHTML(elm.dataset.japanese),
 			kana: escapeHTML(elm.dataset.kana),
 			categoryId: escapeNumber(elm.dataset.categoryId)
@@ -188,14 +188,14 @@ if (lessonContentsGoToRoomManageButton !== null) {
 			return;
 		}
 
-		const uniqueCode = String(wiseSetupRoomSelect.value || '');
+		const roomUniqueCode = String(wiseSetupRoomSelect.value || '');
 
-		if (uniqueCode === '') {
+		if (roomUniqueCode === '') {
 			alert('ルームが選択されていません。');
 			return;
 		}
 
-		const url = pageManageRoomLessonsUrl + '/?unique_code=' + encodeURIComponent(uniqueCode);
+		const url = pageManageRoomLessonsUrl + '/?unique_code=' + encodeURIComponent(roomUniqueCode);
 
 		window.open(url, '_blank', 'noopener');
 
@@ -567,11 +567,11 @@ function handleLessonContentsSearchGrammarListClick(e) {
 
     clearSearchTargets();
 
-    const uniqueCode = getUniqueCodeFromLi(li);
+    const grammarUniqueCode = getUniqueCodeFromLi(li);
 
-    resetSearchGrammarClickStateIfNeeded(uniqueCode);
+    resetSearchGrammarClickStateIfNeeded(grammarUniqueCode);
 
-    const targetElements = getVisibleGrammarTargetElementsByUniqueCode(uniqueCode);
+    const targetElements = getVisibleGrammarTargetElementsByUniqueCode(grammarUniqueCode);
 
     const targetElement = resolveTargetElementByClickCount(targetElements);
     if (!targetElement) {
@@ -600,24 +600,24 @@ function clearSearchTargets() {
 }
 
 function getUniqueCodeFromLi(li) {
-    return escapeHTML(li.dataset.uniqueCode);
+    return escapeHTML(li.dataset.grammarUniqueCode);
 }
 
-function resetSearchGrammarClickStateIfNeeded(uniqueCode) {
+function resetSearchGrammarClickStateIfNeeded(grammarUniqueCode) {
 
-    if (uniqueCode === wisePanelLessonContentsUiSearchGrammarListLiLastUniqueCode) {
+    if (grammarUniqueCode === wisePanelLessonContentsUiSearchGrammarListLiLastGrammarUniqueCode) {
         return;
     }
 
     wisePanelLessonContentsUiSearchGrammarListLiClickCount = COUNT_FIRST;
-    wisePanelLessonContentsUiSearchGrammarListLiLastUniqueCode = uniqueCode;
+    wisePanelLessonContentsUiSearchGrammarListLiLastGrammarUniqueCode = grammarUniqueCode;
 }
 
-function getVisibleGrammarTargetElementsByUniqueCode(uniqueCode) {
+function getVisibleGrammarTargetElementsByUniqueCode(grammarUniqueCode) {
 
 	const selector =
 		'[data-lesson-contents-search-grammar-target="true"] ' +
-		'button[data-unique-code="' + uniqueCode + '"]';
+		'button[data-grammar-unique-code="' + grammarUniqueCode + '"]';
 
     const elements = Array.from(lessonContentsPanelView.querySelectorAll(selector));
 
@@ -975,7 +975,7 @@ async function handleGrammarOutlineLabelButtonExplanationClick(e) {
     const panelType = detectGrammarExplanationPanelType(button);
 
     if (panelType === 'outside') {
-        openGrammarViewInNewTab(grammarData.uniqueCode);
+        openGrammarViewInNewTab(grammarData.grammarUniqueCode);
         return;
     }
 
@@ -983,7 +983,7 @@ async function handleGrammarOutlineLabelButtonExplanationClick(e) {
         switchToGrammarExplanationPanel();
     }
 
-    await createGrammarExplanation(grammarData.uniqueCode);
+    await createGrammarExplanation(grammarData.grammarUniqueCode);
 
     handleGrammarExplanationHistoryAndDisplay(grammarData);
 }
@@ -997,7 +997,7 @@ function getGrammarDataFromExplanationButton(button) {
 
     return {
         japaneseId: button.dataset.japaneseId ? escapeNumber(button.dataset.japaneseId) : 0,
-        uniqueCode: button.dataset.uniqueCode ? escapeHTML(button.dataset.uniqueCode) : '',
+        grammarUniqueCode: button.dataset.grammarUniqueCode ? escapeHTML(button.dataset.grammarUniqueCode) : '',
         japanese: button.dataset.japanese ? escapeHTML(button.dataset.japanese) : '',
         kana: button.dataset.kana ? escapeHTML(button.dataset.kana) : '',
         categoryId: button.dataset.categoryId ? escapeNumber(button.dataset.categoryId) : 0

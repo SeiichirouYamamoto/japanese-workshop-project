@@ -103,7 +103,7 @@ let touchStartTimestamp = 0,
 touchEndTimestamp = 0;
 
 let wisePanelLessonContentsUiSearchGrammarListLiClickCount = COUNT_FIRST;
-let wisePanelLessonContentsUiSearchGrammarListLiLastUniqueCode = null;
+let wisePanelLessonContentsUiSearchGrammarListLiLastGrammarUniqueCode = null;
 let wisePanelLessonContentsUiSearchGrammarLastTargetElement = null;
 
 

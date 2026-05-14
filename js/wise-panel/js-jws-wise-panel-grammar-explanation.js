@@ -54,9 +54,9 @@ if (reloadGrammarExplanationButton !== null) {
 
         try {
             const currentData = grammarExplanationHistory[currentGrammarExplanationIndex];
-            if (!currentData || !currentData.uniqueCode) return;
+            if (!currentData || !currentData.grammarUniqueCode) return;
 
-            const targetCode = currentData.uniqueCode;
+            const targetCode = currentData.grammarUniqueCode;
 
             await recreateGrammarExplanation(targetCode, {
                 indexToDisplay: currentGrammarExplanationIndex,
@@ -76,7 +76,7 @@ if (reloadGrammarExplanationButton !== null) {
 if(generateExampleChartButton !== null)
 {generateExampleChartButton.addEventListener('pointerup', function() {
 	if(grammarExplanationHistory.length === LENGTH_EMPTY)return;
-	let str_grammarUniqueCode = grammarExplanationHistory[currentGrammarExplanationIndex].uniqueCode;
+	let str_grammarUniqueCode = grammarExplanationHistory[currentGrammarExplanationIndex].grammarUniqueCode;
 	createChartForRegisteredSentences(str_grammarUniqueCode);
 }, false);}
 
@@ -159,7 +159,7 @@ if(linkToGrammarView !== null)
 {linkToGrammarView.addEventListener('pointerup', function() {
 	if(grammarExplanationHistory.length === LENGTH_EMPTY)return;
 	let url = pageGrammarViewForTeachersUrl;
-	let str_grammarUniqueCode = grammarExplanationHistory[currentGrammarExplanationIndex].uniqueCode;
+	let str_grammarUniqueCode = grammarExplanationHistory[currentGrammarExplanationIndex].grammarUniqueCode;
 	let urlWithParams = `${url}/?${KEY_GRAMMAR_UNIQUE_CODE}=${encodeURIComponent(str_grammarUniqueCode)}`;
 	window.open(urlWithParams, '_blank', 'noopener');
 }, false);}
@@ -189,13 +189,13 @@ async function createMultipleGrammarExplanations(elms_list) {
         const firstElm = list[INDEX_FIRST];
         const firstData = {
             japaneseId: firstElm.dataset.japaneseId ? escapeNumber(firstElm.dataset.japaneseId) : 0,
-            uniqueCode: firstElm.dataset.uniqueCode ? escapeHTML(firstElm.dataset.uniqueCode) : '',
+            grammarUniqueCode: firstElm.dataset.grammarUniqueCode ? escapeHTML(firstElm.dataset.grammarUniqueCode) : '',
             japanese: firstElm.dataset.japanese ? escapeHTML(firstElm.dataset.japanese) : '',
             kana: firstElm.dataset.kana ? escapeHTML(firstElm.dataset.kana) : '',
             categoryId: firstElm.dataset.categoryId ? escapeNumber(firstElm.dataset.categoryId) : 0
         };
 
-        await createGrammarExplanation(firstData.uniqueCode, { suppressHide: false });
+        await createGrammarExplanation(firstData.grammarUniqueCode, { suppressHide: false });
         const firstIdx = saveStateGrammarExplanation(firstData, { behavior: 'append' });
         await new Promise(requestAnimationFrame);
         if (firstIdx !== null) displayCurrentStateGrammarExplanation(firstIdx, true);
@@ -203,7 +203,7 @@ async function createMultipleGrammarExplanations(elms_list) {
 
         const rest = list.slice(1).map(elm => ({
             japaneseId: elm.dataset.japaneseId ? escapeNumber(elm.dataset.japaneseId) : 0,
-            uniqueCode: elm.dataset.uniqueCode ? escapeHTML(elm.dataset.uniqueCode) : '',
+            grammarUniqueCode: elm.dataset.grammarUniqueCode ? escapeHTML(elm.dataset.grammarUniqueCode) : '',
             japanese: elm.dataset.japanese ? escapeHTML(elm.dataset.japanese) : '',
             kana: elm.dataset.kana ? escapeHTML(elm.dataset.kana) : '',
             categoryId: elm.dataset.categoryId ? escapeNumber(elm.dataset.categoryId) : 0,
@@ -211,7 +211,7 @@ async function createMultipleGrammarExplanations(elms_list) {
         }));
 
         const promises = rest.map(d =>
-            createGrammarExplanation(d.uniqueCode, { suppressHide: true })
+            createGrammarExplanation(d.grammarUniqueCode, { suppressHide: true })
                 .then(() => ({ ok: true, data: d }))
                 .catch(e => ({ ok: false, data: d, e }))
         );
@@ -223,14 +223,14 @@ async function createMultipleGrammarExplanations(elms_list) {
                 const d = r.value.data;
                 saveStateGrammarExplanation({
                     japaneseId: d.japaneseId,
-                    uniqueCode: d.uniqueCode,
+                    grammarUniqueCode: d.grammarUniqueCode,
                     japanese: d.japanese,
                     kana: d.kana,
                     categoryId: d.categoryId
                 }, { behavior: 'append' });
                 storeSharedContentsSelectionItem(d);
             } else if (r.status === 'fulfilled' && !r.value.ok) {
-                console.error('createGrammarExplanation failed:', r.value.data.uniqueCode, r.value.e);
+                console.error('createGrammarExplanation failed:', r.value.data.grammarUniqueCode, r.value.e);
             } else if (r.status === 'rejected') {
                 console.error('createGrammarExplanation rejected:', r.reason);
             }
@@ -261,7 +261,7 @@ async function createGrammarExplanation(str_grammarUniqueCode, options = {}) {
     str_grammarUniqueCode = escapeHTML(str_grammarUniqueCode);
 
     const elements = document.querySelectorAll('.wisePanelGrammarExplanationViewMainContentAreaContents');
-    const found = Array.from(elements).some(el => el.dataset.uniqueCode === str_grammarUniqueCode);
+    const found = Array.from(elements).some(el => el.dataset.grammarUniqueCode === str_grammarUniqueCode);
     if (found) return;
 
     if (!suppressHide) {
@@ -325,7 +325,7 @@ async function createGrammarExplanation(str_grammarUniqueCode, options = {}) {
         addElement.classList.add('wisePanelGrammarExplanationViewMainContentAreaContents');
         addElement.style.display = 'none';
         addElement.style.zIndex = 2;
-        addElement.dataset.uniqueCode = str_grammarUniqueCode;
+        addElement.dataset.grammarUniqueCode = str_grammarUniqueCode;
 
         const addContainer = document.createElement('div');
         addContainer.classList.add('wisePanelGrammarExplanationViewMainContentAreaContentsContainer');
@@ -508,10 +508,10 @@ function openGrammarViewInNewTab(str_grammarUniqueCode){
 function saveStateGrammarExplanation(obj, options = {}) {
     const { behavior = 'append' } = options;
 
-    const code = obj.uniqueCode;
+    const code = obj.grammarUniqueCode;
     const len = grammarExplanationHistory.length;
     const lastIndex = len - LAST_INDEX_OFFSET;
-    const lastCode = len > LENGTH_EMPTY ? grammarExplanationHistory[lastIndex].uniqueCode : null;
+    const lastCode = len > LENGTH_EMPTY ? grammarExplanationHistory[lastIndex].grammarUniqueCode : null;
 
     if (lastCode === code) return null;
 
@@ -523,7 +523,7 @@ function saveStateGrammarExplanation(obj, options = {}) {
     }
 
     if (behavior === 'append') {
-        const existingIndex = grammarExplanationHistory.findIndex(it => it.uniqueCode === code);
+        const existingIndex = grammarExplanationHistory.findIndex(it => it.grammarUniqueCode === code);
         if (existingIndex >= INDEX_FIRST) return existingIndex;
         grammarExplanationHistory.push(obj);
         return grammarExplanationHistory.length - LAST_INDEX_OFFSET;
@@ -540,7 +540,7 @@ function displayCurrentStateGrammarExplanation(targetIndex, doIncrease){
 	if (doIncrease) {
 		for (let i = targetIndex; i < grammarExplanationHistory.length; i++) {
 			if (i in grammarExplanationHistory) {
-				result = grammarExplanationHistory[i].uniqueCode;
+				result = grammarExplanationHistory[i].grammarUniqueCode;
 				changedIndex = i;
 				break;
 			}
@@ -548,7 +548,7 @@ function displayCurrentStateGrammarExplanation(targetIndex, doIncrease){
 	} else {
 		for (let i = targetIndex; i >= INDEX_FIRST; i--) {
 			if (i in grammarExplanationHistory) {
-				result = grammarExplanationHistory[i].uniqueCode;
+				result = grammarExplanationHistory[i].grammarUniqueCode;
 				changedIndex = i;
 				break;
 			}
@@ -560,7 +560,7 @@ function displayCurrentStateGrammarExplanation(targetIndex, doIncrease){
 		let matchFound = false;
 		const elements = document.querySelectorAll('.wisePanelGrammarExplanationViewMainContentAreaContents');
 		elements.forEach(element => {
-			if (element.dataset.uniqueCode === result) {
+			if (element.dataset.grammarUniqueCode === result) {
 				if(matchFound){
 					element.style.display = 'none';
 				}

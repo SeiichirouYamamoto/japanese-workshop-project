@@ -1337,7 +1337,7 @@ function buildSearchResultListItems(json, elm_targetUl, arr_classNaming_li){
 		let classNaming_button = arr_classNaming_li[INDEX_FIRST]+'Button';
 
 		let int_japanese_id = escapeNumber(json[i].japaneseId);
-		let str_unique_code = escapeHTML(json[i].uniqueCode);
+		let str_unique_code = escapeHTML(json[i].grammarUniqueCode);
 		let str_japanese = escapeHTML(json[i].japanese);
 		let str_kana = escapeHTML(json[i].kana);
 		let int_category_id = escapeNumber(json[i].categoryId);
@@ -1346,7 +1346,7 @@ function buildSearchResultListItems(json, elm_targetUl, arr_classNaming_li){
 		elm_addLi.classList.add('searchWordListLi');
 		elm_addLi.classList.add(...arr_classNaming_li);
 		elm_addLi.dataset.japaneseId = int_japanese_id;
-		elm_addLi.dataset.uniqueCode = str_unique_code;
+		elm_addLi.dataset.grammarUniqueCode = str_unique_code;
 		elm_addLi.dataset.japanese = str_japanese;
 		elm_addLi.dataset.kana = str_kana;
 		elm_addLi.dataset.categoryId = int_category_id;
