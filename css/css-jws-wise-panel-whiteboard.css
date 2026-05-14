@@ -329,6 +329,14 @@ body.wise-lock-scroll {
 	border: 1px solid black;
 }
 
+.innerContainerTextAreaFadeout {
+    mask-image: linear-gradient(
+        to bottom,
+        black 80%,
+        transparent 100%
+    );
+}
+
 .editingMovableContainer .innerContainerTextArea {
     background-color: #fff;
 	cursor: text;

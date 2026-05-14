@@ -164,19 +164,53 @@ function updateTextareaSize(elm, text) {
     const value = String(text ?? '');
     const lineCount = value === '' ? 1 : value.split(/\r?\n/).length;
 
-    elm.style.height = 'auto';
+	let textareaMaxHeight = 300;
 
-    if (lineCount <= 1) {
-        elm.style.height = (
-            lineHeight +
-            paddingTop +
-            paddingBottom +
-            borderTop +
-            borderBottom
-        ) + 'px';
-    } else {
-        elm.style.height = elm.scrollHeight + 'px';
-    }
+	if (
+		typeof BOARD_HEIGHT !== 'undefined' &&
+		Number.isFinite(BOARD_HEIGHT)
+	) {
+
+		textareaMaxHeight = Math.max(
+			BOARD_HEIGHT - 100,
+			1
+		);
+
+	}
+
+	elm.style.height = 'auto';
+
+	if (lineCount <= 1) {
+
+		elm.style.height = (
+			lineHeight +
+			paddingTop +
+			paddingBottom +
+			borderTop +
+			borderBottom
+		) + 'px';
+
+		elm.classList.remove('innerContainerTextAreaFadeout');
+
+	}
+	else {
+
+		const nextHeight = Math.min(
+			elm.scrollHeight,
+			textareaMaxHeight
+		);
+
+		elm.style.height = nextHeight + 'px';
+
+		if (elm.scrollHeight > textareaMaxHeight) {
+			elm.classList.add('innerContainerTextAreaFadeout');
+		}
+		else {
+			elm.classList.remove('innerContainerTextAreaFadeout');
+		}
+
+	}
+
 }
 
 function changeWiseVerticalToolbarButton(wiseCanvasType) {
