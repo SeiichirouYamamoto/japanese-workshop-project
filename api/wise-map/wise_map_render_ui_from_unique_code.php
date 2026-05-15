@@ -25,8 +25,8 @@
             respond_error('Invalid JSON', 400);
         }
 
-        if (!isset($input['unique_code'])) {
-            respond_error('Value not found: unique_code', 400);
+        if (!isset($input['sentence_unique_code'])) {
+            respond_error('Value not found: sentence_unique_code', 400);
         }
 
         if (!isset($input['int_selected_language'])) {
@@ -37,9 +37,9 @@
             respond_error('Value not found: map_type', 400);
         }
 
-        $unique_code = escape_html((string)$input['unique_code']);
-        if ($unique_code === '') {
-            respond_error('Invalid value: unique_code', 400);
+        $sentence_unique_code = escape_html((string)$input['sentence_unique_code']);
+        if ($sentence_unique_code === '') {
+            respond_error('Invalid value: sentence_unique_code', 400);
         }
 
         $int_selected_language = intval($input['int_selected_language']);
@@ -54,7 +54,7 @@
         $user_id = null;
 
         $target_id = fetch_registered_sentence_id_from_unique_code(
-            $unique_code,
+            $sentence_unique_code,
             $int_selected_language
         );
 

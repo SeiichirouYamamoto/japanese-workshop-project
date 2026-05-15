@@ -1606,6 +1606,10 @@ function get_arr_sample_sentence_list($arr_targets_visible, $t_masta_japanese_ro
         return '<div class="divFrame">' . $expanded . '</div>';
     };
 
+    $ui = [
+        'unique_code_data_attr' => 'data-sentence-unique-code',
+    ];
+
     if (
         ($arr_targets_visible['wise_map_focus_point_visible'] ?? $int_not_allow_visible_in_grammar_view)
             === $int_allow_visible_in_grammar_view
@@ -1629,7 +1633,8 @@ function get_arr_sample_sentence_list($arr_targets_visible, $t_masta_japanese_ro
             $int_selected_language,
             $user_level,
             $str_snake_to_camel_unique_code,
-            'jp'
+            'jp',
+            $ui
         );
 
         $result['str_wise_map_focus_point'] = $wrap_expand($ul_focus, $arr_wise_map_focus_point_tag[$int_selected_language]);
@@ -1652,7 +1657,8 @@ function get_arr_sample_sentence_list($arr_targets_visible, $t_masta_japanese_ro
             $int_selected_language,
             $user_level,
             $str_snake_to_camel_unique_code,
-            'jp'
+            'jp',
+            $ui
         );
 
         $ul_list_foreign = build_html_registered_sentences_ul(
@@ -1661,7 +1667,8 @@ function get_arr_sample_sentence_list($arr_targets_visible, $t_masta_japanese_ro
             $int_selected_language,
             $user_level,
             $str_snake_to_camel_unique_code,
-            'foreign'
+            'foreign',
+            $ui
         );
 
         $result['str_sample_sentence_list'] = $wrap_expand($ul_list_jp, $arr_sample_sentence_list_tag[$int_selected_language]);
@@ -1687,7 +1694,8 @@ function get_arr_sample_sentence_list($arr_targets_visible, $t_masta_japanese_ro
         $int_selected_language,
         $user_level,
         $str_snake_to_camel_unique_code,
-        'jp'
+        'jp',
+        $ui
     );
 
     $ul_all_foreign = build_html_registered_sentences_ul(
@@ -1696,7 +1704,8 @@ function get_arr_sample_sentence_list($arr_targets_visible, $t_masta_japanese_ro
         $int_selected_language,
         $user_level,
         $str_snake_to_camel_unique_code,
-        'foreign'
+        'foreign',
+        $ui
     );
 
     $result['str_sample_sentence_list'] = $wrap_expand($ul_all_jp, $arr_sample_sentence_list_tag[$int_selected_language]);

@@ -113,7 +113,7 @@ clickHandlers['grammar:show'] = async function (btn) {
             if (typeof wiseMapOverlay !== 'undefined' && wiseMapOverlay !== null) {
 				// デバッグ panel化 マップパネル
 				// switchWiseCorePanelUiMode(WISE_CORE_PANEL.NONE);
-                renderWiseMapUIFocusPoint(btn.dataset.uniqueCode);
+                renderWiseMapUIFocusPoint(btn.dataset.sentenceUniqueCode);
             }
             break;
         default:
@@ -138,19 +138,19 @@ function toggleSampleSentenceListCompletion(elm, classNaming, datasetNaming) {
 clickHandlers['grammar:navigate'] = function (btn) {
 
     const pagePath = btn.dataset.pagePath;
-    const uniqueCode = btn.dataset.uniqueCode;
+    const sentenceUniqueCode = btn.dataset.sentenceUniqueCode;
 
     if (!pagePath) {
         console.warn('pagePathが指定されていません');
         return;
     }
-    if (!uniqueCode) {
-        console.warn('uniqueCodeが指定されていません');
+    if (!sentenceUniqueCode) {
+        console.warn('sentenceUniqueCodeが指定されていません');
         return;
     }
 
     let baseUrl = currentHomeUrl + pagePath;
-    let urlWithParams = `${baseUrl}/?${KEY_SENTENCE_UNIQUE_CODE}=${encodeURIComponent(uniqueCode)}`;
+    let urlWithParams = `${baseUrl}/?${KEY_SENTENCE_UNIQUE_CODE}=${encodeURIComponent(sentenceUniqueCode)}`;
 
     window.open(urlWithParams, '_blank', 'noopener');
 	

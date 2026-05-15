@@ -1709,19 +1709,19 @@ function initManageWiseNavigationScriptsPage() {
 clickHandlers['navi:navigate'] = function (btn) {
 
     const pagePath = btn.dataset.pagePath;
-    const uniqueCode = btn.dataset.uniqueCode;
+    const sentenceUniqueCode = btn.dataset.sentenceUniqueCode;
 
     if (!pagePath) {
         console.warn('pagePathが指定されていません');
         return;
     }
-    if (!uniqueCode) {
-        console.warn('uniqueCodeが指定されていません');
+    if (!sentenceUniqueCode) {
+        console.warn('sentenceUniqueCodeが指定されていません');
         return;
     }
 
     let baseUrl = currentHomeUrl + pagePath;
-    let urlWithParams = `${baseUrl}/?${KEY_UNIQUE_CODE}=${encodeURIComponent(uniqueCode)}`;
+    let urlWithParams = `${baseUrl}/?${KEY_UNIQUE_CODE}=${encodeURIComponent(sentenceUniqueCode)}`;
 
     window.open(urlWithParams, '_blank', 'noopener');
 

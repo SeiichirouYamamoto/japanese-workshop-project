@@ -211,9 +211,9 @@ async function renderWiseMapUILessonStepFromIds(selectedIds) {
 }
 
 
-async function renderWiseMapUIFocusPoint(uniqueCode) {
-    if (!uniqueCode) {
-        console.error('uniqueCodeが指定されていません');
+async function renderWiseMapUIFocusPoint(sentenceUniqueCode) {
+    if (!sentenceUniqueCode) {
+        console.error('sentenceUniqueCodeが指定されていません');
         return;
     }
     if (!wiseMapOverlay) {
@@ -233,7 +233,7 @@ async function renderWiseMapUIFocusPoint(uniqueCode) {
 
 		const payload = {
 			map_type: 'focus_point',
-			unique_code: uniqueCode,
+			sentence_unique_code: sentenceUniqueCode,
 			int_selected_language: intSelectedLanguage
 		};
 
