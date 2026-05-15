@@ -106,7 +106,7 @@ async function fetchAndRenderExplanationButtonsForGrammar(payload, str_japanese,
 
             const obj = {
                 japaneseId: int_japanese_id,
-                uniqueCode: str_grammarUniqueCode,
+                grammarUniqueCode: str_grammarUniqueCode,
                 japanese: str_japanese_from_api,
                 kana: str_kana_from_api,
                 categoryId: int_category_id
@@ -175,7 +175,7 @@ async function fetchAndRenderExplanationButtonsForInflection(payload) {
 
                 const obj = {
                     japaneseId: int_japanese_id,
-                    uniqueCode: str_grammarUniqueCode,
+                    grammarUniqueCode: str_grammarUniqueCode,
                     japanese: str_japanese,
                     kana: str_kana,
                     categoryId: int_category_id

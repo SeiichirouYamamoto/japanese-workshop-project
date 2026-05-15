@@ -1132,7 +1132,7 @@ function renderWiseMapContentContainer(toggleElm, items, isForcusPoint, isNavi) 
             await createGrammarExplanation(grammarUniqueCode);
 
             const obj_grammarData = {
-                uniqueCode: grammarUniqueCode,
+                grammarUniqueCode: grammarUniqueCode,
                 japanese: str_japanese
             };
 
@@ -1337,7 +1337,7 @@ function buildSearchResultListItems(json, elm_targetUl, arr_classNaming_li){
 		let classNaming_button = arr_classNaming_li[INDEX_FIRST]+'Button';
 
 		let int_japanese_id = escapeNumber(json[i].japaneseId);
-		let str_unique_code = escapeHTML(json[i].uniqueCode);
+		let str_unique_code = escapeHTML(json[i].grammarUniqueCode);
 		let str_japanese = escapeHTML(json[i].japanese);
 		let str_kana = escapeHTML(json[i].kana);
 		let int_category_id = escapeNumber(json[i].categoryId);

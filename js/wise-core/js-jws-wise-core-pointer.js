@@ -1933,7 +1933,7 @@ async function addValueToGrammarExplanation(targetContainers) {
         const int_grammarExplanationIndex_saved = currentGrammarExplanationIndex;
 
         const str_textareaValue = escapeHTML(textareaValues.join('\n\n'));
-        const grammar_unique_code = escapeHTML(grammarExplanationHistory[currentGrammarExplanationIndex].uniqueCode);
+        const grammar_unique_code = escapeHTML(grammarExplanationHistory[currentGrammarExplanationIndex].grammarUniqueCode);
         const room_unique_code = escapeHTML(wiseSetupRoomSelect.value) || 'default';
 
         const payload = {

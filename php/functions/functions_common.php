@@ -598,6 +598,7 @@ function fetch_arr_masta_japanese_root_by_search_conditions($arr_strSQL_where, $
 		$str_column_root_kana,
 		$str_snake_to_camel_japanese_id,
 		$str_snake_to_camel_unique_code,
+		$str_snake_to_camel_grammar_unique_code,
 		$str_snake_to_camel_japanese,
 		$str_snake_to_camel_kana,
 		$str_snake_to_camel_parent_sort,
@@ -606,6 +607,7 @@ function fetch_arr_masta_japanese_root_by_search_conditions($arr_strSQL_where, $
 	$arr_strSQL_select = [
 		[$t_masta_japanese_root,'id as '.$str_snake_to_camel_japanese_id],
 		[$t_masta_japanese_root,'unique_code as '.$str_snake_to_camel_unique_code],
+		[$t_masta_japanese_root,'unique_code as '.$str_snake_to_camel_grammar_unique_code],
 		[$t_masta_japanese_root,$arr_columns_masta_japanese_root[$int_selected_language].' as '.$str_snake_to_camel_japanese],
 		[$t_masta_japanese_root,$arr_columns_masta_japanese_root[$int_used_language_jpn]],
 		[$t_masta_japanese_root,$arr_columns_masta_japanese_root[$int_selected_language]],
@@ -659,6 +661,7 @@ function fetch_arr_masta_japanese_root_by_bookmarks(
         $str_column_root_kana,
         $str_snake_to_camel_japanese_id,
         $str_snake_to_camel_unique_code,
+        $str_snake_to_camel_grammar_unique_code,
         $str_snake_to_camel_japanese,
         $str_snake_to_camel_kana,
         $str_snake_to_camel_category_id,
@@ -710,6 +713,7 @@ function fetch_arr_masta_japanese_root_by_bookmarks(
     $arr_strSQL_select = [
         [$t_masta_japanese_root, 'id as ' . $str_snake_to_camel_japanese_id],
         [$t_masta_japanese_root, 'unique_code as ' . $str_snake_to_camel_unique_code],
+        [$t_masta_japanese_root, 'unique_code as ' . $str_snake_to_camel_grammar_unique_code],
         [$t_masta_japanese_root, $arr_columns_masta_japanese_root[$int_selected_language] . ' as ' . $str_snake_to_camel_japanese],
         [$t_masta_japanese_root, $arr_columns_masta_japanese_root[$int_used_language_jpn]],
         [$t_masta_japanese_root, $arr_columns_masta_japanese_root[$int_selected_language]],

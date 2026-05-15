@@ -61,7 +61,7 @@ if(lessonContentsShowInsightsButton !== null)
 	lis.forEach((elm) => {
 		const obj_grammarData = {
 			japaneseId: escapeNumber(elm.dataset.japaneseId),
-			uniqueCode: escapeHTML(elm.dataset.uniqueCode),
+			grammarUniqueCode: escapeHTML(elm.dataset.uniqueCode),
 			japanese: escapeHTML(elm.dataset.japanese),
 			kana: escapeHTML(elm.dataset.kana),
 			categoryId: escapeNumber(elm.dataset.categoryId)
@@ -975,7 +975,7 @@ async function handleGrammarOutlineLabelButtonExplanationClick(e) {
     const panelType = detectGrammarExplanationPanelType(button);
 
     if (panelType === 'outside') {
-        openGrammarViewInNewTab(grammarData.uniqueCode);
+        openGrammarViewInNewTab(grammarData.grammarUniqueCode);
         return;
     }
 
@@ -983,7 +983,7 @@ async function handleGrammarOutlineLabelButtonExplanationClick(e) {
         switchToGrammarExplanationPanel();
     }
 
-    await createGrammarExplanation(grammarData.uniqueCode);
+    await createGrammarExplanation(grammarData.grammarUniqueCode);
 
     handleGrammarExplanationHistoryAndDisplay(grammarData);
 }
@@ -997,7 +997,7 @@ function getGrammarDataFromExplanationButton(button) {
 
     return {
         japaneseId: button.dataset.japaneseId ? escapeNumber(button.dataset.japaneseId) : 0,
-        uniqueCode: button.dataset.uniqueCode ? escapeHTML(button.dataset.uniqueCode) : '',
+        grammarUniqueCode: button.dataset.uniqueCode ? escapeHTML(button.dataset.uniqueCode) : '',
         japanese: button.dataset.japanese ? escapeHTML(button.dataset.japanese) : '',
         kana: button.dataset.kana ? escapeHTML(button.dataset.kana) : '',
         categoryId: button.dataset.categoryId ? escapeNumber(button.dataset.categoryId) : 0

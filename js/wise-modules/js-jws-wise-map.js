@@ -428,7 +428,7 @@ function renderWiseMapList(type, route, targetUl) {
                 await createGrammarExplanation(str_grammarUniqueCode);
 
 				const obj_grammarData = {
-					uniqueCode: str_grammarUniqueCode,
+					grammarUniqueCode: str_grammarUniqueCode,
 					japanese: str_japanese
 				};
 

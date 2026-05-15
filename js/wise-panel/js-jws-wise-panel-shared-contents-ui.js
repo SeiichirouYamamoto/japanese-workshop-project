@@ -234,7 +234,7 @@ function getSharedContentsSelectionElements() {
     elms.forEach(elm => {
         storeSharedContentsSelectionItem({
             japaneseId: escapeNumber(elm.dataset.japaneseId),
-            uniqueCode: escapeHTML(elm.dataset.uniqueCode),
+            grammarUniqueCode: escapeHTML(elm.dataset.uniqueCode),
             japanese: escapeHTML(elm.dataset.japanese),
             kana: escapeHTML(elm.dataset.kana),
             categoryId: escapeNumber(elm.dataset.categoryId)
@@ -246,7 +246,7 @@ function getSharedContentsSelectionElements() {
 
 function storeSharedContentsSelectionItem(obj_grammarData) {
     const isDuplicate = sharedContentsSelectionItems.some(
-        item => item.uniqueCode === obj_grammarData.uniqueCode
+        item => item.grammarUniqueCode === obj_grammarData.grammarUniqueCode
     );
 
     if (!isDuplicate) {
