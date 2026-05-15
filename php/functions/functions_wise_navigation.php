@@ -230,7 +230,7 @@ function build_html_select_wise_navigation_page($int_registered_sentence_id, $in
 }
 
 
-function build_html_manage_wise_navigations_page($unique_code, $int_selected_language){
+function build_html_manage_wise_navigations_page($sentence_unique_code, $int_selected_language){
 	
 	global
 		$t_wise_navigations,
@@ -251,7 +251,7 @@ function build_html_manage_wise_navigations_page($unique_code, $int_selected_lan
 		trailingslashit(ltrim($path_check_wise_navigation_sequence, '/'))
 	);
 
-	$int_registered_sentence_id = fetch_registered_sentence_id_from_unique_code($unique_code, $int_selected_language);
+	$int_registered_sentence_id = fetch_registered_sentence_id_from_unique_code($sentence_unique_code, $int_selected_language);
 
 	$arr_strSQL_select = [
 		[$t_wise_navigations,'id'],

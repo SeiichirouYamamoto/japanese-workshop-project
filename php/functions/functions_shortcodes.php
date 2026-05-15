@@ -1175,11 +1175,11 @@ function jws_manage_wise_navigation_waypoints_page(){
 		return;
 	}
 
-	$unique_code = isset($_GET['unique_code'])
-			?escape_html($_GET['unique_code'])
+	$sentence_unique_code = isset($_GET['sentence_unique_code'])
+			?escape_html($_GET['sentence_unique_code'])
 			: '';
 
-	$str_html = build_html_manage_wise_navigation_waypoints_page($unique_code, $int_selected_language);
+	$str_html = build_html_manage_wise_navigation_waypoints_page($sentence_unique_code, $int_selected_language);
 	echo $str_html;
 
 }

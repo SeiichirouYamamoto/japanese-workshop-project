@@ -1724,7 +1724,7 @@ clickHandlers['navi:navigate'] = function (btn) {
     }
 
     let baseUrl = currentHomeUrl + pagePath;
-    let urlWithParams = `${baseUrl}/?${KEY_UNIQUE_CODE}=${encodeURIComponent(sentenceUniqueCode)}`;
+    let urlWithParams = `${baseUrl}/?${KEY_SENTENCE_UNIQUE_CODE}=${encodeURIComponent(sentenceUniqueCode)}`;
 
     window.open(urlWithParams, '_blank', 'noopener');
 
