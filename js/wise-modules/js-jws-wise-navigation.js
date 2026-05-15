@@ -306,66 +306,69 @@ if (wiseNaviEventOverlay) {
     wiseNaviEventOverlay.addEventListener('pointerup', handleWiseNaviEventClick, false);
 }
 
-if(naviCreateButton !== null)
-{naviCreateButton.addEventListener('pointerup', async function() {
+if (naviCreateButton !== null) {
+    naviCreateButton.addEventListener('pointerup', async function() {
 
-	let isConfirmed = window.confirm(MSG_REGISTER_CONFIRM[intSelectedLanguage]);
-	
-	if (isConfirmed) {
+        let isConfirmed = window.confirm(MSG_REGISTER_CONFIRM[intSelectedLanguage]);
 
-		const inputEl = document.querySelector('.naviContentsCreateNewData');
-		const inputValue = escapeHTML(inputEl.value);
+        if (isConfirmed) {
 
-		const currentUrl = window.location.href;
-		const url = new URL(currentUrl);
-		const params = url.searchParams;
-		const send_unique_code = escapeHTML(params.get(KEY_UNIQUE_CODE));
+            const inputEl = document.querySelector('.naviContentsCreateNewData');
+            const inputValue = escapeHTML(inputEl.value);
 
-		let send_array = inputValue
-			.split(/\n/)
-			.map(item => item.trim())
-			.filter(item => item !== '');
+            const currentUrl = window.location.href;
+            const url = new URL(currentUrl);
+            const params = url.searchParams;
+            const uniqueCodeParam = this.dataset.uniqueCodeParam || KEY_UNIQUE_CODE;
+            const send_unique_code = escapeHTML(params.get(uniqueCodeParam)) || 0;
 
-		if (send_array.length === LENGTH_EMPTY) {
-			alert(MSG_ERROR_INPUT_CONTENT[intSelectedLanguage]);
-			return;
-		}
+            let send_array = inputValue
+                .split(/\n/)
+                .map(item => item.trim())
+                .filter(item => item !== '');
 
-		if (send_unique_code == null || send_unique_code === '') {
-			alert(MSG_ERROR_UNIQUE_CODE[intSelectedLanguage]);
-			return;
-		}
+            if (send_array.length === LENGTH_EMPTY) {
+                alert(MSG_ERROR_INPUT_CONTENT[intSelectedLanguage]);
+                return;
+            }
 
-		const payload = {
-			current_url: currentUrl,
-			send_array: send_array,
-			unique_code: send_unique_code,
-			int_selected_language: intSelectedLanguage
-		};
+            if (send_unique_code == null || send_unique_code === '' || send_unique_code === 0) {
+                alert(MSG_ERROR_UNIQUE_CODE[intSelectedLanguage]);
+                return;
+            }
 
-		try {
-			await postJson(
-				wiseNaviCreateNewContentsUrl,
-				payload,
-				10000
-			);
+            const payload = {
+                current_url: currentUrl,
+                send_array: send_array,
+                unique_code: send_unique_code,
+                int_selected_language: intSelectedLanguage
+            };
 
-			location.reload();
-			return;
+            try {
+                await postJson(
+                    wiseNaviCreateNewContentsUrl,
+                    payload,
+                    10000
+                );
 
-		} catch (error) {
-			const message = (error && error.message) ? error.message : '';
+                location.reload();
+                return;
 
-			if (message.includes('タイムアウト')) {
-				console.error('タイムアウトが発生しました。');
-			} else {
-				alert(message || 'Error');
-			}
-			return;
-		}
-	}
+            } catch (error) {
+                const message = (error && error.message) ? error.message : '';
 
-}, false);}
+                if (message.includes('タイムアウト')) {
+                    console.error('タイムアウトが発生しました。');
+                } else {
+                    alert(message || 'Error');
+                }
+
+                return;
+            }
+        }
+
+    }, false);
+}
 
 
 function runWiseScanAndCloseForNavi() {
