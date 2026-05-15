@@ -1155,11 +1155,11 @@ function jws_manage_wise_navigations_page(){
 		return;
 	}
 
-	$unique_code = isset($_GET['unique_code'])
-			?escape_html($_GET['unique_code'])
+	$sentence_unique_code = isset($_GET['sentence_unique_code'])
+			?escape_html($_GET['sentence_unique_code'])
 			: '';
 
-	$str_html = build_html_manage_wise_navigations_page($unique_code, $int_selected_language);
+	$str_html = build_html_manage_wise_navigations_page($sentence_unique_code, $int_selected_language);
 	echo $str_html;
 
 }
@@ -1174,12 +1174,12 @@ function jws_manage_wise_navigation_waypoints_page(){
 	if (!is_admin_level($user_level)) {
 		return;
 	}
-
-	$sentence_unique_code = isset($_GET['sentence_unique_code'])
-			?escape_html($_GET['sentence_unique_code'])
+	
+	$unique_code = isset($_GET['unique_code'])
+			?escape_html($_GET['unique_code'])
 			: '';
 
-	$str_html = build_html_manage_wise_navigation_waypoints_page($sentence_unique_code, $int_selected_language);
+	$str_html = build_html_manage_wise_navigation_waypoints_page($unique_code, $int_selected_language);
 	echo $str_html;
 
 }
