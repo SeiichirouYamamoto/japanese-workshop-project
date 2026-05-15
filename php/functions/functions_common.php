@@ -5369,6 +5369,7 @@ function build_html_manage_targets($manage_target, $target_array, $target_unique
     $unique_code_input_name = isset($options['unique_code_input_name']) ? $options['unique_code_input_name'] : 'unique_code';
     $unique_code_data_attr = isset($options['unique_code_data_attr']) ? $options['unique_code_data_attr'] : 'data-unique-code';
     $common_unique_code_data_attr = isset($options['common_unique_code_data_attr']) ? $options['common_unique_code_data_attr'] : 'data-target-unique-code';
+	$unique_code_param = isset($options['unique_code_param']) ? $options['unique_code_param'] : $unique_code_input_name;
 
     $open_next_in_blank = isset($options['open_next_in_blank']) ? boolval($options['open_next_in_blank']) : ($manage_target === 'room');
     $bookmarks_address = isset($options['bookmarks_address']) ? $options['bookmarks_address'] : ($manage_target === 'room' ? $url_manage_room_bookmarks : '');
@@ -5798,7 +5799,7 @@ function build_html_manage_targets($manage_target, $target_array, $target_unique
         <div id="divInputBox">
             <select class="' . $prefix . 'CreateNewData" name="' . $create_input_name . '">' . $str_add_divstbox . '</select>
         </div>
-        <button id="' . $submit_button_id . '">' . escape_html($label_submit) . '</button>';
+        <button id="' . $submit_button_id . '" data-unique-code-param="' . escape_html($unique_code_param) . '">' . escape_html($label_submit) . '</button>';
     } elseif ($manage_target === 'wise_navigation_script') {
         $arr_strSQL_select = [
             [$t_masta_wise_navigation_script, 'id'],
@@ -5826,13 +5827,13 @@ function build_html_manage_targets($manage_target, $target_array, $target_unique
         <div id="divInputBox">
             <select class="' . $prefix . 'CreateNewData" name="' . $create_input_name . '">' . $str_add_divstbox . '</select>
         </div>
-        <button id="' . $submit_button_id . '">' . escape_html($label_submit) . '</button>';
+        <button id="' . $submit_button_id . '" data-unique-code-param="' . escape_html($unique_code_param) . '">' . escape_html($label_submit) . '</button>';
     } else {
         $str_html_create_new_inputbox = '
         <div class="divInputBox">
             <textarea class="' . $prefix . 'CreateNewData ' . $str_class_fixed_font . '" name="' . $create_input_name . '" rows="10" cols="40"></textarea>
         </div>
-        <button id="' . $submit_button_id . '">' . escape_html($label_submit) . '</button>';
+        <button id="' . $submit_button_id . '" data-unique-code-param="' . escape_html($unique_code_param) . '">' . escape_html($label_submit) . '</button>';
     }
 
     $str_html_create_new = '<div class="createNewSectionContainer">' . $str_html_create_explanation . $str_html_create_new_inputbox . '</div>';

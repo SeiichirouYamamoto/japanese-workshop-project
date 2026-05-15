@@ -91,6 +91,7 @@ const AVOID_NULL_PROXY_STRING = '---';
 const KEY_UNIQUE_CODE = 'unique_code';
 const KEY_GRAMMAR_UNIQUE_CODE = 'grammar_unique_code';
 const KEY_SENTENCE_UNIQUE_CODE = 'sentence_unique_code';
+const KEY_ROOM_UNIQUE_CODE = 'room_unique_code';
 const KEY_LABEL_UNIQUE_CODE = 'label_unique_code';
 
 

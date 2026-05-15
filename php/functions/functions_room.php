@@ -56,7 +56,8 @@ function build_html_manage_rooms_page($int_selected_language){
 	$options = [
 		'unique_code_input_name' => 'room_unique_code',
 		'unique_code_data_attr' => 'data-room-unique-code',
-		'common_unique_code_data_attr' => 'data-target-unique-code'
+		'common_unique_code_data_attr' => 'data-target-unique-code',
+		'unique_code_param' => 'room_unique_code'
 	];
 
 	$str_html = build_html_manage_targets(
@@ -91,8 +92,8 @@ function build_html_manage_room_lessons_page($int_selected_language){
 		trailingslashit(ltrim($path_manage_room_lesson_steps, '/'))
 	);
 
-	$unique_code = escape_html($_GET['unique_code'] ?? '');
-	$room_id = fetch_room_id_from_unique_code($unique_code, $int_selected_language);
+	$room_unique_code = escape_html($_GET['room_unique_code'] ?? '');
+	$room_id = fetch_room_id_from_unique_code($room_unique_code, $int_selected_language);
 
 	$current_user = wp_get_current_user();
 	$current_user_id = $current_user->ID;
@@ -136,7 +137,8 @@ function build_html_manage_room_lessons_page($int_selected_language){
 	$options = [
 		'unique_code_input_name' => 'room_lesson_unique_code',
 		'unique_code_data_attr' => 'data-room-lesson-unique-code',
-		'common_unique_code_data_attr' => 'data-target-unique-code'
+		'common_unique_code_data_attr' => 'data-target-unique-code',
+		'unique_code_param' => 'room_lesson_unique_code'
 	];
 
 	$str_html = build_html_manage_targets(
@@ -214,8 +216,8 @@ function build_html_manage_room_lesson_steps_page($int_selected_language){
 		trailingslashit(ltrim($path_manage_room_lesson_step_units, '/'))
 	);
 
-	$unique_code = escape_html($_GET['unique_code'] ?? '');
-	$lesson_id = fetch_lesson_id_from_unique_code($unique_code, $int_selected_language);
+	$room_lesson_unique_code = escape_html($_GET['room_lesson_unique_code'] ?? '');
+	$lesson_id = fetch_lesson_id_from_unique_code($room_lesson_unique_code, $int_selected_language);
 
 	$current_user = wp_get_current_user();
 	$current_user_id = $current_user->ID;
@@ -264,7 +266,8 @@ function build_html_manage_room_lesson_steps_page($int_selected_language){
 	$options = [
 		'unique_code_input_name' => 'room_lesson_step_unique_code',
 		'unique_code_data_attr' => 'data-room-lesson-step-unique-code',
-		'common_unique_code_data_attr' => 'data-target-unique-code'
+		'common_unique_code_data_attr' => 'data-target-unique-code',
+		'unique_code_param' => 'room_lesson_step_unique_code'
 	];
 
 	$str_html = build_html_manage_targets(
@@ -307,8 +310,8 @@ function build_html_manage_room_lesson_step_units_page($int_selected_language){
 		trailingslashit(ltrim($path_manage_room_lesson_contents, '/'))
 	);
 
-	$unique_code = escape_html($_GET['unique_code'] ?? '');
-	$lesson_step_id = fetch_lesson_step_id_from_unique_code($unique_code, $int_selected_language);
+	$room_lesson_step_unique_code = escape_html($_GET['room_lesson_step_unique_code'] ?? '');
+	$lesson_step_id = fetch_lesson_step_id_from_unique_code($room_lesson_step_unique_code, $int_selected_language);
 
 	$current_user = wp_get_current_user();
 	$current_user_id = $current_user->ID;
@@ -363,7 +366,8 @@ function build_html_manage_room_lesson_step_units_page($int_selected_language){
 	$options = [
 		'unique_code_input_name' => 'room_lesson_step_unit_unique_code',
 		'unique_code_data_attr' => 'data-room-lesson-step-unit-unique-code',
-		'common_unique_code_data_attr' => 'data-target-unique-code'
+		'common_unique_code_data_attr' => 'data-target-unique-code',
+		'unique_code_param' => 'room_lesson_step_unit_unique_code'
 	];
 
 	$str_html = build_html_manage_targets(
@@ -398,15 +402,15 @@ function build_html_manage_room_lesson_contents_page($int_selected_language){
 
 	$str_html = '';
 
-	$unique_code = escape_html($_GET['unique_code'] ?? '');
-	$step_unit_id = fetch_lesson_step_unit_id_from_unique_code($unique_code, $int_selected_language);
+	$room_lesson_step_unit_unique_code = escape_html($_GET['room_lesson_step_unit_unique_code'] ?? '');
+	$step_unit_id = fetch_lesson_step_unit_id_from_unique_code($room_lesson_step_unit_unique_code, $int_selected_language);
 
 	$current_user = wp_get_current_user();
 	$current_user_id = $current_user->ID;
 
 	$arr_strSQL_select = [
 		[$t_room_lesson_step_units,'id'],
-		[$t_room_lesson_step_units,'unique_code'],
+		[$t_room_lesson_step_units,'unique_code as ' . $str_snake_to_camel_room_lesson_step_unit_unique_code],
 		[$t_room_lesson_step_units,'unit_type'],
 		[$t_room_lesson_steps,'step_name'],
 		[$t_room_lessons,'title'],

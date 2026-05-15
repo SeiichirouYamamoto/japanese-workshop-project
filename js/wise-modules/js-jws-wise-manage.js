@@ -119,52 +119,54 @@ manageSectionUpdateAllButton.addEventListener('pointerup', async function () {
 
 }, false);}
 
+if (roomContentsCreateButton !== null) {
+    roomContentsCreateButton.addEventListener('pointerup', async function() {
+        let isConfirmed = window.confirm(MSG_REGISTER_CONFIRM[intSelectedLanguage]);
 
-if(roomContentsCreateButton !== null)
-{roomContentsCreateButton.addEventListener('pointerup', async function() {
-	let isConfirmed = window.confirm(MSG_REGISTER_CONFIRM[intSelectedLanguage]);
-	if(isConfirmed) {
+        if (isConfirmed) {
 
-		// 未定義id null変更
-		let inputValue = escapeHTML(document.querySelector('.roomContentsCreateNewData').value);
-		let currentUrl = window.location.href;
-		let url = new URL(currentUrl),
-			params = url.searchParams,
-			send_unique_code = escapeHTML(params.get(KEY_UNIQUE_CODE)) || 0;
+            let inputValue = escapeHTML(document.querySelector('.roomContentsCreateNewData').value);
+            let currentUrl = window.location.href;
+            let url = new URL(currentUrl);
+            let params = url.searchParams;
+            let uniqueCodeParam = this.dataset.uniqueCodeParam || KEY_UNIQUE_CODE;
+            let send_unique_code = escapeHTML(params.get(uniqueCodeParam)) || 0;
 
-		let send_array = inputValue.split(/\n/);
-		send_array = send_array.filter(item => item !== "");
+            let send_array = inputValue.split(/\n/);
+            send_array = send_array.filter(item => item !== "");
 
-		if(send_array.length === LENGTH_EMPTY)return;
-		
-		try {
-	
-			const payload = {
-				current_url: currentUrl,
-				send_array: send_array,
-				unique_code: send_unique_code,
-				int_selected_language: intSelectedLanguage
-			};
+            if (send_array.length === LENGTH_EMPTY) return;
 
-			await postJson(
-				roomCreateNewContentsUrl,
-				payload,
-				10000
-			);
+            try {
 
-			location.reload();
-			return;
+                const payload = {
+                    current_url: currentUrl,
+                    send_array: send_array,
+                    unique_code: send_unique_code,
+                    int_selected_language: intSelectedLanguage
+                };
 
-		} catch (error) {
-			if (error && typeof error.message === 'string' && error.message.includes('タイムアウト')) {
-				console.error('タイムアウトが発生しました。');
-			} else {
-				alert((error && error.message) || 'Error');
-			}
-			return;
-		}
-	}
-}, false);}
+                await postJson(
+                    roomCreateNewContentsUrl,
+                    payload,
+                    10000
+                );
+
+                location.reload();
+                return;
+
+            } catch (error) {
+                if (error && typeof error.message === 'string' && error.message.includes('タイムアウト')) {
+                    console.error('タイムアウトが発生しました。');
+                } else {
+                    alert((error && error.message) || 'Error');
+                }
+
+                return;
+            }
+        }
+    }, false);
+}
 
 
 if(lessonAddContentsSearchButton !== null)
@@ -198,7 +200,7 @@ if(multiCopyLessonsButton !== null)
 		let currentUrl = window.location.href;
 		let url = new URL(currentUrl),
 		params = url.searchParams,
-		send_unique_code = escapeHTML(params.get(KEY_UNIQUE_CODE)) || 0;
+		send_unique_code = escapeHTML(params.get(KEY_ROOM_UNIQUE_CODE)) || 0;
 		
 		try {
 			
