@@ -57,7 +57,7 @@ function build_html_manage_rooms_page($int_selected_language){
 		'unique_code_input_name' => 'room_unique_code',
 		'unique_code_data_attr' => 'data-room-unique-code',
 		'common_unique_code_data_attr' => 'data-target-unique-code',
-		'unique_code_param' => 'room_unique_code'
+		// 'unique_code_param' => 'room_unique_code'
 	];
 
 	$str_html = build_html_manage_targets(
@@ -138,7 +138,7 @@ function build_html_manage_room_lessons_page($int_selected_language){
 		'unique_code_input_name' => 'room_lesson_unique_code',
 		'unique_code_data_attr' => 'data-room-lesson-unique-code',
 		'common_unique_code_data_attr' => 'data-target-unique-code',
-		'unique_code_param' => 'room_lesson_unique_code'
+		'unique_code_param' => 'room_unique_code'
 	];
 
 	$str_html = build_html_manage_targets(
@@ -267,7 +267,7 @@ function build_html_manage_room_lesson_steps_page($int_selected_language){
 		'unique_code_input_name' => 'room_lesson_step_unique_code',
 		'unique_code_data_attr' => 'data-room-lesson-step-unique-code',
 		'common_unique_code_data_attr' => 'data-target-unique-code',
-		'unique_code_param' => 'room_lesson_step_unique_code'
+		'unique_code_param' => 'room_lesson_unique_code'
 	];
 
 	$str_html = build_html_manage_targets(
@@ -367,7 +367,7 @@ function build_html_manage_room_lesson_step_units_page($int_selected_language){
 		'unique_code_input_name' => 'room_lesson_step_unit_unique_code',
 		'unique_code_data_attr' => 'data-room-lesson-step-unit-unique-code',
 		'common_unique_code_data_attr' => 'data-target-unique-code',
-		'unique_code_param' => 'room_lesson_step_unit_unique_code'
+		'unique_code_param' => 'room_lesson_step_unique_code'
 	];
 
 	$str_html = build_html_manage_targets(

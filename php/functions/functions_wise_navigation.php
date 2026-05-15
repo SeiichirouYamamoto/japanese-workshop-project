@@ -376,7 +376,7 @@ function build_html_manage_wise_navigation_waypoints_page($unique_code, $int_sel
         'unique_code_input_name' => 'wise_navigation_waypoint_unique_code',
         'unique_code_data_attr' => 'data-wise-navigation-waypoint-unique-code',
         'common_unique_code_data_attr' => 'data-target-unique-code',
-        'unique_code_param' => 'wise_navigation_waypoint_unique_code'
+        'unique_code_param' => 'wise_navigation_unique_code'
     ];
 
     $str_html = build_html_manage_targets(
@@ -464,7 +464,7 @@ function build_html_manage_wise_navigation_scripts_page($unique_code, $int_selec
         'unique_code_input_name' => 'wise_navigation_script_unique_code',
         'unique_code_data_attr' => 'data-wise-navigation-script-unique-code',
         'common_unique_code_data_attr' => 'data-target-unique-code',
-        'unique_code_param' => 'wise_navigation_script_unique_code',
+        'unique_code_param' => 'wise_navigation_waypoint_unique_code',
 
         'extra_edit_field_keys' => $arr_columns_wise_navigation_script_message,
         'extra_edit_field_labels' => $arr_columns_wise_navigation_script_message,
