@@ -1040,9 +1040,12 @@ function renderAlreadyRegisteredSentences(arr_registered_sentence){
 			elm_addLabelsInput.checked = false;
 		}
 
-		elm_addLabelsInput.addEventListener('click', function(e) {
-			e.stopPropagation();
-		}, false);
+		// elm_addLabelsInput.addEventListener('click', function(e) {
+		// 	e.stopPropagation();
+		// }, false);
+        elm_addLabelsInput.addEventListener('pointerup', function(e) {
+            e.stopPropagation();
+        }, false);
 		elm_addLabelsInput.addEventListener('change', async function() {
 			let isPublished;
 			if (elm_addLabelsInput.checked) {
