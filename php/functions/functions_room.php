@@ -395,6 +395,7 @@ function build_html_manage_room_lesson_step_units_page($int_selected_language){
 function build_html_manage_room_lesson_contents_page($int_selected_language){
 	
 	global
+		$str_snake_to_camel_room_lesson_step_unit_unique_code,
 		$t_room_lesson_step_units,
 		$t_room_lesson_steps,
 		$t_room_lessons,
