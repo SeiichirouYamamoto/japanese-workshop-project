@@ -960,11 +960,11 @@ function renderAlreadyRegisteredSentences(arr_registered_sentence){
 
 		let int_registered_sentence_id = escapeNumber(arr_registered_sentence[i]['registered_sentence_id']),
 			str_sentence = escapeHTML(arr_registered_sentence[i].sentence),
-			send_sentence_unique_code = escapeHTML(arr_registered_sentence[i].uniqueCode);
+			sentenceUniqueCode = escapeHTML(arr_registered_sentence[i].sentenceUniqueCode);
 
 		elm_addLi = document.createElement('li');
 		elm_addLi.classList.add('wiseWhiteboardUiCallAlreadyregisteredSentenceListLi', 'wiseUiFontSizeTarget');
-		elm_addLi.dataset.registeredsentenceUniqueCode = send_sentence_unique_code;
+		elm_addLi.dataset.sentenceUniqueCode = sentenceUniqueCode;
 
 		let elm_registeredSentenceNamesContainer = document.createElement('div');
 			elm_registeredSentenceNamesContainer.classList.add('registeredSentenceNamesContainer');
@@ -1009,7 +1009,7 @@ function renderAlreadyRegisteredSentences(arr_registered_sentence){
 		elm_registeredSentenceLinkToCreateLayersButton.addEventListener('pointerup', function(e) {
 			e.stopPropagation();
 			let url = pageCreateLayersUrl;
-			let urlWithParams = `${url}/?${KEY_SENTENCE_UNIQUE_CODE}=${encodeURIComponent(send_sentence_unique_code)}`;
+			let urlWithParams = `${url}/?${KEY_SENTENCE_UNIQUE_CODE}=${encodeURIComponent(sentenceUniqueCode)}`;
 			window.open(urlWithParams, '_blank', 'noopener');
 		}, false);
 		
@@ -1031,7 +1031,7 @@ function renderAlreadyRegisteredSentences(arr_registered_sentence){
 		elm_addLabelsInput.id = `registeredSentenceToggleButton${i}`;
 		elm_addLabelsInput.name = `registeredSentenceToggleButton${i}`;
 		elm_addLabelsInput.value = `registeredSentenceToggleButton${i}`;
-		elm_addLabelsInput.dataset.uniqueCode = send_sentence_unique_code;
+		elm_addLabelsInput.dataset.sentenceUniqueCode = sentenceUniqueCode;
 
 		if(parseInt(arr_registered_sentence[i]['isPublished']) === 1){
 			elm_addLabelsInput.checked = true;
@@ -1052,7 +1052,7 @@ function renderAlreadyRegisteredSentences(arr_registered_sentence){
 			}
 			let payload = {
 				isPublished: isPublished,
-				send_sentence_unique_code: send_sentence_unique_code,
+				send_sentence_unique_code: sentenceUniqueCode,
 				int_selected_language: intSelectedLanguage
 			};
 			try {

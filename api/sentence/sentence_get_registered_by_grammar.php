@@ -51,7 +51,7 @@
 
         $arr_strSQL_select = [
             [$t_registered_sentences,'id as registered_sentence_id'],
-            [$t_registered_sentences,'unique_code as ' . $str_snake_to_camel_unique_code],
+            [$t_registered_sentences,'unique_code as ' . $str_snake_to_camel_sentence_unique_code],
             [$t_registered_sentences,'masta_japanese_root_id as japanese_id'],
             [$t_registered_sentences,'sentence'],
             [$t_registered_sentences,'is_published as isPublished'],

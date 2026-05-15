@@ -172,7 +172,7 @@ document.addEventListener('pointerup', async (e) => {
         return;
     }
 
-    const send_sentence_unique_code = escapeHTML(li.dataset.registeredsentenceUniqueCode || '');
+    const send_sentence_unique_code = escapeHTML(li.dataset.sentenceUniqueCode || '');
 
     try {
         const arr_wordContainers = await reviewWordContainers(send_sentence_unique_code, false);
