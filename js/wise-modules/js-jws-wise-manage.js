@@ -257,7 +257,7 @@ function handleRoomLessonContentDelete(elmDeleteButton) {
     const currentUrl = window.location.href;
     const url = new URL(currentUrl);
     const params = url.searchParams;
-    const unique_code = params.get(KEY_UNIQUE_CODE) || 0;
+    const unique_code = params.get(KEY_ROOM_LESSON_STEP_UNIT_UNIQUE_CODE) || 0;
 
     const payload = {
         currentUrl: currentUrl,
@@ -295,7 +295,7 @@ async function fetchAndRenderRoomLessonContents() {
 async function fetchRoomLessonContentList() {
     const urlObj = new URL(window.location.href);
     const params = urlObj.searchParams;
-    const uniqueCode = params.get(KEY_UNIQUE_CODE) || 0;
+    const uniqueCode = params.get(KEY_ROOM_LESSON_STEP_UNIT_UNIQUE_CODE) || 0;
 
     const payload = {
         unique_code: uniqueCode,
@@ -426,7 +426,7 @@ async function reorderRoomLessonContent(isPrevious, elm) {
     const currentUrl = window.location.href;
     const url = new URL(currentUrl);
     const params = url.searchParams;
-    const unique_code = params.get(KEY_UNIQUE_CODE) || 0;
+    const unique_code = params.get(KEY_ROOM_LESSON_STEP_UNIT_UNIQUE_CODE) || 0;
 
     const payload = {
         isPreviousAsNumber: isPreviousAsNumber,
