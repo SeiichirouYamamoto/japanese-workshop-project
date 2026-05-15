@@ -297,7 +297,7 @@ function build_html_manage_wise_navigations_page($sentence_unique_code, $int_sel
         'unique_code_input_name' => 'wise_navigation_unique_code',
         'unique_code_data_attr' => 'data-wise-navigation-unique-code',
         'common_unique_code_data_attr' => 'data-target-unique-code',
-        'unique_code_param' => 'wise_navigation_unique_code'
+        'unique_code_param' => 'sentence_unique_code'
     ];
 
     $str_html = build_html_manage_targets(
