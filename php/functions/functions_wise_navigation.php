@@ -234,8 +234,9 @@ function build_html_manage_wise_navigations_page($unique_code, $int_selected_lan
 	
 	global
 		$t_wise_navigations,
-		$path_manage_wise_navigation_waypoints,
 		$arr_str_placeholder_wise_navigation_title,
+		$str_snake_to_camel_wise_navigation_unique_code,
+		$path_manage_wise_navigation_waypoints,
 		$path_check_wise_navigation_sequence;
 
 	$str_html = '';
@@ -254,7 +255,7 @@ function build_html_manage_wise_navigations_page($unique_code, $int_selected_lan
 
 	$arr_strSQL_select = [
 		[$t_wise_navigations,'id'],
-		[$t_wise_navigations,'unique_code'],
+		[$t_wise_navigations,'unique_code as ' . $str_snake_to_camel_wise_navigation_unique_code],
 		[$t_wise_navigations,'title'],
 		[$t_wise_navigations,'is_published'],
 		[$t_wise_navigations,'sort']
@@ -281,7 +282,7 @@ function build_html_manage_wise_navigations_page($unique_code, $int_selected_lan
 	handle_database_error_and_redirect($pdo_has_error, $select_has_error, $e, $int_selected_language);
 	
 	$manage_target = 'wise_navigation';
-    $target_unique_code = 'unique_code';
+    $target_unique_code = $str_snake_to_camel_wise_navigation_unique_code;
     $target_title = 'title';
     $target_address = $url_manage_wise_navigation_waypoints;
     $target_placeholder = $arr_str_placeholder_wise_navigation_title[$int_selected_language];
@@ -291,7 +292,11 @@ function build_html_manage_wise_navigations_page($unique_code, $int_selected_lan
         'create_input_name' => 'navigationTitle',
         'submit_button_id' => 'naviCreateNewButton',
         'open_next_in_blank' => true,
-		'check_sequence_address' => $url_check_wise_navigation_sequence
+        'check_sequence_address' => $url_check_wise_navigation_sequence,
+
+        'unique_code_input_name' => 'wise_navigation_unique_code',
+        'unique_code_data_attr' => 'data-wise-navigation-unique-code',
+        'common_unique_code_data_attr' => 'data-target-unique-code'
     ];
 
     $str_html = build_html_manage_targets(
@@ -315,6 +320,7 @@ function build_html_manage_wise_navigation_waypoints_page($unique_code, $int_sel
 	global
 		$t_wise_navigation_waypoints,
 		$path_manage_wise_navigation_scripts,
+		$str_snake_to_camel_wise_navigation_waypoint_unique_code,
 		$arr_str_placeholder_wise_navigation_title;
 
     $str_html = '';
@@ -328,7 +334,7 @@ function build_html_manage_wise_navigation_waypoints_page($unique_code, $int_sel
 
     $arr_strSQL_select = [
         [$t_wise_navigation_waypoints, 'id'],
-        [$t_wise_navigation_waypoints, 'unique_code'],
+        [$t_wise_navigation_waypoints, 'unique_code as ' . $str_snake_to_camel_wise_navigation_waypoint_unique_code],
         [$t_wise_navigation_waypoints, 'wise_navigation_id'],
         [$t_wise_navigation_waypoints, 'title'],
         [$t_wise_navigation_waypoints, 'sort']
@@ -355,7 +361,7 @@ function build_html_manage_wise_navigation_waypoints_page($unique_code, $int_sel
     handle_database_error_and_redirect($pdo_has_error, $select_has_error, $e, $int_selected_language);
 
     $manage_target = 'wise_navigation_waypoint';
-    $target_unique_code = 'unique_code';
+    $target_unique_code = $str_snake_to_camel_wise_navigation_waypoint_unique_code;
     $target_title = 'title';
     $target_address = $url_manage_wise_navigation_scripts;
     $target_placeholder = $arr_str_placeholder_wise_navigation_title[$int_selected_language];
@@ -365,6 +371,10 @@ function build_html_manage_wise_navigation_waypoints_page($unique_code, $int_sel
         'create_input_name' => 'waypointTitle',
         'submit_button_id' => 'naviCreateNewButton',
         'open_next_in_blank' => true,
+
+        'unique_code_input_name' => 'wise_navigation_waypoint_unique_code',
+        'unique_code_data_attr' => 'data-wise-navigation-waypoint-unique-code',
+        'common_unique_code_data_attr' => 'data-target-unique-code'
     ];
 
     $str_html = build_html_manage_targets(
@@ -387,6 +397,7 @@ function build_html_manage_wise_navigation_scripts_page($unique_code, $int_selec
 	global
 		$t_wise_navigation_scripts,
 		$t_masta_wise_navigation_script,
+		$str_snake_to_camel_wise_navigation_script_unique_code,
 		$arr_columns_wise_navigation_script_message,
 		$path_manage_wise_navigation_items,
 		$arr_str_placeholder_wise_navigation_script_select;
@@ -402,7 +413,7 @@ function build_html_manage_wise_navigation_scripts_page($unique_code, $int_selec
 
     $arr_strSQL_select = [
         [$t_wise_navigation_scripts, 'id'],
-        [$t_wise_navigation_scripts, 'unique_code'],
+        [$t_wise_navigation_scripts, 'unique_code as ' . $str_snake_to_camel_wise_navigation_script_unique_code],
         [$t_wise_navigation_scripts, 'wise_navigation_waypoint_id'],
         [$t_wise_navigation_scripts, 'script_type_id'],
         [$t_wise_navigation_scripts, 'sort'],
@@ -437,7 +448,7 @@ function build_html_manage_wise_navigation_scripts_page($unique_code, $int_selec
     handle_database_error_and_redirect($pdo_has_error, $select_has_error, $e, $int_selected_language);
 
     $manage_target = 'wise_navigation_script';
-    $target_unique_code = 'unique_code';
+    $target_unique_code = $str_snake_to_camel_wise_navigation_script_unique_code;
     $target_title = 'script_key';
     $target_address = $url_manage_wise_navigation_items;
     $target_placeholder = '';
@@ -447,6 +458,11 @@ function build_html_manage_wise_navigation_scripts_page($unique_code, $int_selec
         'create_input_name' => 'script_type_id',
         'submit_button_id' => 'naviCreateNewButton',
         'open_next_in_blank' => true,
+
+        'unique_code_input_name' => 'wise_navigation_script_unique_code',
+        'unique_code_data_attr' => 'data-wise-navigation-script-unique-code',
+        'common_unique_code_data_attr' => 'data-target-unique-code',
+
         'extra_edit_field_keys' => $arr_columns_wise_navigation_script_message,
         'extra_edit_field_labels' => $arr_columns_wise_navigation_script_message,
         'extra_edit_field_input' => 'textarea'

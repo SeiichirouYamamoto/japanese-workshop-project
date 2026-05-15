@@ -5321,65 +5321,78 @@ function jws_require_single_session_for_page(int $int_selected_language) {
  *  MANAGE TARGETS
  *  
  ******************************************************/
-function build_html_manage_targets($manage_target, $target_array, $target_unique_code, $target_title, $target_address, $target_placeholder, $int_selected_language, $options = []){
+function build_html_manage_targets($manage_target, $target_array, $target_unique_code, $target_title, $target_address, $target_placeholder, $int_selected_language, $options = []) {
 
-	global
-		$path_manage_room_bookmarks,
-		$path_manage_room_invite,
-		$path_manage_room_requests,
-		$path_check_wise_navigation_sequence,
-		$str_update,
-		$arr_str_button_caption_submit,
-		$int_learning_status_not_started,
-		$int_learning_status_learning,
-		$int_learning_status_learned,
-		$arr_learning_status,
-		$t_masta_step_unit_type,
-		$arr_columns_masta_step_unit_types,
-		$t_masta_wise_navigation_script,
-		$str_class_fixed_font;
+    global
+        $path_manage_room_bookmarks,
+        $path_manage_room_invite,
+        $path_manage_room_requests,
+        $path_check_wise_navigation_sequence,
+        $str_update,
+        $arr_str_button_caption_submit,
+        $int_learning_status_not_started,
+        $int_learning_status_learning,
+        $int_learning_status_learned,
+        $arr_learning_status,
+        $t_masta_step_unit_type,
+        $arr_columns_masta_step_unit_types,
+        $t_masta_wise_navigation_script,
+        $str_class_fixed_font;
 
     $str_html = '';
     $str_html_contents = '';
-	
-	$url_manage_room_bookmarks = get_home_url(
-		get_data_blog_id_from_selected_language($int_selected_language ?? null),
-		trailingslashit(ltrim($path_manage_room_bookmarks, '/'))
-	);
 
-	$url_manage_room_invite = get_home_url(
-		get_data_blog_id_from_selected_language($int_selected_language ?? null),
-		trailingslashit(ltrim($path_manage_room_invite, '/'))
-	);
+    $url_manage_room_bookmarks = get_home_url(
+        get_data_blog_id_from_selected_language($int_selected_language ?? null),
+        trailingslashit(ltrim($path_manage_room_bookmarks, '/'))
+    );
 
-	$url_manage_room_requests = get_home_url(
-		get_data_blog_id_from_selected_language($int_selected_language ?? null),
-		trailingslashit(ltrim($path_manage_room_requests, '/'))
-	);
+    $url_manage_room_invite = get_home_url(
+        get_data_blog_id_from_selected_language($int_selected_language ?? null),
+        trailingslashit(ltrim($path_manage_room_invite, '/'))
+    );
 
-	$url_check_wise_navigation_sequence = get_home_url(
-		get_data_blog_id_from_selected_language($int_selected_language ?? null),
-		trailingslashit(ltrim($path_check_wise_navigation_sequence, '/'))
-	);
+    $url_manage_room_requests = get_home_url(
+        get_data_blog_id_from_selected_language($int_selected_language ?? null),
+        trailingslashit(ltrim($path_manage_room_requests, '/'))
+    );
+
+    $url_check_wise_navigation_sequence = get_home_url(
+        get_data_blog_id_from_selected_language($int_selected_language ?? null),
+        trailingslashit(ltrim($path_check_wise_navigation_sequence, '/'))
+    );
 
     $prefix = isset($options['prefix']) ? $options['prefix'] : 'roomContents';
     $create_input_name = isset($options['create_input_name']) ? $options['create_input_name'] : 'roomName';
     $submit_button_id = isset($options['submit_button_id']) ? $options['submit_button_id'] : 'roomContentsCreateNewButton';
+
+    $unique_code_input_name = isset($options['unique_code_input_name']) ? $options['unique_code_input_name'] : 'unique_code';
+    $unique_code_data_attr = isset($options['unique_code_data_attr']) ? $options['unique_code_data_attr'] : 'data-unique-code';
+    $common_unique_code_data_attr = isset($options['common_unique_code_data_attr']) ? $options['common_unique_code_data_attr'] : 'data-target-unique-code';
+
     $open_next_in_blank = isset($options['open_next_in_blank']) ? boolval($options['open_next_in_blank']) : ($manage_target === 'room');
     $bookmarks_address = isset($options['bookmarks_address']) ? $options['bookmarks_address'] : ($manage_target === 'room' ? $url_manage_room_bookmarks : '');
-	$invite_address = isset($options['invite_address'])
-		? $options['invite_address']
-		: ($manage_target === 'room' ? $url_manage_room_invite : '');
-
-	$requests_address = isset($options['requests_address'])
-		? $options['requests_address']
-		: ($manage_target === 'room' ? $url_manage_room_requests : '');
-
+    $invite_address = isset($options['invite_address']) ? $options['invite_address'] : ($manage_target === 'room' ? $url_manage_room_invite : '');
+    $requests_address = isset($options['requests_address']) ? $options['requests_address'] : ($manage_target === 'room' ? $url_manage_room_requests : '');
     $check_sequence_address = isset($options['check_sequence_address']) ? $options['check_sequence_address'] : ($manage_target === 'wise_navigation' ? $url_check_wise_navigation_sequence : '');
+
     $extra_edit_field_keys = isset($options['extra_edit_field_keys']) && is_array($options['extra_edit_field_keys']) ? $options['extra_edit_field_keys'] : [];
     $extra_edit_field_labels = isset($options['extra_edit_field_labels']) && is_array($options['extra_edit_field_labels']) ? $options['extra_edit_field_labels'] : [];
     $extra_edit_field_input = isset($options['extra_edit_field_input']) ? $options['extra_edit_field_input'] : 'textarea';
     $editable_fields = isset($options['editable_fields']) && is_array($options['editable_fields']) ? $options['editable_fields'] : [];
+
+    $build_unique_code_attrs = function($unique_code) use ($unique_code_data_attr, $common_unique_code_data_attr) {
+
+        $str_attrs = '';
+
+        $str_attrs .= ' ' . escape_html($common_unique_code_data_attr) . '="' . escape_html($unique_code) . '"';
+
+        if ($unique_code_data_attr !== $common_unique_code_data_attr) {
+            $str_attrs .= ' ' . escape_html($unique_code_data_attr) . '="' . escape_html($unique_code) . '"';
+        }
+
+        return $str_attrs;
+    };
 
     $label_update = isset($str_update[$int_selected_language]) ? $str_update[$int_selected_language] : 'update';
     $label_submit = isset($arr_str_button_caption_submit[$int_selected_language]) ? $arr_str_button_caption_submit[$int_selected_language] : 'submit';
@@ -5411,14 +5424,17 @@ function build_html_manage_targets($manage_target, $target_array, $target_unique
                 [$t_masta_step_unit_type, 'sort', 'ASC']
             ];
             $strSQL_option = '';
+
             list($pdo_has_error, $select_has_error, $e, $arr_masta_step_unit_types) = execute_select_and_fetch_all($arr_strSQL_select, $strSQL_from, $arr_strSQL_where, $arr_strSQL_order, $strSQL_option);
             handle_database_error_and_redirect($pdo_has_error, $select_has_error, $e, $int_selected_language);
+
             foreach ($arr_masta_step_unit_types as $rec) {
                 $select_options_unit_type[] = [
                     'value' => $rec['id'],
                     'text' => $rec[$arr_columns_masta_step_unit_types[$int_selected_language]]
                 ];
             }
+
             $editable_fields = [
                 ['field' => 'unit_type', 'label' => 'unit_type', 'input' => 'select', 'options' => $select_options_unit_type]
             ];
@@ -5433,14 +5449,17 @@ function build_html_manage_targets($manage_target, $target_array, $target_unique
                 [$t_masta_wise_navigation_script, 'id', 'ASC']
             ];
             $strSQL_option = '';
+
             list($pdo_has_error, $select_has_error, $e, $arr_masta_scripts) = execute_select_and_fetch_all($arr_strSQL_select, $strSQL_from, $arr_strSQL_where, $arr_strSQL_order, $strSQL_option);
             handle_database_error_and_redirect($pdo_has_error, $select_has_error, $e, $int_selected_language);
+
             foreach ($arr_masta_scripts as $rec) {
                 $select_options_script_type[] = [
                     'value' => $rec['id'],
                     'text' => $rec['script_key']
                 ];
             }
+
             $editable_fields = [
                 ['field' => 'script_type_id', 'label' => 'script_type_id', 'input' => 'select', 'options' => $select_options_script_type]
             ];
@@ -5456,277 +5475,301 @@ function build_html_manage_targets($manage_target, $target_array, $target_unique
     }
 
     $section_update_button = '
-    <div class="'.$prefix.'SectionUpdateContainer">
-        <button id="manageSectionUpdateAllButton" class="'.$prefix.'SectionUpdateAllButton" data-manage-target="'.escape_html($manage_target).'">'.escape_html($label_update).'</button>
+    <div class="' . $prefix . 'SectionUpdateContainer">
+        <button id="manageSectionUpdateAllButton" class="' . $prefix . 'SectionUpdateAllButton" data-manage-target="' . escape_html($manage_target) . '">' . escape_html($label_update) . '</button>
     </div>';
 
     foreach ($target_array as $key => $target) {
+
+        $target_unique_code_value = isset($target[$target_unique_code]) ? $target[$target_unique_code] : '';
+        $target_unique_code_escaped = escape_html($target_unique_code_value);
+        $target_unique_code_attrs = $build_unique_code_attrs($target_unique_code_value);
+
         $str_html_contents_to_next = '';
         $str_html_contents_to_bookmarks = '';
-		$str_html_contents_to_invite = '';
-		$str_html_contents_to_requests = '';
+        $str_html_contents_to_invite = '';
+        $str_html_contents_to_requests = '';
         $str_html_contents_to_check_sequence = '';
 
         if ($open_next_in_blank) {
             $str_html_contents_to_next = '
-            <form action="'.escape_html($target_address).'" method="GET" target="_blank" rel="noopener">
+            <form action="' . escape_html($target_address) . '" method="GET" target="_blank" rel="noopener">
                 <div class="">
-                    <input class="" type="submit" value="'.escape_html($label_submit).'">
-                    <input type="hidden" name="unique_code" value="'.escape_html($target[$target_unique_code]).'">
+                    <input class="" type="submit" value="' . escape_html($label_submit) . '">
+                    <input type="hidden" name="' . escape_html($unique_code_input_name) . '" value="' . $target_unique_code_escaped . '">
                 </div>
             </form>';
         } else {
             $str_html_contents_to_next = '
-            <form action="'.escape_html($target_address).'" method="GET">
+            <form action="' . escape_html($target_address) . '" method="GET">
                 <div class="">
-                    <input class="" type="submit" value="'.escape_html($label_submit).'">
-                    <input type="hidden" name="unique_code" value="'.escape_html($target[$target_unique_code]).'">
+                    <input class="" type="submit" value="' . escape_html($label_submit) . '">
+                    <input type="hidden" name="' . escape_html($unique_code_input_name) . '" value="' . $target_unique_code_escaped . '">
                 </div>
             </form>';
         }
 
         if (!empty($bookmarks_address)) {
             $str_html_contents_to_bookmarks = '
-            <form action="'.escape_html($bookmarks_address).'" method="GET" target="_blank" rel="noopener">
+            <form action="' . escape_html($bookmarks_address) . '" method="GET" target="_blank" rel="noopener">
                 <div class="">
                     <input class="" type="submit" value="bookmarks">
-                    <input type="hidden" name="unique_code" value="'.escape_html($target[$target_unique_code]).'">
+                    <input type="hidden" name="' . escape_html($unique_code_input_name) . '" value="' . $target_unique_code_escaped . '">
                 </div>
             </form>';
         }
 
-		if (!empty($invite_address)) {
-			$str_html_contents_to_invite = '
-			<form action="'.escape_html($invite_address).'" method="GET" target="_blank" rel="noopener">
-				<div class="">
-					<input class="" type="submit" value="invite">
-					<input type="hidden" name="unique_code" value="'.escape_html($target[$target_unique_code]).'">
-				</div>
-			</form>';
-		}
+        if (!empty($invite_address)) {
+            $str_html_contents_to_invite = '
+            <form action="' . escape_html($invite_address) . '" method="GET" target="_blank" rel="noopener">
+                <div class="">
+                    <input class="" type="submit" value="invite">
+                    <input type="hidden" name="' . escape_html($unique_code_input_name) . '" value="' . $target_unique_code_escaped . '">
+                </div>
+            </form>';
+        }
 
-		if (!empty($requests_address)) {
-			$str_html_contents_to_requests = '
-			<form action="'.escape_html($requests_address).'" method="GET" target="_blank" rel="noopener">
-				<div class="">
-					<input class="" type="submit" value="requests">
-					<input type="hidden" name="unique_code" value="'.escape_html($target[$target_unique_code]).'">
-				</div>
-			</form>';
-		}
-
+        if (!empty($requests_address)) {
+            $str_html_contents_to_requests = '
+            <form action="' . escape_html($requests_address) . '" method="GET" target="_blank" rel="noopener">
+                <div class="">
+                    <input class="" type="submit" value="requests">
+                    <input type="hidden" name="' . escape_html($unique_code_input_name) . '" value="' . $target_unique_code_escaped . '">
+                </div>
+            </form>';
+        }
 
         if (!empty($check_sequence_address)) {
             $str_html_contents_to_check_sequence = '
-            <form action="'.escape_html($check_sequence_address).'" method="GET" target="_blank" rel="noopener">
+            <form action="' . escape_html($check_sequence_address) . '" method="GET" target="_blank" rel="noopener">
                 <div class="">
                     <input class="" type="submit" value="sequence">
-                    <input type="hidden" name="unique_code" value="'.escape_html($target[$target_unique_code]).'">
+                    <input type="hidden" name="' . escape_html($unique_code_input_name) . '" value="' . $target_unique_code_escaped . '">
                 </div>
             </form>';
         }
 
-        $str_html_contents_delete = '<button class="'.$prefix.'DeleteButton" data-id="'.escape_html($target['id']).'">del</button>';
+        $str_html_contents_delete = '<button class="' . $prefix . 'DeleteButton" data-id="' . escape_html($target['id']) . '">del</button>';
 
         $str_html_contents_sort = '
-        <div class="'.$prefix.'EditContentsSortButtonsContainer">
-            <button class="'.$prefix.'EditContentsSortPreviousButton '.$prefix.'EditContentsSortButton" data-id="'.escape_html($target['id']).'">△</button>
-            <button class="'.$prefix.'EditContentsSortNextButton '.$prefix.'EditContentsSortButton" data-id="'.escape_html($target['id']).'">▽</button>
+        <div class="' . $prefix . 'EditContentsSortButtonsContainer">
+            <button class="' . $prefix . 'EditContentsSortPreviousButton ' . $prefix . 'EditContentsSortButton" data-id="' . escape_html($target['id']) . '">△</button>
+            <button class="' . $prefix . 'EditContentsSortNextButton ' . $prefix . 'EditContentsSortButton" data-id="' . escape_html($target['id']) . '">▽</button>
         </div>';
 
         $str_html_contents_radio = '';
-		if (isset($target['learning_status'])) {
 
-			$int_current_learning_status = intval($target['learning_status']);
+        if (isset($target['learning_status'])) {
 
-			$str_html_contents_radio = '<div class="editContentsRadioContainer">';
+            $int_current_learning_status = intval($target['learning_status']);
 
-			foreach ($arr_learning_status as $int_learning_status => $arr_status) {
+            $str_html_contents_radio = '<div class="editContentsRadioContainer">';
 
-				$str_checked = ($int_current_learning_status === intval($int_learning_status)) ? 'checked' : '';
+            foreach ($arr_learning_status as $int_learning_status => $arr_status) {
 
-				$str_id = $arr_status['html_id_class'] . $key;
-				$str_class = $arr_status['html_id_class'];
-				$str_name = 'learningStatus' . $key;
+                $str_checked = ($int_current_learning_status === intval($int_learning_status)) ? 'checked' : '';
 
-				$str_label = $arr_status['title'][$int_selected_language] ?? $arr_status['title'][0];
+                $str_id = $arr_status['html_id_class'] . $key;
+                $str_class = $arr_status['html_id_class'];
+                $str_name = 'learningStatus' . $key;
 
-				$str_html_contents_radio .= '
-					<input type="radio"
-						id="' . $str_id . '"
-						class="learningStatusRadioButton ' . $str_class . '"
-						name="' . $str_name . '"
-						value="' . intval($int_learning_status) . '"
-						data-unique-code="' . escape_html($target[$target_unique_code]) . '"
-						' . $str_checked . '>
-					<label for="' . $str_id . '">' . escape_html($str_label) . '</label>
-				';
-			}
+                $str_label = $arr_status['title'][$int_selected_language] ?? $arr_status['title'][0];
 
-			$str_html_contents_radio .= '</div>';
-		}
+                $str_html_contents_radio .= '
+                    <input type="radio"
+                        id="' . $str_id . '"
+                        class="learningStatusRadioButton ' . $str_class . '"
+                        name="' . $str_name . '"
+                        value="' . intval($int_learning_status) . '"
+                        ' . $target_unique_code_attrs . '
+                        ' . $str_checked . '>
+                    <label for="' . $str_id . '">' . escape_html($str_label) . '</label>
+                ';
+            }
+
+            $str_html_contents_radio .= '</div>';
+        }
 
         $str_html_contents_publish = '';
+
         if (isset($target['is_published'])) {
             $checkedPublished = intval($target['is_published']) === 1 ? 'checked' : '';
+
             $str_html_contents_publish = '
             <div class="editContentsCheckboxContainer">
-                <input type="checkbox" id="isPublished'.$key.'" class="'.$prefix.'IsPublishedCheckbox editableElement" name="isPublished'.$key.'" value="1"
-                    data-unique-code="'.escape_html($target[$target_unique_code]).'"
-                    data-id="'.escape_html($target['id']).'"
+                <input type="checkbox" id="isPublished' . $key . '" class="' . $prefix . 'IsPublishedCheckbox editableElement" name="isPublished' . $key . '" value="1"
+                    ' . $target_unique_code_attrs . '
+                    data-id="' . escape_html($target['id']) . '"
                     data-column="is_published"
-                    data-original="'.(intval($target['is_published']) === 1 ? '1' : '0').'"
-                    '.($checkedPublished).'>
-                <label for="isPublished'.$key.'">published</label>
+                    data-original="' . (intval($target['is_published']) === 1 ? '1' : '0') . '"
+                    ' . ($checkedPublished) . '>
+                <label for="isPublished' . $key . '">published</label>
             </div>';
         }
 
         $str_main_edit_fields = '';
+
         if (!empty($editable_fields)) {
             foreach ($editable_fields as $ef_idx => $ef) {
+
                 $field = isset($ef['field']) ? $ef['field'] : '';
-                if ($field === '') continue;
+
+                if ($field === '') {
+                    continue;
+                }
+
                 $label_text = isset($ef['label']) ? $ef['label'] : $field;
                 $input_type = isset($ef['input']) ? $ef['input'] : 'input';
                 $options_arr = isset($ef['options']) && is_array($ef['options']) ? $ef['options'] : [];
                 $raw_value = isset($target[$field]) ? $target[$field] : '';
                 $value_attr = escape_html($raw_value);
                 $value_text = escape_html($raw_value);
-                $input_id = $prefix.'MainField'.$key.'_'.$ef_idx;
+                $input_id = $prefix . 'MainField' . $key . '_' . $ef_idx;
 
                 if ($input_type === 'select') {
                     $options_html = '';
+
                     foreach ($options_arr as $opt) {
                         $opt_val = escape_html(isset($opt['value']) ? $opt['value'] : '');
                         $opt_text = escape_html(isset($opt['text']) ? $opt['text'] : $opt_val);
-                        $selected = ((string)$opt_val === (string)$raw_value) ? ' selected' : '';
-                        $options_html .= '<option value="'.$opt_val.'"'.$selected.'>'.$opt_text.'</option>';
+                        $selected = ((string) $opt_val === (string) $raw_value) ? ' selected' : '';
+                        $options_html .= '<option value="' . $opt_val . '"' . $selected . '>' . $opt_text . '</option>';
                     }
+
                     $str_main_edit_fields .= '
-                    <label for="'.$input_id.'">'.escape_html($label_text).'</label>
-                    <select id="'.$input_id.'" class="'.$prefix.'MainEditInput editableElement"
-                        data-unique-code="'.escape_html($target[$target_unique_code]).'"
-                        data-id="'.escape_html($target['id']).'"
-                        data-column="'.escape_html($field).'"
-                        data-original="'.$value_attr.'">'.$options_html.'</select>';
+                    <label for="' . $input_id . '">' . escape_html($label_text) . '</label>
+                    <select id="' . $input_id . '" class="' . $prefix . 'MainEditInput editableElement"
+                        ' . $target_unique_code_attrs . '
+                        data-id="' . escape_html($target['id']) . '"
+                        data-column="' . escape_html($field) . '"
+                        data-original="' . $value_attr . '">' . $options_html . '</select>';
                 } elseif ($input_type === 'textarea') {
                     $str_main_edit_fields .= '
-                    <label for="'.$input_id.'">'.escape_html($label_text).'</label>
-                    <textarea id="'.$input_id.'" class="'.$prefix.'MainEditTextarea editableElement '.$str_class_fixed_font.'"
-                        data-unique-code="'.escape_html($target[$target_unique_code]).'"
-                        data-id="'.escape_html($target['id']).'"
-                        data-column="'.escape_html($field).'"
-                        data-original="'.$value_text.'" rows="4" cols="40">'.$value_text.'</textarea>';
+                    <label for="' . $input_id . '">' . escape_html($label_text) . '</label>
+                    <textarea id="' . $input_id . '" class="' . $prefix . 'MainEditTextarea editableElement ' . $str_class_fixed_font . '"
+                        ' . $target_unique_code_attrs . '
+                        data-id="' . escape_html($target['id']) . '"
+                        data-column="' . escape_html($field) . '"
+                        data-original="' . $value_text . '" rows="4" cols="40">' . $value_text . '</textarea>';
                 } else {
                     $str_main_edit_fields .= '
-                    <label for="'.$input_id.'">'.escape_html($label_text).'</label>
-                    <input type="text" id="'.$input_id.'" class="'.$prefix.'MainEditInput editableElement"
-                        data-unique-code="'.escape_html($target[$target_unique_code]).'"
-                        data-id="'.escape_html($target['id']).'"
-                        data-column="'.escape_html($field).'"
-                        data-original="'.$value_attr.'" value="'.$value_attr.'">';
+                    <label for="' . $input_id . '">' . escape_html($label_text) . '</label>
+                    <input type="text" id="' . $input_id . '" class="' . $prefix . 'MainEditInput editableElement"
+                        ' . $target_unique_code_attrs . '
+                        data-id="' . escape_html($target['id']) . '"
+                        data-column="' . escape_html($field) . '"
+                        data-original="' . $value_attr . '" value="' . $value_attr . '">';
                 }
             }
 
             $str_script_title = '';
+
             if ($manage_target === 'wise_navigation_script') {
                 $script_uc = isset($target[$target_unique_code]) ? strval($target[$target_unique_code]) : '';
+
                 if ($script_uc !== '') {
                     $str_script_title = get_str_wise_navigation_script_edit_title($script_uc, $int_selected_language);
                 }
             }
 
-            $main_container_classes = $prefix.'MainEditContainer'.($manage_target === 'wise_navigation_script' ? ' naviContentsMainEditContainer' : '');
+            $main_container_classes = $prefix . 'MainEditContainer' . ($manage_target === 'wise_navigation_script' ? ' naviContentsMainEditContainer' : '');
             $main_inner_html = '';
+
             if ($manage_target === 'wise_navigation_script' && $str_script_title !== '') {
-                $main_inner_html .= '<h5 class="editContentsTitle">'.$str_script_title.'</h5>';
+                $main_inner_html .= '<h5 class="editContentsTitle">' . $str_script_title . '</h5>';
             }
-            $main_inner_html .= '<div class="mainEditFields '.$prefix.'MainEditFields">'.$str_main_edit_fields.'</div>';
+
+            $main_inner_html .= '<div class="mainEditFields ' . $prefix . 'MainEditFields">' . $str_main_edit_fields . '</div>';
 
             $str_main_edit_fields = '
-            <div class="mainEditContainer '.$main_container_classes.'" data-unique-code="'.escape_html($target[$target_unique_code]).'">
-                '.$main_inner_html.'
+            <div class="mainEditContainer ' . $main_container_classes . '"' . $target_unique_code_attrs . '>
+                ' . $main_inner_html . '
             </div>';
         }
 
         $str_html_contents_extras = '';
+
         if (!empty($extra_edit_field_keys)) {
             $labels = $extra_edit_field_labels;
+
             if (empty($labels) || count($labels) !== count($extra_edit_field_keys)) {
                 $labels = $extra_edit_field_keys;
             }
 
             $str_fields = '';
+
             foreach ($extra_edit_field_keys as $idx => $col_name) {
+
                 $label_text = escape_html($labels[$idx]);
                 $raw_value = isset($target[$col_name]) ? $target[$col_name] : '';
                 $value_attr = escape_html($raw_value);
                 $value_text = escape_html($raw_value);
-                $input_id = $prefix.'ExtraField'.$key.'_'.$idx;
+                $input_id = $prefix . 'ExtraField' . $key . '_' . $idx;
 
                 if ($extra_edit_field_input === 'input') {
                     $str_fields .= '
-                    <label for="'.$input_id.'">'.$label_text.'</label>
-                    <input type="text" id="'.$input_id.'" class="'.$prefix.'ExtraInput editableElement"
-                        data-unique-code="'.escape_html($target[$target_unique_code]).'"
-                        data-id="'.escape_html($target['id']).'"
-                        data-column="'.escape_html($col_name).'"
-                        data-original="'.$value_attr.'" value="'.$value_attr.'">';
+                    <label for="' . $input_id . '">' . $label_text . '</label>
+                    <input type="text" id="' . $input_id . '" class="' . $prefix . 'ExtraInput editableElement"
+                        ' . $target_unique_code_attrs . '
+                        data-id="' . escape_html($target['id']) . '"
+                        data-column="' . escape_html($col_name) . '"
+                        data-original="' . $value_attr . '" value="' . $value_attr . '">';
                 } else {
                     $str_fields .= '
-                    <label for="'.$input_id.'">'.$label_text.'</label>
-                    <textarea id="'.$input_id.'" class="'.$prefix.'ExtraTextarea editableElement '.$str_class_fixed_font.'"
-                        data-unique-code="'.escape_html($target[$target_unique_code]).'"
-                        data-id="'.escape_html($target['id']).'"
-                        data-column="'.escape_html($col_name).'"
-                        data-original="'.$value_text.'" rows="4" cols="40">'.$value_text.'</textarea>';
+                    <label for="' . $input_id . '">' . $label_text . '</label>
+                    <textarea id="' . $input_id . '" class="' . $prefix . 'ExtraTextarea editableElement ' . $str_class_fixed_font . '"
+                        ' . $target_unique_code_attrs . '
+                        data-id="' . escape_html($target['id']) . '"
+                        data-column="' . escape_html($col_name) . '"
+                        data-original="' . $value_text . '" rows="4" cols="40">' . $value_text . '</textarea>';
                 }
             }
 
-            $extra_container_id = $prefix.'ExtraContainer'.$key;
+            $extra_container_id = $prefix . 'ExtraContainer' . $key;
             $hidden_class = ($manage_target === 'wise_navigation_script') ? ' hidden' : '';
 
             $toggle_button_html = '';
+
             if ($manage_target === 'wise_navigation_script') {
                 $toggle_button_html = '
-                <div class="'.$prefix.'ExtraToggleContainer">
-                    <button type="button" class="'.$prefix.'ExtraToggleButton" data-target="'.$extra_container_id.'">show</button>
+                <div class="' . $prefix . 'ExtraToggleContainer">
+                    <button type="button" class="' . $prefix . 'ExtraToggleButton" data-target="' . $extra_container_id . '">show</button>
                 </div>';
             }
 
             $str_html_contents_extras = '
-            <div class="'.$prefix.'ExtraWrapper" data-unique-code="'.escape_html($target[$target_unique_code]).'">
-                '.$toggle_button_html.'
-                <div id="'.$extra_container_id.'" class="'.$prefix.'ExtraContainer'.$hidden_class.'" data-unique-code="'.escape_html($target[$target_unique_code]).'">
-                    <div class="'.$prefix.'ExtraFieldsContainer">'.$str_fields.'</div>
+            <div class="' . $prefix . 'ExtraWrapper"' . $target_unique_code_attrs . '>
+                ' . $toggle_button_html . '
+                <div id="' . $extra_container_id . '" class="' . $prefix . 'ExtraContainer' . $hidden_class . '"' . $target_unique_code_attrs . '>
+                    <div class="' . $prefix . 'ExtraFieldsContainer">' . $str_fields . '</div>
                 </div>
             </div>';
         }
 
         $str_html_contents_add = '
-            <div class="editContentsContainer" data-unique-code="'.escape_html($target[$target_unique_code]).'">'.
-                $str_main_edit_fields.
-                $str_html_contents_to_next.
-				$str_html_contents_to_invite.
-				$str_html_contents_to_requests.
-                // $str_html_contents_to_bookmarks.
-                $str_html_contents_to_check_sequence.
-                $str_html_contents_delete.
-                $str_html_contents_sort.
-                $str_html_contents_radio.
-                $str_html_contents_publish.
-                $str_html_contents_extras.'
+            <div class="editContentsContainer"' . $target_unique_code_attrs . '>' .
+                $str_main_edit_fields .
+                $str_html_contents_to_next .
+                $str_html_contents_to_invite .
+                $str_html_contents_to_requests .
+                // $str_html_contents_to_bookmarks .
+                $str_html_contents_to_check_sequence .
+                $str_html_contents_delete .
+                $str_html_contents_sort .
+                $str_html_contents_radio .
+                $str_html_contents_publish .
+                $str_html_contents_extras . '
             </div>';
 
         $str_html_contents .= $str_html_contents_add;
     }
 
-    $str_html_contents = '<div class="editSectionContainer">'.$section_update_button.$str_html_contents.'</div>';
+    $str_html_contents = '<div class="editSectionContainer">' . $section_update_button . $str_html_contents . '</div>';
 
-    $str_html_edit_section = '<h2>Edit</h2>'.$str_html_contents;
-	$str_html_edit_section = '<section class="sectionStandard">' . $str_html_edit_section . '</section>';
+    $str_html_edit_section = '<h2>Edit</h2>' . $str_html_contents;
+    $str_html_edit_section = '<section class="sectionStandard">' . $str_html_edit_section . '</section>';
 
-    $str_html_create_explanation = '<p>'.escape_html_with_nl2br($target_placeholder).'</p>';
+    $str_html_create_explanation = '<p>' . escape_html_with_nl2br($target_placeholder) . '</p>';
 
     if ($manage_target === 'lesson_step_unit') {
         $arr_strSQL_select = [
@@ -5739,19 +5782,23 @@ function build_html_manage_targets($manage_target, $target_array, $target_unique
             [$t_masta_step_unit_type, 'sort', 'ASC']
         ];
         $strSQL_option = '';
+
         list($pdo_has_error, $select_has_error, $e, $arr_masta_step_unit_types) = execute_select_and_fetch_all($arr_strSQL_select, $strSQL_from, $arr_strSQL_where, $arr_strSQL_order, $strSQL_option);
         handle_database_error_and_redirect($pdo_has_error, $select_has_error, $e, $int_selected_language);
+
         $str_add_divstbox = '';
+
         foreach ($arr_masta_step_unit_types as $key => $loop_masta_step_unit_types) {
             $int_option_value = escape_html($loop_masta_step_unit_types['id']);
             $str_option_text_content = escape_html($loop_masta_step_unit_types[$arr_columns_masta_step_unit_types[$int_selected_language]]);
-            $str_add_divstbox .= '<option value="'.$int_option_value.'">'.$str_option_text_content.'</option>';
+            $str_add_divstbox .= '<option value="' . $int_option_value . '">' . $str_option_text_content . '</option>';
         }
+
         $str_html_create_new_inputbox = '
         <div id="divInputBox">
-            <select class="'.$prefix.'CreateNewData" name="'.$create_input_name.'">'.$str_add_divstbox.'</select>
+            <select class="' . $prefix . 'CreateNewData" name="' . $create_input_name . '">' . $str_add_divstbox . '</select>
         </div>
-        <button id="'.$submit_button_id.'">'.escape_html($label_submit).'</button>';
+        <button id="' . $submit_button_id . '">' . escape_html($label_submit) . '</button>';
     } elseif ($manage_target === 'wise_navigation_script') {
         $arr_strSQL_select = [
             [$t_masta_wise_navigation_script, 'id'],
@@ -5763,33 +5810,37 @@ function build_html_manage_targets($manage_target, $target_array, $target_unique
             [$t_masta_wise_navigation_script, 'id', 'ASC']
         ];
         $strSQL_option = '';
+
         list($pdo_has_error, $select_has_error, $e, $arr_masta_scripts) = execute_select_and_fetch_all($arr_strSQL_select, $strSQL_from, $arr_strSQL_where, $arr_strSQL_order, $strSQL_option);
         handle_database_error_and_redirect($pdo_has_error, $select_has_error, $e, $int_selected_language);
+
         $str_add_divstbox = '';
+
         foreach ($arr_masta_scripts as $key => $loop_script) {
             $int_option_value = escape_html($loop_script['id']);
             $str_option_text_content = escape_html($loop_script['script_key']);
-            $str_add_divstbox .= '<option value="'.$int_option_value.'">'.$str_option_text_content.'</option>';
+            $str_add_divstbox .= '<option value="' . $int_option_value . '">' . $str_option_text_content . '</option>';
         }
+
         $str_html_create_new_inputbox = '
         <div id="divInputBox">
-            <select class="'.$prefix.'CreateNewData" name="'.$create_input_name.'">'.$str_add_divstbox.'</select>
+            <select class="' . $prefix . 'CreateNewData" name="' . $create_input_name . '">' . $str_add_divstbox . '</select>
         </div>
-        <button id="'.$submit_button_id.'">'.escape_html($label_submit).'</button>';
+        <button id="' . $submit_button_id . '">' . escape_html($label_submit) . '</button>';
     } else {
         $str_html_create_new_inputbox = '
         <div class="divInputBox">
-            <textarea class="'.$prefix.'CreateNewData '.$str_class_fixed_font.'" name="'.$create_input_name.'" rows="10" cols="40"></textarea>
+            <textarea class="' . $prefix . 'CreateNewData ' . $str_class_fixed_font . '" name="' . $create_input_name . '" rows="10" cols="40"></textarea>
         </div>
-        <button id="'.$submit_button_id.'">'.escape_html($label_submit).'</button>';
+        <button id="' . $submit_button_id . '">' . escape_html($label_submit) . '</button>';
     }
 
-    $str_html_create_new = '<div class="createNewSectionContainer">'.$str_html_create_explanation.$str_html_create_new_inputbox.'</div>';
+    $str_html_create_new = '<div class="createNewSectionContainer">' . $str_html_create_explanation . $str_html_create_new_inputbox . '</div>';
 
-    $str_html_create_section = '<h2>Create New</h2>'.$str_html_create_new;
-	$str_html_create_section = '<section class="sectionStandard">' . $str_html_create_section . '</section>';
+    $str_html_create_section = '<h2>Create New</h2>' . $str_html_create_new;
+    $str_html_create_section = '<section class="sectionStandard">' . $str_html_create_section . '</section>';
 
-    $str_html = $str_html_edit_section.$str_html_create_section;
+    $str_html = $str_html_edit_section . $str_html_create_section;
 
     $str_html .= '<script>(function(){if(typeof window._manageTargetsExtrasToggleInit==="undefined"){window._manageTargetsExtrasToggleInit=true;document.addEventListener("click",function(e){var btn=e.target.closest("button[data-target]");if(!btn)return;if(btn.className&&btn.className.indexOf("ExtraToggleButton")===-1)return;var id=btn.getAttribute("data-target");if(!id)return;var box=document.getElementById(id);if(!box)return;var isHidden=box.classList.contains("hidden");if(isHidden){box.classList.remove("hidden");btn.textContent="hide";}else{box.classList.add("hidden");btn.textContent="show";}});}})();</script>';
 

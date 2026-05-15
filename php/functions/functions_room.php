@@ -10,6 +10,7 @@ function build_html_manage_rooms_page($int_selected_language){
 	global
 		$t_rooms,
 		$path_manage_room_lessons,
+		$str_snake_to_camel_room_unique_code,
 		$arr_str_placeholder_room_name;
 
 	$str_html = '';
@@ -24,7 +25,7 @@ function build_html_manage_rooms_page($int_selected_language){
 
 	$arr_strSQL_select = [
 		[$t_rooms,'id'],
-		[$t_rooms,'unique_code'],
+		[$t_rooms,'unique_code as ' . $str_snake_to_camel_room_unique_code],
 		[$t_rooms,'room_name'],
 		[$t_rooms,'room_type'],
 		[$t_rooms,'is_published']
@@ -52,14 +53,21 @@ function build_html_manage_rooms_page($int_selected_language){
 
 	$manage_target = 'room';
 
+	$options = [
+		'unique_code_input_name' => 'room_unique_code',
+		'unique_code_data_attr' => 'data-room-unique-code',
+		'common_unique_code_data_attr' => 'data-target-unique-code'
+	];
+
 	$str_html = build_html_manage_targets(
 		$manage_target,
 		$arr_rooms,
-		'unique_code',
+		$str_snake_to_camel_room_unique_code,
 		'room_name',
 		$url_manage_room_lessons,
 		$arr_str_placeholder_room_name[$int_selected_language],
-		$int_selected_language
+		$int_selected_language,
+		$options
 	);
 
 	return $str_html;
@@ -73,6 +81,7 @@ function build_html_manage_room_lessons_page($int_selected_language){
 		$t_room_lessons,
 		$t_rooms,
 		$path_manage_room_lesson_steps,
+		$str_snake_to_camel_room_lesson_unique_code,
 		$arr_str_placeholder_lesson_name;
 
 	$str_html = '';
@@ -90,7 +99,7 @@ function build_html_manage_room_lessons_page($int_selected_language){
 
 	$arr_strSQL_select = [
 		[$t_room_lessons,'id'],
-		[$t_room_lessons,'unique_code'],
+		[$t_room_lessons,'unique_code as ' . $str_snake_to_camel_room_lesson_unique_code],
 		[$t_room_lessons,'title'],
 		[$t_room_lessons,'learning_status'],
 		[$t_rooms,'room_name']
@@ -124,14 +133,21 @@ function build_html_manage_room_lessons_page($int_selected_language){
 
 	$manage_target = 'lesson';
 
+	$options = [
+		'unique_code_input_name' => 'room_lesson_unique_code',
+		'unique_code_data_attr' => 'data-room-lesson-unique-code',
+		'common_unique_code_data_attr' => 'data-target-unique-code'
+	];
+
 	$str_html = build_html_manage_targets(
 		$manage_target,
 		$arr_lessons,
-		'unique_code',
+		$str_snake_to_camel_room_lesson_unique_code,
 		'title',
 		$url_manage_room_lesson_steps,
 		$arr_str_placeholder_lesson_name[$int_selected_language],
-		$int_selected_language
+		$int_selected_language,
+		$options
 	);
 
 	$str_html_multicopy_lessons = build_html_multicopy_lessons_from_teaching_materials_section($int_selected_language);
@@ -143,7 +159,6 @@ function build_html_manage_room_lessons_page($int_selected_language){
 
 		$arr_strSQL_select = [
 			[$t_rooms,'id'],
-			[$t_rooms,'unique_code'],
 			[$t_rooms,'room_name']
 		];
 	
@@ -189,6 +204,7 @@ function build_html_manage_room_lesson_steps_page($int_selected_language){
 		$t_room_lessons,
 		$t_rooms,
 		$path_manage_room_lesson_step_units,
+		$str_snake_to_camel_room_lesson_step_unique_code,
 		$arr_str_placeholder_lesson_step_name;
 
 	$str_html = '';
@@ -206,7 +222,7 @@ function build_html_manage_room_lesson_steps_page($int_selected_language){
 
 	$arr_strSQL_select = [
 		[$t_room_lesson_steps,'id'],
-		[$t_room_lesson_steps,'unique_code'],
+		[$t_room_lesson_steps,'unique_code as ' . $str_snake_to_camel_room_lesson_step_unique_code],
 		[$t_room_lesson_steps,'step_name'],
 		[$t_room_lessons,'title'],
 		[$t_rooms,'room_name']
@@ -245,14 +261,21 @@ function build_html_manage_room_lesson_steps_page($int_selected_language){
 
 	$manage_target = 'lesson_step';
 
+	$options = [
+		'unique_code_input_name' => 'room_lesson_step_unique_code',
+		'unique_code_data_attr' => 'data-room-lesson-step-unique-code',
+		'common_unique_code_data_attr' => 'data-target-unique-code'
+	];
+
 	$str_html = build_html_manage_targets(
 		$manage_target,
 		$arr_lesson_steps,
-		'unique_code',
+		$str_snake_to_camel_room_lesson_step_unique_code,
 		'step_name',
 		$url_manage_room_lesson_step_units,
 		$arr_str_placeholder_lesson_step_name[$int_selected_language],
-		$int_selected_language
+		$int_selected_language,
+		$options
 	);
 
 	$str_html_header = '';
@@ -274,6 +297,7 @@ function build_html_manage_room_lesson_step_units_page($int_selected_language){
 		$t_room_lessons,
 		$t_rooms,
 		$path_manage_room_lesson_contents,
+		$str_snake_to_camel_room_lesson_step_unit_unique_code,
 		$arr_str_placeholder_lesson_step_unit_name;
 
 	$str_html = '';
@@ -291,7 +315,7 @@ function build_html_manage_room_lesson_step_units_page($int_selected_language){
 
 	$arr_strSQL_select = [
 		[$t_room_lesson_step_units,'id'],
-		[$t_room_lesson_step_units,'unique_code'],
+		[$t_room_lesson_step_units,'unique_code as ' . $str_snake_to_camel_room_lesson_step_unit_unique_code],
 		[$t_room_lesson_step_units,'unit_type'],
 		[$t_room_lesson_steps,'step_name'],
 		[$t_room_lessons,'title'],
@@ -336,13 +360,21 @@ function build_html_manage_room_lesson_step_units_page($int_selected_language){
 
 	$manage_target = 'lesson_step_unit';
 
+	$options = [
+		'unique_code_input_name' => 'room_lesson_step_unit_unique_code',
+		'unique_code_data_attr' => 'data-room-lesson-step-unit-unique-code',
+		'common_unique_code_data_attr' => 'data-target-unique-code'
+	];
+
 	$str_html = build_html_manage_targets(
-		$manage_target, $arr_lesson_step_units,
-		'unique_code',
+		$manage_target,
+		$arr_lesson_step_units,
+		$str_snake_to_camel_room_lesson_step_unit_unique_code,
 		'unit_type',
 		$url_manage_room_lesson_contents,
 		$arr_str_placeholder_lesson_step_unit_name[$int_selected_language],
-		$int_selected_language
+		$int_selected_language,
+		$options
 	);
 
 	$str_html_header = '';
