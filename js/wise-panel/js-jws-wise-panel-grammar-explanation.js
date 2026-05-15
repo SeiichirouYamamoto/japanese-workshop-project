@@ -189,7 +189,7 @@ async function createMultipleGrammarExplanations(elms_list) {
         const firstElm = list[INDEX_FIRST];
         const firstData = {
             japaneseId: firstElm.dataset.japaneseId ? escapeNumber(firstElm.dataset.japaneseId) : 0,
-            grammarUniqueCode: firstElm.dataset.uniqueCode ? escapeHTML(firstElm.dataset.uniqueCode) : '',
+            grammarUniqueCode: firstElm.dataset.grammarUniqueCode ? escapeHTML(firstElm.dataset.grammarUniqueCode) : '',
             japanese: firstElm.dataset.japanese ? escapeHTML(firstElm.dataset.japanese) : '',
             kana: firstElm.dataset.kana ? escapeHTML(firstElm.dataset.kana) : '',
             categoryId: firstElm.dataset.categoryId ? escapeNumber(firstElm.dataset.categoryId) : 0
@@ -203,7 +203,7 @@ async function createMultipleGrammarExplanations(elms_list) {
 
         const rest = list.slice(1).map(elm => ({
             japaneseId: elm.dataset.japaneseId ? escapeNumber(elm.dataset.japaneseId) : 0,
-            grammarUniqueCode: elm.dataset.uniqueCode ? escapeHTML(elm.dataset.uniqueCode) : '',
+            grammarUniqueCode: elm.dataset.grammarUniqueCode ? escapeHTML(elm.dataset.grammarUniqueCode) : '',
             japanese: elm.dataset.japanese ? escapeHTML(elm.dataset.japanese) : '',
             kana: elm.dataset.kana ? escapeHTML(elm.dataset.kana) : '',
             categoryId: elm.dataset.categoryId ? escapeNumber(elm.dataset.categoryId) : 0,
@@ -261,7 +261,7 @@ async function createGrammarExplanation(str_grammarUniqueCode, options = {}) {
     str_grammarUniqueCode = escapeHTML(str_grammarUniqueCode);
 
     const elements = document.querySelectorAll('.wisePanelGrammarExplanationViewMainContentAreaContents');
-    const found = Array.from(elements).some(el => el.dataset.uniqueCode === str_grammarUniqueCode);
+    const found = Array.from(elements).some(el => el.dataset.grammarUniqueCode === str_grammarUniqueCode);
     if (found) return;
 
     if (!suppressHide) {
@@ -325,7 +325,7 @@ async function createGrammarExplanation(str_grammarUniqueCode, options = {}) {
         addElement.classList.add('wisePanelGrammarExplanationViewMainContentAreaContents');
         addElement.style.display = 'none';
         addElement.style.zIndex = 2;
-        addElement.dataset.uniqueCode = str_grammarUniqueCode;
+        addElement.dataset.grammarUniqueCode = str_grammarUniqueCode;
 
         const addContainer = document.createElement('div');
         addContainer.classList.add('wisePanelGrammarExplanationViewMainContentAreaContentsContainer');
@@ -560,7 +560,7 @@ function displayCurrentStateGrammarExplanation(targetIndex, doIncrease){
 		let matchFound = false;
 		const elements = document.querySelectorAll('.wisePanelGrammarExplanationViewMainContentAreaContents');
 		elements.forEach(element => {
-			if (element.dataset.uniqueCode === result) {
+			if (element.dataset.grammarUniqueCode === result) {
 				if(matchFound){
 					element.style.display = 'none';
 				}

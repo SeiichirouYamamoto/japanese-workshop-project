@@ -335,7 +335,7 @@ function createGrammarViewJumpButton(arr_explanation, obj){
 	const button = document.createElement('button');
 	button.classList.add(...arr_explanation.arrClassButton);
 	button.textContent = arr_explanation.str_title;
-	button.dataset.uniqueCode = arr_explanation.str_grammarUniqueCode;
+	button.dataset.grammarUniqueCode = arr_explanation.str_grammarUniqueCode;
 
 	if (arr_explanation.str_grammarUniqueCode.length !== LENGTH_EMPTY) {
 		button.addEventListener('pointerup', async function() {

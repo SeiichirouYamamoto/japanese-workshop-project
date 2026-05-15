@@ -199,10 +199,10 @@ function build_html_explanation_button($doDisplayGrammarOutlineLabelButtonsExpla
 		$arr_matched = [];
 		
 		if ($doDisplayGrammarOutlineLabelButtonsExplanation && !empty($arr_masta_japanese_section)){
-			$str_html = '<button class="grammarOutlineLabelButton grammarOutlineLabelButtonExplanation terminologyButtonsExplanation" data-japanese-id="'.$arr_contents_target['id'].'" data-unique-code="'.$arr_contents_target[$str_snake_to_camel_unique_code].'" data-japanese="'.$arr_contents_target[$arr_columns_masta_japanese_root[$int_selected_language]].'" data-kana="'.$arr_contents_target[$str_column_root_kana].'" data-category-id="'.$arr_contents_target['category_id'].'" title="'.$str_grammarOutlineLabelButtonExplanation[$int_selected_language].'">'.$str_grammarOutlineLabelButtonExplanationMarker[$int_selected_language].'</button>';
+			$str_html = '<button class="grammarOutlineLabelButton grammarOutlineLabelButtonExplanation terminologyButtonsExplanation" data-japanese-id="'.$arr_contents_target['id'].'" data-grammar-unique-code="'.$arr_contents_target[$str_snake_to_camel_unique_code].'" data-japanese="'.$arr_contents_target[$arr_columns_masta_japanese_root[$int_selected_language]].'" data-kana="'.$arr_contents_target[$str_column_root_kana].'" data-category-id="'.$arr_contents_target['category_id'].'" title="'.$str_grammarOutlineLabelButtonExplanation[$int_selected_language].'">'.$str_grammarOutlineLabelButtonExplanationMarker[$int_selected_language].'</button>';
 		}
 		else{
-			$str_html = '<button class="grammarOutlineLabelButton grammarOutlineLabelButtonExplanation terminologyButtonsExplanation hidden" data-japanese-id="'.$arr_contents_target['id'].'" data-unique-code="'.$arr_contents_target[$str_snake_to_camel_unique_code].'" data-japanese="'.$arr_contents_target[$arr_columns_masta_japanese_root[$int_selected_language]].'" data-kana="'.$arr_contents_target[$str_column_root_kana].'" data-category-id="'.$arr_contents_target['category_id'].'" title="'.$str_grammarOutlineLabelButtonExplanation[$int_selected_language].'">'.$str_grammarOutlineLabelButtonExplanationMarker[$int_selected_language].'</button>';
+			$str_html = '<button class="grammarOutlineLabelButton grammarOutlineLabelButtonExplanation terminologyButtonsExplanation hidden" data-japanese-id="'.$arr_contents_target['id'].'" data-grammar-unique-code="'.$arr_contents_target[$str_snake_to_camel_unique_code].'" data-japanese="'.$arr_contents_target[$arr_columns_masta_japanese_root[$int_selected_language]].'" data-kana="'.$arr_contents_target[$str_column_root_kana].'" data-category-id="'.$arr_contents_target['category_id'].'" title="'.$str_grammarOutlineLabelButtonExplanation[$int_selected_language].'">'.$str_grammarOutlineLabelButtonExplanationMarker[$int_selected_language].'</button>';
 		}
 		return array($str_div_grammar_outline_text, $str_html);
 	}
@@ -318,7 +318,7 @@ function build_html_grammar_outline_item($contents_tree_flags, $arr_bookmarks_da
 			)
 		)
 		{
-			$str_div_grammar_outline_explanation_button = '<button class="grammarOutlineLabelButton grammarOutlineLabelButtonExplanation derivedGrammarButtonsExplanation" data-japanese-id="'.$masta_japanese_root_id.'" data-unique-code="'.$grammar_unique_code.'" data-japanese="'.$title.'" data-kana="'.$kana.'" data-category-id="'.$category_id.'" title="'.$str_grammarOutlineLabelButtonExplanation[$int_selected_language].'">'.$str_grammarOutlineLabelButtonExplanationMarker[$int_selected_language].'</button>';
+			$str_div_grammar_outline_explanation_button = '<button class="grammarOutlineLabelButton grammarOutlineLabelButtonExplanation derivedGrammarButtonsExplanation" data-japanese-id="'.$masta_japanese_root_id.'" data-grammar-unique-code="'.$grammar_unique_code.'" data-japanese="'.$title.'" data-kana="'.$kana.'" data-category-id="'.$category_id.'" title="'.$str_grammarOutlineLabelButtonExplanation[$int_selected_language].'">'.$str_grammarOutlineLabelButtonExplanationMarker[$int_selected_language].'</button>';
 		}
 		else{
 			$str_div_grammar_outline_explanation_button = '';
@@ -341,7 +341,7 @@ function build_html_grammar_outline_item($contents_tree_flags, $arr_bookmarks_da
 			)
 		)
 		{
-			$str_div_grammar_outline_explanation_button = '<button class="grammarOutlineLabelButton grammarOutlineLabelButtonExplanation basicGrammarButtonsExplanation" data-japanese-id="'.$masta_japanese_root_id.'" data-unique-code="'.$grammar_unique_code.'" data-japanese="'.$title.'" data-kana="'.$kana.'" data-category-id="'.$category_id.'" title="'.$str_grammarOutlineLabelButtonExplanation[$int_selected_language].'">'.$str_grammarOutlineLabelButtonExplanationMarker[$int_selected_language].'</button>';
+			$str_div_grammar_outline_explanation_button = '<button class="grammarOutlineLabelButton grammarOutlineLabelButtonExplanation basicGrammarButtonsExplanation" data-japanese-id="'.$masta_japanese_root_id.'" data-grammar-unique-code="'.$grammar_unique_code.'" data-japanese="'.$title.'" data-kana="'.$kana.'" data-category-id="'.$category_id.'" title="'.$str_grammarOutlineLabelButtonExplanation[$int_selected_language].'">'.$str_grammarOutlineLabelButtonExplanationMarker[$int_selected_language].'</button>';
 		}
 		else{
 			$str_div_grammar_outline_explanation_button = '';
@@ -370,7 +370,7 @@ function build_html_grammar_outline_item($contents_tree_flags, $arr_bookmarks_da
 
 	if($doDisplayGrammarOutlineCheckbox){
 		$str_div_grammar_outline_grammars = '
-		<li class="'.$str_li_classnames.'" data-unique-code="'.$grammar_unique_code.'">
+		<li class="'.$str_li_classnames.'" data-grammar-unique-code="'.$grammar_unique_code.'">
 			<input 
 				type="checkbox" 
 				name="'.$grammar_unique_code.'" 
@@ -380,7 +380,7 @@ function build_html_grammar_outline_item($contents_tree_flags, $arr_bookmarks_da
 				data-japanese="'.$title.'"
 				data-title="'.$title.'"
 				data-example="'.$data_example.'"
-				data-unique-code="'.$grammar_unique_code.'"
+				data-grammar-unique-code="'.$grammar_unique_code.'"
 				data-category-id="'.$category_id.'"
 			>'.
 			$str_div_grammar_outline_explanation_button.'

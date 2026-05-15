@@ -234,7 +234,7 @@ function getSharedContentsSelectionElements() {
     elms.forEach(elm => {
         storeSharedContentsSelectionItem({
             japaneseId: escapeNumber(elm.dataset.japaneseId),
-            grammarUniqueCode: escapeHTML(elm.dataset.uniqueCode),
+            grammarUniqueCode: escapeHTML(elm.dataset.grammarUniqueCode),
             japanese: escapeHTML(elm.dataset.japanese),
             kana: escapeHTML(elm.dataset.kana),
             categoryId: escapeNumber(elm.dataset.categoryId)

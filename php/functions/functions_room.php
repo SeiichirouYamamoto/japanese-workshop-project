@@ -1067,7 +1067,7 @@ function build_html_manage_room_modal_ui_selected_contents($int_selected_languag
 function get_arr_homework_items($arr_grammar_unique_code, $room_id, $int_selected_language) {
 
 	global
-		$str_snake_to_camel_unique_code,
+		$str_snake_to_camel_grammar_unique_code,
 		$str_snake_to_camel_japanese,
 		$str_homework_method_inputData,
 		$str_homework_method_activeRecall,
@@ -1079,7 +1079,7 @@ function get_arr_homework_items($arr_grammar_unique_code, $room_id, $int_selecte
 		$item = [];
 
 		$item_grammar_unique_code = (string)$item_grammar_unique_code;
-		$item[$str_snake_to_camel_unique_code] = $item_grammar_unique_code;
+		$item[$str_snake_to_camel_grammar_unique_code] = $item_grammar_unique_code;
 
 		$arr_masta_japanese_root = fetch_arr_masta_japanese_root_from_unique_code(
 			$item_grammar_unique_code,

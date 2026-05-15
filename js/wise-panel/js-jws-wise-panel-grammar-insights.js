@@ -81,15 +81,15 @@ if (grammarInsightsUpsertHomeworkButton !== null)
                     if (li.classList.contains('grammarInsightsHomeworkLinkDisplayAreaLiWithInput')) {
                         const checkbox = li.querySelector('.grammarInsightsHomeworkLinkDisplayAreaLiCheckbox');
                         if (checkbox && checkbox.checked) {
-                            const uniqueCode = li.dataset.uniqueCode;
-                            if (uniqueCode) {
-                                arr_grammar_information[day][type].push(uniqueCode);
+                            const grammarUniqueCode = li.dataset.grammarUniqueCode;
+                            if (grammarUniqueCode) {
+                                arr_grammar_information[day][type].push(grammarUniqueCode);
                             }
                         }
                     } else {
-                        const uniqueCode = li.dataset.uniqueCode;
-                        if (uniqueCode) {
-                            arr_grammar_information[day][type].push(uniqueCode);
+                        const grammarUniqueCode = li.dataset.grammarUniqueCode;
+                        if (grammarUniqueCode) {
+                            arr_grammar_information[day][type].push(grammarUniqueCode);
                         }
                     }
                 });
@@ -234,7 +234,7 @@ function addGrammarInsightsSelectedItem(elm){
 	const classNaming_li = 'panelOverlaySharedContentsUiSelectedContentsListLi';
 
 	const int_japanese_id = escapeNumber(elm.dataset.japaneseId);
-	const str_unique_code = escapeHTML(elm.dataset.uniqueCode);
+	const grammarUniqueCode = escapeHTML(elm.dataset.grammarUniqueCode);
 	const str_japanese = escapeHTML(elm.dataset.japanese);
 	const int_category_id = escapeNumber(elm.dataset.categoryId);
 
@@ -244,7 +244,7 @@ function addGrammarInsightsSelectedItem(elm){
 		const elm_addLi = document.createElement('li');
 		elm_addLi.classList.add(classNaming_li);
 		elm_addLi.dataset.japaneseId = int_japanese_id;
-		elm_addLi.dataset.uniqueCode = str_unique_code;
+		elm_addLi.dataset.grammarUniqueCode = grammarUniqueCode;
 		elm_addLi.dataset.japanese = str_japanese;
 		elm_addLi.dataset.categoryId = int_category_id;
 		elm_addLi.textContent = str_japanese;
@@ -330,7 +330,7 @@ async function buildGrammarInsightsDisplayContents(){
             }
 
             seenIds.add(id);
-            arr_grammar_unique_code.push(escapeHTML(elm.dataset.uniqueCode));
+            arr_grammar_unique_code.push(escapeHTML(elm.dataset.grammarUniqueCode));
         });
 
         switch (int_wisePanelGrammarInsightsViewDropDownMenuSelectAttribute) {
@@ -592,7 +592,7 @@ function buildGrammarInsightListItem({
 	elm_addLi.classList.add('grammarInsightsDisplayAreaLi', 'flexDirectionColumn');
 
 	if (addUniqueCodeToLi) {
-		elm_addLi.dataset.uniqueCode = escapeHTML(jsonItem['grammarUniqueCode']);
+		elm_addLi.dataset.grammarUniqueCode = escapeHTML(jsonItem['grammarUniqueCode']);
 	}
 
 	const elm_addLiContainer = document.createElement('div');
@@ -603,7 +603,7 @@ function buildGrammarInsightListItem({
 		elm_addLiButton.classList.add('grammarOutlineLabelButtonExplanation');
 		elm_addLiButton.textContent = 'ℹ️';
 		elm_addLiButton.dataset.japaneseId = escapeHTML(jsonItem['japaneseId']);
-		elm_addLiButton.dataset.uniqueCode = escapeHTML(jsonItem['grammarUniqueCode']);
+		elm_addLiButton.dataset.grammarUniqueCode = escapeHTML(jsonItem['grammarUniqueCode']);
 		elm_addLiButton.dataset.japanese = escapeHTML(jsonItem['japanese']);
 		elm_addLiButton.dataset.kana = escapeHTML(jsonItem['kana']);
 		elm_addLiButton.dataset.categoryId = escapeHTML(jsonItem['categoryId']);
@@ -642,7 +642,7 @@ function buildGrammarInsightSentenceItem({jsonItem}){
 
 	let elm_addButtonSortingQuiz = document.createElement('button');
 	elm_addButtonSortingQuiz.classList.add('grammarInsightsDisplayAreaLiButton');
-	elm_addButtonSortingQuiz.dataset.uniqueCode = sentenceUniqueCode;
+	elm_addButtonSortingQuiz.dataset.sentenceUniqueCode = sentenceUniqueCode;
 	// マジックナンバー
 	elm_addButtonSortingQuiz.textContent = 'Sorting Quiz';
 	elm_addButtonSortingQuiz.addEventListener('pointerup',
@@ -990,7 +990,7 @@ async function buildGrammarInsightsHomeworkLeftList() {
         const arr_grammar_unique_code = [];
         const lis = document.querySelectorAll('.panelOverlaySharedContentsUiSelectedContentsListLi');
         lis.forEach(li => {
-            const str_grammarUniqueCode = escapeHTML(li.dataset.uniqueCode);
+            const str_grammarUniqueCode = escapeHTML(li.dataset.grammarUniqueCode);
             arr_grammar_unique_code.push(str_grammarUniqueCode);
         });
 
@@ -1040,7 +1040,7 @@ function insertGrammarInsightsHomeworkLeftListItems(arrLiInfo) {
 	arrLiInfo.forEach(info => {
 
 		let str_japanese = escapeHTML(info.japanese);
-		let str_uniqueCode = escapeHTML(info.uniqueCode);
+		let grammarUniqueCode = escapeHTML(info.grammarUniqueCode);
 		let inputData = escapeNumber(info.inputData);
 		let activeRecall = escapeNumber(info.activeRecall);
 		let registeredSentences = escapeNumber(info.registeredSentences);
@@ -1061,12 +1061,12 @@ function insertGrammarInsightsHomeworkLeftListItems(arrLiInfo) {
 				return;
 			}
 			
-			let existing = selectedUl.querySelectorAll(`.grammarInsightsHomeworkLinkDisplayAreaRightContainerLi[data-unique-code="${str_uniqueCode}"]`);
+			let existing = selectedUl.querySelectorAll(`.grammarInsightsHomeworkLinkDisplayAreaRightContainerLi[data-grammar-unique-code="${grammarUniqueCode}"]`);
 			
 			if (existing.length === LENGTH_EMPTY) {	
 				let elm_addLi_for_rightContainer = document.createElement('li');
 				elm_addLi_for_rightContainer.classList.add('grammarInsightsHomeworkLinkDisplayAreaRightContainerLi', 'grammarInsightsHomeworkLinkDisplayAreaLiResetTarget', 'grammarInsightsHomeworkLinkDisplayAreaLi');
-				elm_addLi_for_rightContainer.dataset.uniqueCode = str_uniqueCode;
+				elm_addLi_for_rightContainer.dataset.grammarUniqueCode = grammarUniqueCode;
 				elm_addLi_for_rightContainer.textContent = str_japanese;
 
 				elm_addLi_for_rightContainer.addEventListener('pointerup',function (e){
@@ -1129,7 +1129,7 @@ function buildGrammarInsightsQuizLinks(elms_panelOverlaySharedContentsUiSelected
 
 	for (let i = INDEX_FIRST; i < elms_panelOverlaySharedContentsUiSelectedContentsListLi.length; i++) {
 		const elm = elms_panelOverlaySharedContentsUiSelectedContentsListLi[i];
-		const grammarUniqueCode = escapeHTML(elm.dataset.uniqueCode);
+		const grammarUniqueCode = escapeHTML(elm.dataset.grammarUniqueCode);
 		params = params + '&arr_grammar_unique_code[]=' + grammarUniqueCode;
 	}
 
@@ -1404,13 +1404,13 @@ function getCurrentGrammarInsightsSnapshot() {
 
     const lis = document.querySelectorAll('.panelOverlaySharedContentsUiSelectedContentsListLi');
 
-    const selectedUniqueCodes = Array.from(lis).map(li => {
-        return escapeHTML(li.dataset.uniqueCode);
+    const selectedGrammarUniqueCodes = Array.from(lis).map(li => {
+        return escapeHTML(li.dataset.grammarUniqueCode);
     });
 
     return {
         roomUniqueCode: escapeHTML(wiseSetupRoomSelect?.value || 'default'),
-        selectedUniqueCodes: selectedUniqueCodes
+        selectedGrammarUniqueCodes: selectedGrammarUniqueCodes
     };
 }
 
@@ -1424,12 +1424,12 @@ function isSameGrammarInsightsSnapshot(a, b) {
         return false;
     }
 
-    if (a.selectedUniqueCodes.length !== b.selectedUniqueCodes.length) {
+    if (a.selectedGrammarUniqueCodes.length !== b.selectedGrammarUniqueCodes.length) {
         return false;
     }
 
-    for (let i = 0; i < a.selectedUniqueCodes.length; i++) {
-        if (a.selectedUniqueCodes[i] !== b.selectedUniqueCodes[i]) {
+    for (let i = 0; i < a.selectedGrammarUniqueCodes.length; i++) {
+        if (a.selectedGrammarUniqueCodes[i] !== b.selectedGrammarUniqueCodes[i]) {
             return false;
         }
     }
@@ -1441,7 +1441,7 @@ async function openGrammarInsightsPanelWithDiffCheck() {
 
     const currentSnapshot = getCurrentGrammarInsightsSnapshot();
 
-    const hasSelection = currentSnapshot.selectedUniqueCodes.length > 0;
+    const hasSelection = currentSnapshot.selectedGrammarUniqueCodes.length > 0;
 
     if (!hasSelection) {
 
