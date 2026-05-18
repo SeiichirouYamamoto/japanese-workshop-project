@@ -1062,21 +1062,23 @@ function initWiseLayout(isOnload) {
         if (isOnload) sendBannerAdActivity();
     }
 
-    if (isOnload) {
+	if (isOnload) {
+
 		disableMobileGestures();
 		hideMobileNavButtonOnLoad();
-	    applyFullscreenRequirement();
-        applyWiseCanvasLayout();
-        registerTextareaUnloadHandler();
-        saveState(STATE_TITLE_ONLOAD[intSelectedLanguage]);
-        applyFontSizeVariation(
-            ['wiseUiFontSizeTarget'],
-            'wiseUiFontSizeTargetVariationDifference'
-        );
-    } else {
-        saveState(STATE_TITLE_RESIZE[intSelectedLanguage]);
-        undo();
-    }
+		applyFullscreenRequirement();
+		applyWiseCanvasLayout();
+		initZoomWhiteboard();
+		registerTextareaUnloadHandler();
+		saveState(STATE_TITLE_ONLOAD[intSelectedLanguage]);
+		applyFontSizeVariation(
+			['wiseUiFontSizeTarget'],
+			'wiseUiFontSizeTargetVariationDifference'
+		);
+	} else {
+		saveState(STATE_TITLE_RESIZE[intSelectedLanguage]);
+		undo();
+	}
 
     finalizeLayout();
     setZoomScale(getWiseZoomScale());
@@ -1112,6 +1114,8 @@ function setZoomScale(newScale) {
     if (newScale > zoomScaleMax) {
         newScale = zoomScaleMax;
     }
+
+    newScale = Math.round(newScale * 100) / 100;
 
     whiteboardState.zoomScale = newScale;
 
@@ -1150,6 +1154,42 @@ function getWiseZoomScale() {
     return zoomScale;
 }
 
+function calculateFitWidthZoomScale() {
+
+    if (!wiseZoomStage || !wisePanelWhiteboardViewMainContentArea) {
+        return zoomScaleDefault;
+    }
+
+    const containerWidth =
+        wisePanelWhiteboardViewMainContentArea.clientWidth;
+
+    const boardWidth =
+        wiseZoomStage.scrollWidth;
+
+    if (!Number.isFinite(containerWidth) || containerWidth <= 0) {
+        return zoomScaleDefault;
+    }
+
+    if (!Number.isFinite(boardWidth) || boardWidth <= 0) {
+        return zoomScaleDefault;
+    }
+
+    const scale = containerWidth / boardWidth;
+
+    return Math.min(
+        zoomScaleMax,
+        Math.max(zoomScaleMin, scale)
+    );
+}
+
+function initZoomWhiteboard() {
+
+    const fitScale = calculateFitWidthZoomScale();
+    whiteboardState.initialZoomScale = fitScale;
+    setZoomScale(fitScale);
+
+}
+
 function zoomInWhiteboard() {
     setZoomScale(getWiseZoomScale() + 0.1);
 }
@@ -1159,5 +1199,9 @@ function zoomOutWhiteboard() {
 }
 
 function resetZoomWhiteboard() {
-    setZoomScale(zoomScaleDefault);
+
+    const resetScale =
+        whiteboardState.initialZoomScale || zoomScaleDefault;
+
+    setZoomScale(resetScale);
 }

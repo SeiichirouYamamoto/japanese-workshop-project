@@ -105,6 +105,7 @@ function build_html_wise_whiteboard_ui_zoom() {
 
     $html = '<div id="wiseZoomContainerInner">'
           . '<button id="zoomWhiteboardIn" class="wiseZoomButton">' . $html_zoom_in . '</button>'
+          . '<button id="zoomWhiteboardReset" class="wiseZoomButton">Reset</button>'
           . '<button id="zoomWhiteboardOut" class="wiseZoomButton">' . $html_zoom_out . '</button>'
           . '</div>';
 

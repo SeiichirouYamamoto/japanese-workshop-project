@@ -1,6 +1,7 @@
 
 const zoomWhiteboardIn = document.getElementById('zoomWhiteboardIn');
 const zoomWhiteboardOut = document.getElementById('zoomWhiteboardOut');
+const zoomWhiteboardReset = document.getElementById('zoomWhiteboardReset');
 
 
 if(zoomWhiteboardIn !== null)
@@ -11,6 +12,11 @@ if(zoomWhiteboardIn !== null)
 if(zoomWhiteboardOut !== null)
 {zoomWhiteboardOut.addEventListener('pointerup', function() {
 	zoomOutWhiteboard();
+}, false);}
+
+if(zoomWhiteboardReset !== null)
+{zoomWhiteboardReset.addEventListener('pointerup', function() {
+	resetZoomWhiteboard();
 }, false);}
 
 
