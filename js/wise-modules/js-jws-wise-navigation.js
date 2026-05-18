@@ -1452,7 +1452,7 @@ async function searchWiseNaviItems() {
 async function fetchWiseNaviItems() {
     const urlObj = new URL(window.location.href);
     const params = urlObj.searchParams;
-    const unique_code = params.get(KEY_UNIQUE_CODE) || 0;
+    const unique_code = params.get(KEY_WISE_NAVIGATION_SCRIPT_UNIQUE_CODE) || 0;
 
     const payload = {
         unique_code: unique_code,

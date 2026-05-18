@@ -94,6 +94,7 @@ const KEY_SENTENCE_UNIQUE_CODE = 'sentence_unique_code';
 const KEY_LABEL_UNIQUE_CODE = 'label_unique_code';
 const KEY_ROOM_UNIQUE_CODE = 'room_unique_code';
 const KEY_ROOM_LESSON_STEP_UNIT_UNIQUE_CODE = 'room_lesson_step_unit_unique_code';
+const KEY_WISE_NAVIGATION_SCRIPT_UNIQUE_CODE = 'wise_navigation_script_unique_code';
 
 
 const TEXTAREA_CONTAINER_MIN_WIDTH = 50;
