@@ -16,13 +16,13 @@ document.querySelectorAll('.learningStatusRadioButton').forEach(element => {
 	element.addEventListener('change', async function() {
 		
 		let learningStatus = escapeNumber(this.value);
-		let lessonUniqueCode = escapeHTML(this.dataset.uniqueCode);
+		let roomLessonUniqueCode = escapeHTML(this.dataset.roomLessonUniqueCode);
 
 		try {
 	
 			const payload = {
 				int_learning_status: learningStatus,
-				lesson_unique_code: lessonUniqueCode,
+				lesson_unique_code: roomLessonUniqueCode,
 				int_selected_language: intSelectedLanguage
 			};
 
