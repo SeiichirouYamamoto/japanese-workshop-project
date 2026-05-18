@@ -1298,9 +1298,9 @@ function handleMovableContainerPointerDown(e) {
 
         if (isFocusedTextarea) {
 
-            currentSelectedMovableContainers = [];
-            resetSelectedElements();
-            selectMovableElement(movableContainer);
+            // currentSelectedMovableContainers = [];
+            // resetSelectedElements();
+            // selectMovableElement(movableContainer);
 
             movableMode = MOVABLE_MODE.EDIT;
             return;
