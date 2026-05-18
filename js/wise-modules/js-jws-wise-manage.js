@@ -420,35 +420,100 @@ document.addEventListener('pointerup', async function (event) {
 
 });
 
+
 async function reorderRoomLessonContent(isPrevious, elm) {
+
     const isPreviousAsNumber = isPrevious ? FLAG_TRUE : FLAG_FALSE;
+
     const id = escapeNumber(elm.dataset.id);
+
     const currentUrl = window.location.href;
+
     const url = new URL(currentUrl);
+
+    const pathname = url.pathname;
+
     const params = url.searchParams;
-    const unique_code = params.get(KEY_ROOM_LESSON_STEP_UNIT_UNIQUE_CODE) || 0;
+
+    const {
+        type: pageType,
+        uniqueCode: unique_code
+    } = getRoomResortPageInfo(params, pathname);
 
     const payload = {
         isPreviousAsNumber: isPreviousAsNumber,
         currentUrl: currentUrl,
+        pageType: pageType,
         id: id,
         unique_code: unique_code,
         int_selected_language: intSelectedLanguage
     };
 
-    await executeRoomLessonContentResort(roomResortContentsUrl, payload, {
-        onSuccess: () => {
-            if (currentUrl.includes('manage-room-lesson-contents')) {
-                if (typeof fetchAndRenderRoomLessonContents === 'function') {
-                    fetchAndRenderRoomLessonContents();
+    await executeRoomLessonContentResort(
+        roomResortContentsUrl,
+        payload,
+        {
+            onSuccess: () => {
+
+                if (pageType === 'contents') {
+
+                    if (typeof fetchAndRenderRoomLessonContents === 'function') {
+                        fetchAndRenderRoomLessonContents();
+                    } else {
+                        location.reload();
+                    }
+
                 } else {
+
                     location.reload();
+
                 }
-            } else {
-                location.reload();
             }
         }
-    });
+    );
+}
+
+function getRoomResortPageInfo(params, pathname) {
+
+    if (pathname.endsWith('/manage-room-lesson-contents/')) {
+        return {
+            type: 'contents',
+            uniqueCode: params.get(KEY_ROOM_LESSON_STEP_UNIT_UNIQUE_CODE) || 0
+        };
+    }
+
+    if (pathname.endsWith('/manage-room-lesson-step-units/')) {
+        return {
+            type: 'step_units',
+            uniqueCode: params.get(KEY_ROOM_LESSON_STEP_UNIQUE_CODE) || 0
+        };
+    }
+
+    if (pathname.endsWith('/manage-room-lesson-steps/')) {
+        return {
+            type: 'steps',
+            uniqueCode: params.get(KEY_ROOM_LESSON_UNIQUE_CODE) || 0
+        };
+    }
+
+    if (pathname.endsWith('/manage-room-lessons/')) {
+        return {
+            type: 'lessons',
+            uniqueCode: params.get(KEY_ROOM_UNIQUE_CODE) || 0
+        };
+    }
+
+    if (pathname.endsWith('/manage-rooms/')) {
+        return {
+            type: 'rooms',
+            uniqueCode: params.get(KEY_ROOM_UNIQUE_CODE) || 0
+        };
+    }
+
+    return {
+        type: '',
+        uniqueCode: 0
+    };
 }
 
 
