@@ -84,7 +84,7 @@
 
             $arr_strSQL_select = [
                 [$t_masta_japanese_root, 'id as ' . $str_snake_to_camel_japanese_id],
-                [$t_masta_japanese_root, 'unique_code as ' . $str_snake_to_camel_unique_code],
+                [$t_masta_japanese_root, 'unique_code as ' . $str_snake_to_camel_grammar_unique_code],
                 [$t_masta_japanese_root, $arr_columns_masta_japanese_root[$int_used_language_jpn]],
                 [$t_masta_japanese_root, $arr_columns_masta_japanese_root[$int_selected_language]],
                 [$t_masta_japanese_root, $arr_columns_masta_japanese_root[$int_selected_language] . ' as ' . $str_snake_to_camel_japanese],

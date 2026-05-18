@@ -89,7 +89,7 @@ async function fetchAndRenderExplanationButtonsForGrammar(payload, str_japanese,
         if (data !== 0 && data !== null && data !== undefined) {
 
             const int_japanese_id = data.japaneseId ? escapeNumber(data.japaneseId) : 0;
-            const str_grammarUniqueCode = data.uniqueCode ? escapeHTML(data.uniqueCode) : '';
+            const str_grammarUniqueCode = data.grammarUniqueCode ? escapeHTML(data.grammarUniqueCode) : '';
             const str_japanese_from_api = data.japanese ? escapeHTML(data.japanese) : '';
             const str_kana_from_api = data.kana ? escapeHTML(data.kana) : '';
             const int_category_id = data.categoryId ? escapeNumber(data.categoryId) : 0;
@@ -158,7 +158,7 @@ async function fetchAndRenderExplanationButtonsForInflection(payload) {
                 }
 
                 const int_japanese_id = target.japaneseId ? escapeNumber(target.japaneseId) : 0;
-                const str_grammarUniqueCode = target.uniqueCode ? escapeHTML(target.uniqueCode) : '';
+                const str_grammarUniqueCode = target.grammarUniqueCode ? escapeHTML(target.grammarUniqueCode) : '';
                 const str_japanese = target.japanese ? escapeHTML(target.japanese) : '';
                 const str_kana = target.kana ? escapeHTML(target.kana) : '';
                 const int_category_id = target.categoryId ? escapeNumber(target.categoryId) : 0;
