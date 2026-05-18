@@ -59,7 +59,7 @@
                 if ($current_user_id <= 0) respond_error('Invalid user', 403);
 
                 $target_table = $t_rooms;
-                $search_field = 'user_id';
+                $search_field = 'room_owner_user_id';
                 $search_value = $current_user_id;
                 break;
 

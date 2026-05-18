@@ -407,21 +407,21 @@ document.addEventListener('pointerup', async function (event) {
     const elmPreviousButton = event.target.closest('.roomContentsEditContentsSortPreviousButton');
     if (elmPreviousButton) {
         event.stopPropagation();
-        await reorderRoomLessonContent(true, elmPreviousButton);
+        await reorderRoomItem(true, elmPreviousButton);
         return;
     }
 
     const elmNextButton = event.target.closest('.roomContentsEditContentsSortNextButton');
     if (elmNextButton) {
         event.stopPropagation();
-        await reorderRoomLessonContent(false, elmNextButton);
+        await reorderRoomItem(false, elmNextButton);
         return;
     }
 
 });
 
 
-async function reorderRoomLessonContent(isPrevious, elm) {
+async function reorderRoomItem(isPrevious, elm) {
 
     const isPreviousAsNumber = isPrevious ? FLAG_TRUE : FLAG_FALSE;
 
