@@ -1133,11 +1133,11 @@ function jws_select_wise_navigation_page(){
 		return;
 	}
 
-	$unique_code = isset($_GET['unique_code'])
-		?escape_html($_GET['unique_code'])
+	$sentence_unique_code = isset($_GET['sentence_unique_code'])
+		?escape_html($_GET['sentence_unique_code'])
 		: '';
 
-	$int_registered_sentence_id = fetch_registered_sentence_id_from_unique_code($unique_code, $int_selected_language);
+	$int_registered_sentence_id = fetch_registered_sentence_id_from_unique_code($sentence_unique_code, $int_selected_language);
 	if(!empty($int_registered_sentence_id)){
 		$str_html = build_html_select_wise_navigation_page($int_registered_sentence_id, $int_selected_language);
 		echo $str_html;
