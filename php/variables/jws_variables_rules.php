@@ -165,9 +165,9 @@ $str_snake_to_camel_room_lesson_step_unit_unique_code = 'roomLessonStepUnitUniqu
 $str_snake_to_camel_user_lesson_unique_code = 'userLessonUniqueCode';
 
 $str_snake_to_camel_wise_navigation_unique_code = 'wiseNavigationUniqueCode';
-$str_snake_to_camel_wise_navigation_item_unique_code = 'wiseNavigationItemUniqueCode';
-$str_snake_to_camel_wise_navigation_script_unique_code = 'wiseNavigationScriptUniqueCode';
 $str_snake_to_camel_wise_navigation_waypoint_unique_code = 'wiseNavigationWaypointUniqueCode';
+$str_snake_to_camel_wise_navigation_script_unique_code = 'wiseNavigationScriptUniqueCode';
+$str_snake_to_camel_wise_navigation_item_unique_code = 'wiseNavigationItemUniqueCode';
 
 
 /******************************************************

@@ -1938,11 +1938,12 @@ function get_arr_wise_navigation_waypoints($t_wise_navigation_id, $int_selected_
 	
 	global
 		$t_wise_navigations,
-		$t_wise_navigation_waypoints;
+		$t_wise_navigation_waypoints,
+		$str_snake_to_camel_wise_navigation_waypoint_unique_code;
 
 	$arr_strSQL_select = [
 		[$t_wise_navigation_waypoints,'id'],
-		[$t_wise_navigation_waypoints,'unique_code'],
+		[$t_wise_navigation_waypoints,'unique_code as ' . $str_snake_to_camel_wise_navigation_waypoint_unique_code],
 		[$t_wise_navigation_waypoints,'title']
 	];
 
@@ -1979,12 +1980,13 @@ function get_arr_wise_navigation_scripts($target_id, $int_selected_language){
 	global
 		$t_wise_navigation_scripts,
 		$t_masta_wise_navigation_script,
+		$str_snake_to_camel_wise_navigation_script_unique_code,
 		$arr_columns_wise_navigation_script_message,
 		$arr_columns_wise_navigation_script_message_template;
 
 	$arr_strSQL_select = [
         [$t_wise_navigation_scripts, 'id'],
-        [$t_wise_navigation_scripts, 'unique_code'],
+        [$t_wise_navigation_scripts, 'unique_code as ' . $str_snake_to_camel_wise_navigation_script_unique_code],
         [$t_wise_navigation_scripts, 'script_type_id'],
         [$t_wise_navigation_scripts, $arr_columns_wise_navigation_script_message[$int_selected_language] . ' AS script_message'],
         [$t_masta_wise_navigation_script, $arr_columns_wise_navigation_script_message_template[$int_selected_language] . ' AS script_message_template']
@@ -2020,11 +2022,12 @@ function get_arr_wise_navigation_scripts($target_id, $int_selected_language){
 function get_arr_wise_navigation_items($target_id, $int_selected_language){
 	
 	global
-	    $t_wise_navigation_items;
+	    $t_wise_navigation_items,
+	    $str_snake_to_camel_wise_navigation_item_unique_code;
 
 	$arr_strSQL_select = [
         [$t_wise_navigation_items, 'id'],
-        [$t_wise_navigation_items, 'unique_code'],
+        [$t_wise_navigation_items, 'unique_code as ' . $str_snake_to_camel_wise_navigation_item_unique_code],
         [$t_wise_navigation_items, 'layer_id'],
         [$t_wise_navigation_items, 'is_new']
     ];

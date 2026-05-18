@@ -579,6 +579,8 @@ function build_html_check_wise_navigation_sequence_page($wise_navigation_unique_
 		$t_wise_navigation_waypoints,
 		$t_wise_navigation_scripts,
 		$t_wise_navigation_items,
+		$str_snake_to_camel_wise_navigation_waypoint_unique_code,
+		$str_snake_to_camel_wise_navigation_script_unique_code,
 		$t_layers,
 		$t_masta_japanese_root,
 		$arr_columns_masta_japanese_root,
@@ -799,7 +801,7 @@ function build_html_check_wise_navigation_sequence_page($wise_navigation_unique_
     foreach ($arr_waypoints as $wpi => $wp) {
         $waypoint_id = isset($wp['id']) ? intval($wp['id']) : 0;
         $waypoint_title = isset($wp['title']) ? strval($wp['title']) : '';
-        $waypoint_uc = isset($wp['unique_code']) ? strval($wp['unique_code']) : '';
+        $waypoint_uc = isset($wp[$str_snake_to_camel_wise_navigation_waypoint_unique_code]) ? strval($wp[$str_snake_to_camel_wise_navigation_waypoint_unique_code]) : '';
 
         $arr_scripts_base = ($waypoint_id > 0) ? get_arr_wise_navigation_scripts($waypoint_id, $int_selected_language) : [];
         $count_scripts = is_array($arr_scripts_base) ? count($arr_scripts_base) : 0;
@@ -812,7 +814,7 @@ function build_html_check_wise_navigation_sequence_page($wise_navigation_unique_
 
 			if ($waypoint_uc !== '') {
 				$wp_href = add_query_arg(
-					'unique_code',
+					'wise_navigation_waypoint_unique_code',
 					$waypoint_uc,
 					$url_manage_wise_navigation_scripts
 				);
@@ -856,7 +858,7 @@ function build_html_check_wise_navigation_sequence_page($wise_navigation_unique_
 
             foreach ($arr_scripts_base as $si => $sc) {
                 $script_id = isset($sc['id']) ? intval($sc['id']) : 0;
-                $script_uc = isset($sc['unique_code']) ? strval($sc['unique_code']) : '';
+                $script_uc = isset($sc[$str_snake_to_camel_wise_navigation_script_unique_code]) ? strval($sc[$str_snake_to_camel_wise_navigation_script_unique_code]) : '';
                 $script_type_id = isset($sc['script_type_id']) ? intval($sc['script_type_id']) : 0;
 
                 if ($script_type_id === $int_masta_script_type_id_message_free) {
@@ -1011,7 +1013,7 @@ function build_html_check_wise_navigation_sequence_page($wise_navigation_unique_
 					$wp_href = '';
 					if ($waypoint_uc !== '') {
 						$wp_href = add_query_arg(
-							'unique_code',
+							'wise_navigation_waypoint_unique_code',
 							$waypoint_uc,
 							$url_manage_wise_navigation_scripts
 						);
@@ -1034,7 +1036,7 @@ function build_html_check_wise_navigation_sequence_page($wise_navigation_unique_
 					if ($script_type_id === $int_masta_script_type_id_message_free) {
 
 						$msg_href = add_query_arg(
-							'unique_code',
+							'wise_navigation_waypoint_unique_code',
 							$waypoint_uc,
 							$url_manage_wise_navigation_scripts
 						);
@@ -1046,7 +1048,7 @@ function build_html_check_wise_navigation_sequence_page($wise_navigation_unique_
 					) {
 
 						$msg_href = add_query_arg(
-							'unique_code',
+							'wise_navigation_script_unique_code',
 							$script_uc,
 							$url_manage_wise_navigation_items
 						);
