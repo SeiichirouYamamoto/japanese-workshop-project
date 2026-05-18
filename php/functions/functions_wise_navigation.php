@@ -316,7 +316,7 @@ function build_html_manage_wise_navigations_page($sentence_unique_code, $int_sel
 }
 
 
-function build_html_manage_wise_navigation_waypoints_page($unique_code, $int_selected_language){
+function build_html_manage_wise_navigation_waypoints_page($wise_navigation_unique_code, $int_selected_language){
 	
 	global
 		$t_wise_navigation_waypoints,
@@ -331,7 +331,7 @@ function build_html_manage_wise_navigation_waypoints_page($unique_code, $int_sel
 		trailingslashit(ltrim($path_manage_wise_navigation_scripts, '/'))
 	);
 
-    $int_wise_navigation_id = fetch_wise_navigation_id_from_unique_code($unique_code, $int_selected_language);
+    $int_wise_navigation_id = fetch_wise_navigation_id_from_unique_code($wise_navigation_unique_code, $int_selected_language);
 
     $arr_strSQL_select = [
         [$t_wise_navigation_waypoints, 'id'],
@@ -394,7 +394,7 @@ function build_html_manage_wise_navigation_waypoints_page($unique_code, $int_sel
 }
 
 
-function build_html_manage_wise_navigation_scripts_page($unique_code, $int_selected_language){
+function build_html_manage_wise_navigation_scripts_page($wise_navigation_waypoint_unique_code, $int_selected_language){
 
 	global
 		$t_wise_navigation_scripts,
@@ -411,7 +411,7 @@ function build_html_manage_wise_navigation_scripts_page($unique_code, $int_selec
 		trailingslashit(ltrim($path_manage_wise_navigation_items, '/'))
 	);
 
-    $int_wise_navigation_waypoint_id = fetch_wise_navigation_waypoint_id_from_unique_code($unique_code, $int_selected_language);
+    $int_wise_navigation_waypoint_id = fetch_wise_navigation_waypoint_id_from_unique_code($wise_navigation_waypoint_unique_code, $int_selected_language);
 
     $arr_strSQL_select = [
         [$t_wise_navigation_scripts, 'id'],
@@ -486,7 +486,7 @@ function build_html_manage_wise_navigation_scripts_page($unique_code, $int_selec
 }
 
 
-function build_html_manage_wise_navigation_items_page($unique_code, $int_selected_language){
+function build_html_manage_wise_navigation_items_page($wise_navigation_script_unique_code, $int_selected_language){
 
 	global
 		$t_wise_navigations,
@@ -496,7 +496,7 @@ function build_html_manage_wise_navigation_items_page($unique_code, $int_selecte
 
 	$str_html = '';
 
-	$wise_navigation_script_id = fetch_wise_navigation_script_id_from_unique_code($unique_code, $int_selected_language);
+	$wise_navigation_script_id = fetch_wise_navigation_script_id_from_unique_code($wise_navigation_script_unique_code, $int_selected_language);
 
 	$arr_strSQL_select = [
 		[$t_wise_navigations,'registered_sentence_id'],
@@ -562,7 +562,7 @@ function build_html_manage_wise_navigation_items_page($unique_code, $int_selecte
 }
 
 
-function build_html_check_wise_navigation_sequence_page($unique_code, $int_selected_language){
+function build_html_check_wise_navigation_sequence_page($wise_navigation_unique_code, $int_selected_language){
 	
 	global
 		$path_manage_wise_navigation_waypoints,
@@ -608,7 +608,7 @@ function build_html_check_wise_navigation_sequence_page($unique_code, $int_selec
 
     $h1 = '<h1>W.I.S.E. NAVIGATION SEQUENCE</h1>';
 
-    $t_wise_navigation_id = fetch_wise_navigation_id_from_unique_code($unique_code, $int_selected_language);
+    $t_wise_navigation_id = fetch_wise_navigation_id_from_unique_code($wise_navigation_unique_code, $int_selected_language);
     if (!is_int($t_wise_navigation_id) || $t_wise_navigation_id <= 0) {
 		$inner = $h1 . '<h2>wise_navigations title</h2><p>navigation not found</p>';
 		return '<section class="sectionStandard">' . $inner . '</section>';

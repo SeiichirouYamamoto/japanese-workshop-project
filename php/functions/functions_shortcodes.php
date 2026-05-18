@@ -1175,11 +1175,11 @@ function jws_manage_wise_navigation_waypoints_page(){
 		return;
 	}
 	
-	$unique_code = isset($_GET['unique_code'])
-			?escape_html($_GET['unique_code'])
+	$wise_navigation_unique_code = isset($_GET['wise_navigation_unique_code'])
+			?escape_html($_GET['wise_navigation_unique_code'])
 			: '';
 
-	$str_html = build_html_manage_wise_navigation_waypoints_page($unique_code, $int_selected_language);
+	$str_html = build_html_manage_wise_navigation_waypoints_page($wise_navigation_unique_code, $int_selected_language);
 	echo $str_html;
 
 }
@@ -1195,11 +1195,11 @@ function jws_manage_wise_navigation_scripts_page(){
 		return;
 	}
 
-	$unique_code = isset($_GET['unique_code'])
-			?escape_html($_GET['unique_code'])
+	$wise_navigation_waypoint_unique_code = isset($_GET['wise_navigation_waypoint_unique_code'])
+			?escape_html($_GET['wise_navigation_waypoint_unique_code'])
 			: '';
 
-	$str_html = build_html_manage_wise_navigation_scripts_page($unique_code, $int_selected_language);
+	$str_html = build_html_manage_wise_navigation_scripts_page($wise_navigation_waypoint_unique_code, $int_selected_language);
 	echo $str_html;
 
 }
@@ -1215,11 +1215,11 @@ function jws_manage_wise_navigation_items_page(){
 		return;
 	}
 
-	$unique_code = isset($_GET['unique_code'])
-			?escape_html($_GET['unique_code'])
+	$wise_navigation_script_unique_code = isset($_GET['wise_navigation_script_unique_code'])
+			?escape_html($_GET['wise_navigation_script_unique_code'])
 			: '';
 
-	$str_html = build_html_manage_wise_navigation_items_page($unique_code, $int_selected_language);
+	$str_html = build_html_manage_wise_navigation_items_page($wise_navigation_script_unique_code, $int_selected_language);
 	echo $str_html;
 
 }
@@ -1235,11 +1235,11 @@ function jws_check_wise_navigation_sequence_page(){
 		return;
 	}
 
-	$unique_code = isset($_GET['unique_code'])
-			?escape_html($_GET['unique_code'])
+	$wise_navigation_unique_code = isset($_GET['wise_navigation_unique_code'])
+			?escape_html($_GET['wise_navigation_unique_code'])
 			: '';
 
-	$str_html = build_html_check_wise_navigation_sequence_page($unique_code, $int_selected_language);
+	$str_html = build_html_check_wise_navigation_sequence_page($wise_navigation_unique_code, $int_selected_language);
 	echo $str_html;
 
 }
