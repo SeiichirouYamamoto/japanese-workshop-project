@@ -1222,14 +1222,15 @@ function build_html_navi_items_add_contents($registered_sentence_id, $int_select
 
 	global
 		$t_layers,
-		$str_snake_to_camel_japanese;
+		$str_snake_to_camel_japanese,
+		$str_snake_to_camel_layer_unique_code;
 
 	$str_html = '';
 	$str_add_li = '';
 
 	$arr_strSQL_select = [
 		[$t_layers,'id'],
-		[$t_layers,'unique_code'],
+		[$t_layers,'unique_code as ' . $str_snake_to_camel_layer_unique_code],
 		[$t_layers,'layer_name'],
 		[$t_layers,'sort']
 	];
@@ -1257,7 +1258,7 @@ function build_html_navi_items_add_contents($registered_sentence_id, $int_select
 	if (!empty($arr_layers)) {
 		foreach ($arr_layers as $key => $layer) {
 			$int_layer_id    = intval($layer['id']);
-			$str_unique_code = (string)$layer['unique_code'];
+			$str_unique_code = (string)$layer[$str_snake_to_camel_layer_unique_code];
 			$str_layer_name  = escape_html_with_nl2br($layer['layer_name']);
 
 			$arr_display = get_arr_layer_title_with_highlight($str_unique_code, $int_selected_language, $str_layer_name);
@@ -1265,7 +1266,7 @@ function build_html_navi_items_add_contents($registered_sentence_id, $int_select
 			$str_add_li =
 			$str_add_li.'<li class="naviItemsSideMenuAddContentsLi wiseUiFontSizeTarget" '.
 				'data-layer-id="'.escape_html_with_nl2br($int_layer_id).'" '.
-				'data-unique-code="'.escape_html_with_nl2br($str_unique_code).'" '.
+				'data-layer-unique-code="'.escape_html_with_nl2br($str_unique_code).'" '.
 				'data-layer-name="'.escape_html_with_nl2br($str_layer_name).'" '.
 				'data-index="'.escape_html_with_nl2br($key).'">'.
 					'<div class="searchWordListLiDiv naviItemsSideMenuAddContentsLiDiv display-on">'.

@@ -1555,7 +1555,7 @@ document.addEventListener('pointerup', async (e) => {
     const currentUrl = window.location.href;
     const url = new URL(currentUrl);
     const params = url.searchParams;
-    const send_unique_code = escapeHTML(params.get(KEY_UNIQUE_CODE));
+    const send_unique_code = escapeHTML(params.get(KEY_WISE_NAVIGATION_SCRIPT_UNIQUE_CODE));
 
     if (send_unique_code == null || send_unique_code === '') {
         alert(MSG_ERROR_UNIQUE_CODE[intSelectedLanguage]);
