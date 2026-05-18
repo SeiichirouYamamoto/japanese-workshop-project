@@ -1110,11 +1110,11 @@ function jws_wise_navigation_page(){
 		return;
 	}
 	
-	$unique_code = isset($_GET['unique_code'])
-		?escape_html($_GET['unique_code'])
+	$wise_navigation_unique_code = isset($_GET['wise_navigation_unique_code'])
+		?escape_html($_GET['wise_navigation_unique_code'])
 		: '';
 
-	$t_wise_navigation_id = fetch_wise_navigation_id_from_unique_code($unique_code, $int_selected_language);
+	$t_wise_navigation_id = fetch_wise_navigation_id_from_unique_code($wise_navigation_unique_code, $int_selected_language);
 
 	if(!empty($t_wise_navigation_id)){
 		$str_wise_navigation = build_html_wise_navigation_page($t_wise_navigation_id, $int_selected_language);

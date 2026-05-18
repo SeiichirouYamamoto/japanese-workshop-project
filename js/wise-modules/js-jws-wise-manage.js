@@ -295,10 +295,10 @@ async function fetchAndRenderRoomLessonContents() {
 async function fetchRoomLessonContentList() {
     const urlObj = new URL(window.location.href);
     const params = urlObj.searchParams;
-    const uniqueCode = params.get(KEY_ROOM_LESSON_STEP_UNIT_UNIQUE_CODE) || 0;
+    const roomLessonStepUniqueCode = params.get(KEY_ROOM_LESSON_STEP_UNIT_UNIQUE_CODE) || 0;
 
     const payload = {
-        unique_code: uniqueCode,
+        unique_code: roomLessonStepUniqueCode,
         int_selected_language: intSelectedLanguage
     };
 

@@ -166,6 +166,7 @@ function build_html_select_wise_navigation_page($int_registered_sentence_id, $in
 	global
 		$t_wise_navigations,
 		$path_wise_navigation,
+		$str_snake_to_camel_wise_navigation_unique_code,
 		$arr_str_button_caption_submit;
 
     $str_html = '';
@@ -177,7 +178,7 @@ function build_html_select_wise_navigation_page($int_registered_sentence_id, $in
 
     $arr_strSQL_select = [
         [$t_wise_navigations, 'id'],
-        [$t_wise_navigations, 'unique_code'],
+        [$t_wise_navigations, 'unique_code as ' . $str_snake_to_camel_wise_navigation_unique_code],
         [$t_wise_navigations, 'title'],
         [$t_wise_navigations, 'is_published'],
         [$t_wise_navigations, 'sort']
@@ -212,13 +213,13 @@ function build_html_select_wise_navigation_page($int_registered_sentence_id, $in
 
     foreach ($arr_wise_navigations as $row) {
         $title = isset($row['title']) ? $row['title'] : '';
-        $unique_code = isset($row['unique_code']) ? $row['unique_code'] : '';
+        $wise_navigation_unique_code = isset($row[$str_snake_to_camel_wise_navigation_unique_code]) ? $row[$str_snake_to_camel_wise_navigation_unique_code] : '';
 
         $str_html .=
             '<li class="select-wise-navigation-item">' .
                 '<div class="select-wise-navigation-title">' . escape_html($title) . '</div>' .
                 '<form class="select-wise-navigation-form" action="' . escape_html($url_wise_navigation) . '" method="GET" target="_blank" rel="noopener">' .
-                    '<input type="hidden" name="unique_code" value="' . escape_html($unique_code) . '">' .
+                    '<input type="hidden" name="wise_navigation_unique_code" value="' . escape_html($wise_navigation_unique_code) . '">' .
                     '<input class="select-wise-navigation-submit" type="submit" value="' . escape_html($arr_str_button_caption_submit[$int_selected_language]) . '">' .
                 '</form>' .
             '</li>';
