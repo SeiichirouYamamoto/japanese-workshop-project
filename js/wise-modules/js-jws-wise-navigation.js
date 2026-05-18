@@ -1419,25 +1419,100 @@ async function speakTextWithTts(original, rate = 1.0, pitch = 1.0, gapMs = 150) 
 }
 
 
+// async function reorderWiseNaviContents(isPrevious, elm) {
+//     const isPreviousAsNumber = isPrevious ? FLAG_TRUE : FLAG_FALSE;
+//     const id = escapeNumber(elm.dataset.id);
+//     const currentUrl = window.location.href;
+//     const url = new URL(currentUrl);
+//     const params = url.searchParams;
+//     const unique_code = params.get(KEY_UNIQUE_CODE) || 0;
+
+//     const payload = {
+//         isPreviousAsNumber: isPreviousAsNumber,
+//         currentUrl: currentUrl,
+//         id: id,
+//         unique_code: unique_code,
+//         int_selected_language: intSelectedLanguage
+//     };
+
+//     await executeRoomLessonContentResort(wiseNaviResortContentsUrl, payload, {
+//         onSuccess: () => { location.reload(); }
+//     });
+// }
+
 async function reorderWiseNaviContents(isPrevious, elm) {
+
     const isPreviousAsNumber = isPrevious ? FLAG_TRUE : FLAG_FALSE;
+
     const id = escapeNumber(elm.dataset.id);
+
     const currentUrl = window.location.href;
+
     const url = new URL(currentUrl);
+
+    const pathname = url.pathname;
+
     const params = url.searchParams;
-    const unique_code = params.get(KEY_UNIQUE_CODE) || 0;
+
+    const {
+        type: pageType,
+        uniqueCode: unique_code
+    } = getWiseNaviResortPageInfo(params, pathname);
 
     const payload = {
         isPreviousAsNumber: isPreviousAsNumber,
         currentUrl: currentUrl,
+        pageType: pageType,
         id: id,
         unique_code: unique_code,
         int_selected_language: intSelectedLanguage
     };
 
-    await executeRoomLessonContentResort(wiseNaviResortContentsUrl, payload, {
-        onSuccess: () => { location.reload(); }
-    });
+    await executeRoomLessonContentResort(
+        wiseNaviResortContentsUrl,
+        payload,
+        {
+            onSuccess: () => {
+                location.reload();
+            }
+        }
+    );
+}
+
+function getWiseNaviResortPageInfo(params, pathname) {
+
+    if (pathname.endsWith('/manage-wise-navigation-items/')) {
+        return {
+            type: 'wise-navigation-items',
+            uniqueCode: params.get(KEY_WISE_NAVIGATION_SCRIPT_UNIQUE_CODE) || 0
+        };
+    }
+
+    if (pathname.endsWith('/manage-wise-navigation-scripts/')) {
+        return {
+            type: 'wise-navigation-scripts',
+            uniqueCode: params.get(KEY_WISE_NAVIGATION_WAYPOINT_UNIQUE_CODE) || 0
+        };
+    }
+
+    if (pathname.endsWith('/manage-wise-navigation-waypoints/')) {
+        return {
+            type: 'wise-navigation-waypoints',
+            uniqueCode: params.get(KEY_WISE_NAVIGATION_UNIQUE_CODE) || 0
+        };
+    }
+
+    if (pathname.endsWith('/manage-wise-navigations/')) {
+        return {
+            type: 'wise-navigations',
+            uniqueCode: params.get(KEY_SENTENCE_UNIQUE_CODE) || 0
+        };
+    }
+
+    return {
+        type: '',
+        uniqueCode: 0
+    };
 }
 
 async function searchWiseNaviItems() {

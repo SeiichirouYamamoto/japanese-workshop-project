@@ -98,6 +98,8 @@ const KEY_ROOM_LESSON_UNIQUE_CODE = 'room_lesson_unique_code';
 const KEY_ROOM_LESSON_STEP_UNIQUE_CODE = 'room_lesson_step_unique_code';
 const KEY_ROOM_LESSON_STEP_UNIT_UNIQUE_CODE = 'room_lesson_step_unit_unique_code';
 
+const KEY_WISE_NAVIGATION_UNIQUE_CODE = 'wise_navigation_unique_code';
+const KEY_WISE_NAVIGATION_WAYPOINT_UNIQUE_CODE = 'wise_navigation_waypoint_unique_code';
 const KEY_WISE_NAVIGATION_SCRIPT_UNIQUE_CODE = 'wise_navigation_script_unique_code';
 
 
